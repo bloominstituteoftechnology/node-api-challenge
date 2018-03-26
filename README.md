@@ -11,7 +11,7 @@
 
 https://www.coindesk.com/api/
 
-You're going to create a server using Node and Express. This server is going to have the endpoint **/compare** and will return the amount that bitcoin's value in USD has either risen or fallen between the current day and the previous. You will get this data by using the provided api. Make two separate requests, one for the previous value and one for the current.
+You're going to create a server using Node and Express. This server is going to have the endpoint **/compare**. The endpoint will return the amount that bitcoin's value (in USD) has either risen or fallen between the current day and the previous. You will get this data by using the provided API. Make two separate requests, one for the previous value and one for the current.
 
 Good luck, and have fun!
 
