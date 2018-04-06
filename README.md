@@ -2,7 +2,7 @@
 
 ## Assignments
 
-Please open the `Review.md` file ans answer the questions.
+Please open the `Review.md` file and answer the questions.
 
 Use Node.js and Express to design and build an API that performs CRUD operations on **projects** and **actions**.
 
@@ -24,7 +24,7 @@ Use Node.js and Express to design and build an API that performs CRUD operations
 
 The `/data/helpers` folder includes helper files that you can use to manage the persistence of _project_ and _action_ data. These files are `projectModel.js` and `actionModel.js`. Both files publish the following api, which you can use to store, modify and retrieve each resource:
 
-* `get()`: calling get returns array of all the resources contained in the database. If you pass an `id` to this method it will return the resource with that id if one is found.
+* `get()`: calling get returns an array of all the resources contained in the database. If you pass an `id` to this method it will return the resource with that id if one is found.
 * `insert()`: calling insert passing it a resource object will add it to the database and return the newly created resource.
 * `update()`: accepts two arguments, the first is the `id` of the resource to update, and the second is an object with the `changes` to apply. It returns the updated resource. If a resource with the provided `id` is not found, the method returns `null`.
 * `remove()`: the remove method accepts an `id` as it's first parameter and, upon successfully deleting the resource from the database, returns the number of records deleted.
