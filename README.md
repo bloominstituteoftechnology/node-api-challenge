@@ -1,4 +1,4 @@
-# Building RESTful APIs with Express and Node.js Spring Challenge
+# Express and Node.js Sprint Challenge
 
 ## Assignments
 
