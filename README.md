@@ -1,15 +1,8 @@
-# Assessing Node - Express Fu
-
-* Answers to your written questions will be recorded in _Answers.md_
-
-## Questions
-
-1.  What is Node?
-2.  What is Express?
-3.  What is Middleware?
-4.  What is an endpoint?
+# Building RESTful APIs with Express and Node.js Spring Challenge
 
 ## Assignments
+
+* Please open the `Review.md` file ans answer the questions.
 
 Use Node.js and Express to design and build an API that performs CRUD operations on **projects** and **actions**.
 
