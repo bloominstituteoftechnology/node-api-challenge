@@ -2,7 +2,7 @@
 
 ## Assignments
 
-* Please open the `Review.md` file ans answer the questions.
+Please open the `Review.md` file ans answer the questions.
 
 Use Node.js and Express to design and build an API that performs CRUD operations on **projects** and **actions**.
 
@@ -22,14 +22,14 @@ Use Node.js and Express to design and build an API that performs CRUD operations
 
 ### Database Persistence Helpers
 
-The `/data/helpers` folder includes helper files that you can use to manage the persistence of projects and action data. These files are `projectModel.js` and `actionModel.js`. Both files publish the following api, that you can use to store, modify and retrieve each resource:
+The `/data/helpers` folder includes helper files that you can use to manage the persistence of _project_ and _action_ data. These files are `projectModel.js` and `actionModel.js`. Both files publish the following api, which you can use to store, modify and retrieve each resource:
 
 * `get()`: calling get returns array of all the resources contained in the database. If you pass an `id` to this method it will return the resource with that id if one is found.
-* `insert()`: calling insert passing it a resource object will add it to the database and return an object with the id of the inserted resource. The object looks like this: `{ id: 123 }`.
-* `update()`: accepts two arguments, the first is the `id` of the resource to update, and the second is an object with the `changes` to apply. It returns the count of updated records. If the count is 1 it means the record was updated correctly.
+* `insert()`: calling insert passing it a resource object will add it to the database and return the newly created resource.
+* `update()`: accepts two arguments, the first is the `id` of the resource to update, and the second is an object with the `changes` to apply. It returns the updated resource. If a resource with the provided `id` is not found, the method returns `null`.
 * `remove()`: the remove method accepts an `id` as it's first parameter and, upon successfully deleting the resource from the database, returns the number of records deleted.
 
-The `projectModel.js` helper includes an extra method called `getProjectActions()` that when passed a _project_ id as it's only argument, returns a list of all the _actions_ for the _project_.
+The `projectModel.js` helper includes an extra method called `getProjectActions()` that when passed a _project id_ as it's only argument, returns a list of all the _actions_ for the _project_.
 
 **All these helper methods return a promise.**
 
