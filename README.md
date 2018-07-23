@@ -6,10 +6,6 @@ Please open the `Review.md` file and answer the questions.
 
 Use Node.js and Express to design and build an API that performs CRUD operations on **projects** and **actions**.
 
-## Friendly Reminder
-
-Don't fret or get anxious. This is a no-pressure assessment designed to help us discover better ways to help you move forward and make the learning experience better for you.
-
 ### Download Project Files and Install Dependencies
 
 - **Fork** and **Clone** this repository.
