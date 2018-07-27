@@ -29,7 +29,7 @@ The `/data/helpers` folder includes helper files that you can use to manage the 
 - `update()`: accepts two arguments, the first is the `id` of the resource to update, and the second is an object with the `changes` to apply. It returns the updated resource. If a resource with the provided `id` is not found, the method returns `null`.
 - `remove()`: the remove method accepts an `id` as it's first parameter and, upon successfully deleting the resource from the database, returns the number of records deleted.
 
-The `projectModel.js` helper includes an extra method called `getProjectActions()` that when passed a _project id_ as it's only argument, returns a list of all the _actions_ for the _project_.
+The `projectModel.js` helper includes an extra method called `getProjectActions()` that takes a _project id_ as it's only argument and returns a list of all the _actions_ for the _project_.
 
 **All these helper methods return a promise.**
 
@@ -41,7 +41,7 @@ The _schemas_ (properties and data type of each property) used to store and retr
 
 - `id`: number, no need to provide it when creating projects, the database will generate it.
 - `name`: string, up to 128 characters long, required.
-- `description`: string, up to 128 characters long, required.
+- `description`: string, no size limit, required.
 - `completed`: boolean to indicate if the project has been completed, not required
 
 ##### Actions
@@ -49,12 +49,12 @@ The _schemas_ (properties and data type of each property) used to store and retr
 - `id`: number, no need to provide it when creating posts, the database will automatically generate it.
 - `project_id`: number, required, must be the id of an existing project.
 - `description`: string, up to 128 characters long, required.
-- `notes`: string, no size limit, not required. Used to record additional notes ore requirements to complete the action.
+- `notes`: string, no size limit, not required. Used to record additional notes or requirements to complete the action.
 - `completed`: boolean to indicate if the action has been completed, not required
 
 We have provided test data for all the resources.
 
-Now that we have a way to add, update, remove and retrieve data from the provided database, it is time to work on the API.
+Now that we have a way to add, update, remove and retrieve data from the provided database, it's time to work on the API.
 
 ### Design and Build Endpoints
 
