@@ -2,9 +2,8 @@
 
 ## Assignments
 
-Please open the `Review.md` file and answer the questions.
-
-Use Node.js and Express to design and build an API that performs CRUD operations on **projects** and **actions**.
+- Please open the `Review.md` file and answer the questions.
+- Use Node.js and Express to design and build an API that performs CRUD operations on **projects** and **actions**.
 
 ### Download Project Files and Install Dependencies
 
