@@ -14,4 +14,4 @@
 
 ## How can we partition our application into sub-applications?
 
-## What is CORS and why do we need it?
+## What is express.json() and why do we need it?
