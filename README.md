@@ -68,8 +68,6 @@ The `projectModel.js` helper includes an extra method called `getProjectActions(
 
 ## Minimum Viable Product
 
-- [ ] Take the steps necessary to create a `package.json` to keep a record of all dependencies.
-- [ ] Use _yarn_ to add **knex** and **sqlite3** as dependencies to the project. **This is required for database access**.
 - [ ] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
 - [ ] Configure an _npm script_ named _"start"_ that will execute your code using _node_.
 
@@ -78,11 +76,11 @@ Design and build the necessary endpoints to:
 - [ ] Perform CRUD operations on _projects_ and _actions_.
 - [ ] Retrieve the list of actions for a project.
 
-## Database Schemas
+### Database Schemas
 
 The _schemas_ (properties and data type of each property) used to store and retrieve the resources inside the included database (`lambda.sqlite3`) is described below.
 
-## Projects
+#### Projects
 
 | Field       | Data Type | Metadata                                                                    |
 | ----------- | --------- | --------------------------------------------------------------------------- |
@@ -91,7 +89,7 @@ The _schemas_ (properties and data type of each property) used to store and retr
 | description | string    | required.                                                                   |
 | completed   | boolean   | used to indicate if the project has been completed, not required            |
 
-## Actions
+#### Actions
 
 | Field       | Data Type | Metadata                                                                                         |
 | ----------- | --------- | ------------------------------------------------------------------------------------------------ |
