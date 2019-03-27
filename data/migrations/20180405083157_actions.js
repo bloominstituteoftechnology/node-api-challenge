@@ -1,4 +1,4 @@
-exports.up = function(knex, Promise) {
+exports.up = function(knex) {
   return knex.schema.createTable('actions', function(actions) {
     actions.increments();
 
@@ -7,7 +7,9 @@ exports.up = function(knex, Promise) {
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('projects');
+      .inTable('projects')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE');
 
     actions.string('description', 128).notNullable();
     actions.text('notes').notNullable();
@@ -15,6 +17,6 @@ exports.up = function(knex, Promise) {
   });
 };
 
-exports.down = function(knex, Promise) {
+exports.down = function(knex) {
   return knex.schema.dropTableIfExists('actions');
 };
