@@ -32,7 +32,7 @@ Follow these steps for completing your project.
 
 ## Commits
 
-Commit your code regularly and use descriptive messages. This helps both you (in case you ever need to return to old code for any number of reasons and your Team Lead).
+Commit your code regularly and use descriptive messages. This helps both you (in case you ever need to return to old code) and your Team Lead.
 
 ## Self-Study/Essay Questions
 
