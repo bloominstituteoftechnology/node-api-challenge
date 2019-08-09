@@ -60,7 +60,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 ### Resources (People and Chores)
 
-Store the data about **people** and **chores** in memory using arrays.
+Store the data about **people** and **chores** using arrays.
 
 For **people** store the following information:
 
