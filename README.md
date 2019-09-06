@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+  1. it has a router feature similar to react, and it has middleware.
+
 - [ ] Describe Middleware?
+
+  middleware are functions that can simplify the code in endpoints by allowing us to write validation fucnctions and then reuse and pass those to endpoints.
 
 - [ ] Describe a Resource?
 
+        a resource is data from a client, an api is server software that has endpoints to handle that data/resources.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+  http status codes
+
 - [ ] How can we partition our application into sub-applications?
+
+  by using express router we partition our code and make it more readable to those who follow.
 
 ## Project Setup
 
