@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+This week I learned that Express is more or less the React framework for Node. It sits on top of the Node.js server and allows for extra functionality like routing and custom middleware. Express is very flexible, which means developers using it have to make more decisions.
+
 - [ ] Describe Middleware?
+
+Middleware are functions that are executed in the order they are introduced into the server code. For example, before a request can be made, a middleware function might first require that the request be made in a certain format (e.g., needs a name, can't exceed a certain length) or that the user has the right credentials to make the request.
 
 - [ ] Describe a Resource?
 
+A resource is information that lives within a server. Users can write requests to perform operations using the resources.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+An API can return a 200 OK status code to let clients know that the request was successful
+
 - [ ] How can we partition our application into sub-applications?
+We can use Express Router to partition our application by setting up routes in separate files
+
 
 ## Project Setup
 
