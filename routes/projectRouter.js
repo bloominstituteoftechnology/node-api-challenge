@@ -23,7 +23,7 @@ router.get("/:id", validateProjectId,(req,res,next) => {
 router.post("/",validateNameDescription,(req,res) => {
     const {body} = req;
 
-    projectsDb
+    projectDb
     .insert(body)
     .then(response => {
         res.status(201).json(response)
@@ -34,9 +34,23 @@ router.post("/",validateNameDescription,(req,res) => {
 
 })
 
-
 // update existing project (requires valid project ID)
+router.put("/:id", validateProjectId,validateNameDescription,(req,res) => {
+    const {id} = req.params;
+    const updatedProject = req.body;
+    console.log("Body: ", updatedProject)
 
+    projectDb
+    .update(id, updatedProject)
+    .then(response => {
+        if(response) {
+            res.status(200).json(response)
+        }
+        else {
+            res.status(400).json({error: "project could not be updated"})
+        }
+    })
+})
 
 // delete a project (requires valid project ID)
 
