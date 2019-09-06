@@ -38,7 +38,7 @@ router.get('/:id', validateProjectID, (req, res) => {
         res.status(200).json(result)
     })
     .catch(err => {
-        res.status(500).json({ error: "The p information could not be retrieved." })
+        res.status(500).json({ error: "The project information could not be retrieved." })
     })
     }   
 );
@@ -48,10 +48,9 @@ router.get('/:id', validateProjectID, (req, res) => {
 router.put('/:id', validateProjectID, (req, res) => {
     Projects.update(req.params.id, req.body)
     .then(result => {
-        res.status(201).json(result)
+        res.status(200).json(result)
     })
     .catch(err => {
-        console.log(err)
         res.status(500).json({ error: "There was an error while saving the project to the database" })
     })
     }   
