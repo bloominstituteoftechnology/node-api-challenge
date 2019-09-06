@@ -13,7 +13,7 @@ server.use("/projects", projectRouter);
 
 // Sanity test for Mr. Hernandez
 server.get("/", (req, res) => {
-  res.status(200).json({ api: "up...up and away" });
+  res.status(200).json({ api: "OMG I LOVE TO DEPLOY, Especially on Friday" });
 });
 
 // custom middleware
