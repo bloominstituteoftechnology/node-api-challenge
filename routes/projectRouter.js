@@ -2,8 +2,22 @@
 const router = require("express").Router();
 const projectDb = require("../data/helpers/projectModel.js")
 
-// retrieve a project
+// retrieve all projects
+router.get('/', (req, res) => {
+    projectDb
+    .get()
+    .then(projects => res.status(200).json(projects))
+    .catch((error) => {
+        console.log(error)
+        res.status(500).json({error: "could not retrieve projects from the database"})
+    })
 
+});
+
+// retrieve a project by ID
+router.get("/:id", validateProjectId,(req,res,next) => {
+    res.status(200).json(req.response);
+});
 
 // add a project
 
