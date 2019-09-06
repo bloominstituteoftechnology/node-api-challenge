@@ -13,8 +13,18 @@ I need this code, just don't know where, perhaps should make some middleware, do
 Go code!
 */
 
+// add for deploy
+require("dotenv").config();
+
 const server = require("./server.js");
 
-const port = 6500;
+// make server dynamic for deploy
+const port = process.env.PORT || 6500;
 
-server.listen(port, () => console.log(`\n Check out my API ON  ${port} **\n`));
+server.listen(port, () => {
+  console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
+});
+
+// const port = 6500;
+
+// server.listen(port, () => console.log(`\n Check out my API ON  ${port} **\n`));

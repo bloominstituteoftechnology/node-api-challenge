@@ -30,7 +30,7 @@ router.get("/:id", (req, res) => {
 });
 
 // Method post
-router.post("/", validateActionsId, (req, res) => {
+router.post("/", (req, res) => {
   const action = req.body;
   db.insert(action)
     .then(actions => {
