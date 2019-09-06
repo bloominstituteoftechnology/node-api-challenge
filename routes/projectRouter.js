@@ -19,7 +19,20 @@ router.get("/:id", validateProjectId,(req,res,next) => {
     res.status(200).json(req.response);
 });
 
-// add a project
+// add a new project
+router.post("/",validateNameDescription,(req,res) => {
+    const {body} = req;
+
+    projectsDb
+    .insert(body)
+    .then(response => {
+        res.status(201).json(response)
+    })
+    .catch((error) => {
+        res.status(500).json({error: "server could not create new project"})
+    })
+
+})
 
 
 // update existing project (requires valid project ID)
