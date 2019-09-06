@@ -53,6 +53,24 @@ router.put("/:id", validateProjectId,validateNameDescription,(req,res) => {
 })
 
 // delete a project (requires valid project ID)
+router.delete("/:id",validateProjectId,(req,res) => {
+    const {id} = req.params;
+
+    projectDb
+    .remove(id)
+    .then(response => {
+        if(response) {
+            res.status(204).end();
+        }
+        else {
+            res.status(400).json({error: "project could not be deleted"})
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(500).json({error: "server error; could not delete project"})
+    })
+})
 
 // MIDDLEWARE
 
