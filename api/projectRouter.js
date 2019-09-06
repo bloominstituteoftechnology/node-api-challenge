@@ -84,20 +84,22 @@ router.delete('/:id', validateProjectID, (req, res) => {
 
 // ========================= my middleware =========================
 
-
+// 404 handling
 function validateProjectID(req, res, next) {
     Projects.get(req.params.id)
         .then(u => {
             if (u) {
                 console.log("validateProjectID passed")
                 next();
-            } else {res.status(400).json({ message: "invalid project id" })}
+            } else {res.status(404).json({ message: "invalid project id" })}
         })
         .catch(err => {
             res.status(500).json({ error: "The project information could not be retrieved." })
     })
 };
 
+
+// Required keys for the req object.
 function validateProjectBody(req, res, next) {
     const { name, description } = req.body
     if (!name || !description ) {

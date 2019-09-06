@@ -74,7 +74,7 @@ router.delete('/:id', validateActionID, (req, res) => {
 
 // ========================= my middleware =========================
 
-
+// If a project ID is specified in POST or PUT, make sure the project exists.
 function validateRelatedProj(req, res, next) {
     if (req.body.project_id)
     Projects.get(req.body.project_id)
@@ -90,19 +90,21 @@ function validateRelatedProj(req, res, next) {
     else next();
 };
 
+// 404 handling
 function validateActionID(req, res, next) {
     Actions.get(req.params.id)
         .then(u => {
             if (u) {
                 console.log("validateActionID passed")
                 next();
-            } else {res.status(400).json({ message: "invalid action id" })}
+            } else {res.status(404).json({ message: "invalid action id" })}
         })
         .catch(err => {
             res.status(500).json({ error: "The action information could not be retrieved." })
     })
 };
 
+// Required keys for the req object.
 function validateActionBody(req, res, next) {
     const { notes, description, project_id } = req.body
     if (!notes || !description || !project_id ) {
