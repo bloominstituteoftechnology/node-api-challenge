@@ -54,6 +54,16 @@ function validateProjectId(req,res,next) {
 }
 
 // validate string length
+function validateStringLength(req,res,next) {
+    const description = req.body.description || "";
+
+    if (description.length <= 128) {
+        next();
+    }
+    else {
+        res.status(400).json({error: "description cannot exceed 128 characters"})
+    }
+}
 
 // validate action ID
 function validateActionId(req,res,next) {
