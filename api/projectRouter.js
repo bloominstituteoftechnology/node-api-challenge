@@ -43,6 +43,19 @@ router.get('/:id', validateProjectID, (req, res) => {
     }   
 );
 
+// ========================= GET /projects/:id/actions =========================
+
+router.get('/:id/actions', validateProjectID, (req, res) => {
+    Projects.getProjectActions(req.params.id)
+    .then(result => {
+        res.status(200).json(result)
+    })
+    .catch(err => {
+        res.status(500).json({ error: "The project information could not be retrieved." })
+    })
+    }   
+);
+
 // ========================= PUT /projects/:id =========================
 
 router.put('/:id', validateProjectID, (req, res) => {

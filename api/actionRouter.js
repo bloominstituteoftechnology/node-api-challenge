@@ -87,7 +87,7 @@ function validateRelatedProj(req, res, next) {
         .catch(err => {
             res.status(500).json({ error: "The project information could not be retrieved." })
     })
-    else next()
+    else next();
 };
 
 function validateActionID(req, res, next) {
