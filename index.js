@@ -12,3 +12,20 @@ I need this code, just don't know where, perhaps should make some middleware, do
 
 Go code!
 */
+const express = require("express");
+const server = express();
+projectRouter = require('./routers/projectRouter');
+
+
+server.use(express.json());
+
+server.use('/api/projects', projectRouter)
+
+server.get('/', (req, res) => {
+    res.send("server is working for sprint challenge")
+})
+const port = 9000;
+
+server.listen(port, () => {
+  console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
+});
