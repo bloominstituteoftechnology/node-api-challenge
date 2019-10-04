@@ -3,18 +3,14 @@ const express = require("express");
 const projectModel = require("./data/helpers/projectModel.js");
 
 // import middleware below 
-
-const validateProjects = require("./auth/validateProjects.js");
-const validateProjectsUpdate = require("./auth/validateProjectsUpdate.js");  
+const validateProjects = require("./auth/validateProjects.js");  
 // import middleware above
 
-// const router = express.Router(); 
-
 const router = express(); 
-router.use(express.json())
+router.use(express.json()); 
 
 
-
+// .get() getting name and description from projectModel
 router.get("/", (req, res) => {
     projectModel
     .get()
@@ -27,15 +23,14 @@ router.get("/", (req, res) => {
     })
 }) 
 
-
-// .post() users from projects 
+// .post() creating a new name and description 
 router.post("/", validateProjects, (req, res) => {
     const body = req.body; 
     
     projectModel
     .insert(body)
-    .then(students => {
-        res.status(200).json(students)
+    .then(project => {
+        res.status(200).json(project)
     })
     .catch(error => {
         console.log(error)
@@ -43,6 +38,7 @@ router.post("/", validateProjects, (req, res) => {
     })
 })
 
+// .get() getting the list with a specific id 
 router.get("/:id", (req, res) => {
     const { id } = req.params; 
 
@@ -63,20 +59,31 @@ router.get("/:id", (req, res) => {
   
 })
 
-router.put("/:id", validateProjectsUpdate, (req, res) => {
+// .put() editing the specific projects with ID 
+router.put('/:id', (req, res) => {
     const { id } = req.params; 
+    const edit = req.body;
 
+    if(!edit.name && !edit.description){
+        res.status(400).json({message: "Please include a name or a description with maximum 128 characters"})
+    } else {
     projectModel
-    .update(id)
-    .then(edit => {
-        res.status(200).json(edit)
-    })
-    .catch(error => {
-        console.log(error)
-        res.status(500).json({error: "error with server"})
-    })
-})
+    .update(id, edit)
+        .then(projects => {
+            if(projects) {
+                res.status(200).json(projects);
+            } else {
+                res.status(404).json({message: "Project with specified id not found"});
+            };
+        })
+        .catch(err => {
+            console.log("Edit Project Error:", err)
+            res.status(500).json({error: "Error with server while updating data"})
+        });
+    }
+});
 
+// .delete() deleting projects 
 router.delete("/:id", (req, res) => {
     const { id } = req.params; 
 
@@ -95,6 +102,7 @@ router.delete("/:id", (req, res) => {
     })
 })
 
+// get() getting projects form actionModel  
 router.get("/:project_id/actions", (req, res) => {
     const project_id = req.params.project_id; 
 

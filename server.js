@@ -11,7 +11,6 @@ server.use(helmet())
 server.use(express.json())
 
 server.use("/api/projects", projectsRouter)
-// make the server use for actions 
 
 
 // middleware
