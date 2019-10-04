@@ -11,7 +11,7 @@ server.use(helmet())
 server.use(express.json())
 
 server.use("/api/projects", router)
-server.use("")
+
 
 // middleware
 function logger(req, res, next) {
