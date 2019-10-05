@@ -1,6 +1,8 @@
 const express = require("express"); 
 
 const projectModel = require("./data/helpers/projectModel.js");
+const actionModel = require("./data/helpers/actionModel.js");
+const db = require("./data/dbConfig.js");
 
 // import middleware below 
 const validateProjects = require("./auth/validateProjects.js");  
@@ -22,6 +24,7 @@ router.get("/", (req, res) => {
         res.status(500).json({error: "error with server"})
     })
 }) 
+
 
 // .post() creating a new name and description 
 router.post("/", validateProjects, (req, res) => {
@@ -103,18 +106,20 @@ router.delete("/:id", (req, res) => {
 })
 
 // get() getting projects form actionModel  
-router.get("/:project_id/actions", (req, res) => {
-    const project_id = req.params.project_id; 
+router.get("/:id/actions", (req, res) => {
+    const { id } = req.params; 
 
     projectModel
-    .getProjectActions(project_id)
-    .then(projectActions => {
-        res.status(200).json(projectActions)
+    .getProjectActions(id)
+    .then(actions => {
+        res.status(200).json(actions)
     })
     .catch(error => {
         console.log(error)
         res.status(500).json({error: "server with error"})
     })
 })
+
+
 
 module.exports = router; 

@@ -2,59 +2,56 @@ const express = require("express");
 
 const actionModel = require("./data/helpers/actionModel.js");
 
-// import middleware below 
-// const validateProjects = require("./auth/validateProjects.js");  
-// import middleware above
-
 const router = express(); 
 router.use(express.json()); 
 
-router.post('/:project_id/actions', (req, res) => {
-    const { project_id } = req.params;
+
+router.post("/", (req, res) => {
     const notes = req.body.notes; 
     const description = req.body.description; 
 
-
-    if(!notes || !description || description.length > 128) {
+    if(!notes && !description && !description.length < 128) {
         res.status(400).json({message: "Please include a description with max 128 characters and/or notes"})
     } else {
         actionModel
-        .insert({description, notes , project_id})
-            .then(objectAction => {
-                const {project_id} = objectAction
-
-                actionModel
-                .getProjectActions(project_id)
-                    .then(actions => {
-                        if(actions) {
-                            res.status(200).json(actionObj)
-                        } else {
-                            res.status(404).json({message: "Project with specified id not found"});
-                        };
-                    })
-                    .catch(error => {
-                        console.log(error)
-                        res.status(500).json({error: "Error with server while retrieving data one"})
-                    });
+        .insert(req.body)
+            .then(actions => {
+                res.status(200).json(actions)
             })
             .catch(error => {
                 console.log(error)
-                res.status(500).json({error: "Error with server while retrieving data two"})
-            });
+                res.status(500).json({error: "Please included notes description, and project ID"})
+            }); 
     };
-});
 
-router.delete("/:project_id/actions/action_id", (req, res)=> {
-    const { action_id } = req.params; 
+}); 
+
+// get() getting projects form actionModel  
+router.get("/:id", (req, res) => {
+    const { id } = req.params; 
+
+    actionModel
+    .get(id)
+    .then(actions => {
+        res.status(200).json(actions)
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json({error: "server with error"})
+    })
+})
+
+router.delete("/:id", (req, res)=> {
+    const { id } = req.params; 
     
     actionModel
-    .remove(action_id)
+    .remove(id)
     .then(deleted => {
-        if(deleted) {
+        // if(deleted) {
             res.status(200).json(deleted)
-        } else{
-            res.status(404).json({message: "action with id not found" })
-        }
+        // } else{
+            // res.status(404).json({message: "action with id not found" })
+        // }
     })
     .catch(error => {
         console.log(error)
@@ -63,27 +60,25 @@ router.delete("/:project_id/actions/action_id", (req, res)=> {
 })
 
 
-router.put("/:project_id/actions/action_id", (req, res) => {
-    const { action_id } = req.params; 
-    const edit = req.body;
+router.put("/:id", (req, res) => {
+    const notes = req.body.notes; 
+    const description = req.body.description; 
+    const { id } = req.params; 
 
-    if(!edit.notes && !edit.description && !edit.description.length > 128){
-        res.status(400).json({message: "Please include a name or a description with maximum 128 characters"})
+    if(!notes && !description && !description.length < 128) {
+        res.status(400).json({message: "Please include a description with max 128 characters and/or notes"})
     } else {
-    actionModel
-    .update(action_id, edit)
-        .then(action => {
-            if(action) {
-                res.status(200).json({action});
-            } else {
-                res.status(404).json({message: "Project with specified id not found"});
-            };
-        })
-        .catch(err => {
-            console.log("Edit Project Error:", err)
-            res.status(500).json({error: "Error with server while updating data"})
-        });
-    }
+        actionModel
+        .update(id, req.body)
+            .then(actions => {
+                res.status(200).json(actions)
+            })
+            .catch(error => {
+                console.log(error)
+                res.status(500).json({error: "Please included notes description, and project ID"})
+            });
+           
+    };
 })
 
 
