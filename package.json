@@ -1,12 +1,12 @@
 {
-  "name": "webapi-challenge",
+  "name": "node-api-challenge",
   "version": "1.0.0",
-  "description": "Web API Challenge",
+  "description": "Node API Challenge",
   "main": "index.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LambdaSchool/Sprint-Challenge-Node-Express.git"
+    "url": "git+https://github.com/LambdaSchool/webapi-challenge.git"
   },
   "keywords": [
     "webapi",
@@ -15,15 +15,15 @@
   ],
   "author": "Lambda School",
   "bugs": {
-    "url": "https://github.com/LambdaSchool/Sprint-Challenge-Node-Express/issues"
+    "url": "https://github.com/LambdaSchool/webapi-challenge/issues"
   },
-  "homepage": "https://github.com/LambdaSchool/Sprint-Challenge-Node-Express#readme",
+  "homepage": "https://github.com/LambdaSchool/webapi-challenge#readme",
   "dependencies": {
-    "helmet": "^3.20.0",
-    "knex": "^0.19.1",
-    "sqlite3": "^4.0.9"
+    "helmet": "^3.21.2",
+    "knex": "^0.20.1",
+    "sqlite3": "^4.1.0"
   },
   "devDependencies": {
-    "knex-cleaner": "^1.2.1"
+    "knex-cleaner": "^1.3.0"
   }
 }
