@@ -16,5 +16,5 @@ Go code!
 const server = require('./server');
 const port = 7777;
 server.listen(port, () => {
-  console.log(`Port ${port} is working successfully!`)
-})
+  console.log('Live on Port', port)
+});
