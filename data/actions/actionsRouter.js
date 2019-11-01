@@ -28,6 +28,8 @@ router.get("/", (req, res) => {
  router.post("/:id", (req, res) => {
    const action = req.body;
    const {id} = req.params;
+  
+   console.log({...action, project_id: id})
    db.insert({...action,project_id: id})
      .then(actions => {
        res.status(200).json(actions);
