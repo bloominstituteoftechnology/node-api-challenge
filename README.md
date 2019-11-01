@@ -97,3 +97,9 @@ Now that we have a way to add, update, remove and retrieve data from the provide
 - From the React application show a list of all _projects_ using the API you built.
 - Add functionality to show the details of a project, including its actions, when clicking a project name in the list. Use React Router to navigate to a separate route to show the project details.
 - Add styling! Perhaps with [`styled-components`](https://www.styled-components.com/).
+
+### Questions
+
+1. When sending the updated info, what happens to the database if we try to update it with a new ID?
+
+2. Database seems to ignore string booleans, where in the database does it know how to ignore it?
