@@ -41,6 +41,32 @@ server.post("/", validateUserId,(req, res) => {
     })
 })
 
+//DELETE
+server.delete("/:id", validateUserId, (req, res) => {
+    const id = req.params.id;
+    db.remove(id)
+      .then(actions => {
+        res.status(200).json(actions);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: " DELETE FAILED" });
+      });
+  });
+
+//PUT
+server.put("/:id", validateUserId, (req, res) => {
+    const id = req.params.id;
+    const changes = req.body;
+    db.update(id, changes)
+      .then(updated => {
+        res.status(200).json(updated);
+      })
+      .catch(err => {
+        res.status(500).json({ error: "PUT /:id error" });
+      });
+  });
+
 //middleware
 //ID validation
 function validateUserId(req, res, next) {
@@ -58,6 +84,6 @@ function validateUserId(req, res, next) {
       });
   }
 
-  
+
 
 module.exports = server;
