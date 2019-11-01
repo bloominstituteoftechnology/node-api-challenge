@@ -12,8 +12,13 @@ I need this code, just don't know where, perhaps should make some middleware, do
 
 Go code!
 */
-const server = require('./server.js')
-const port = 5500
-server.listen(port, () => {
-    console.log('Server is running', port)
+const express = require('express')
+const server = express();
+
+server.get('/', (req, res) => {
+    res.send('webapi-challenge');
 })
+
+const port = 5500
+
+server.listen(port, () => console.log('/n *** Running on port 5500 n/'))
