@@ -1,5 +1,6 @@
 const express = require("express");
 const db = require("../data/helpers/actionModel");
+const dbProject = require("../data/helpers/projectModel");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -89,14 +90,26 @@ function validateAction(req, res, next) {
   const { project_id, description, notes } = req.body;
   // actions database already looks for project_id in the actions
   // is there a way to access the projects database in the actions?
-  console.log(
-    `this is the length of the descrition length`,
-    description.length
-  );
+
   // ? how do I add validation that it is checking for an existing project?
   // ? how do i add validation that it is a number?
   project_id && description && notes && description.length < 128
-    ? next()
+    ? dbProject
+        .get(project_id)
+        .then(
+          project
+            ? next()
+            : res.status(404).json({
+                message: "Project not found, please enter a valid ID."
+              })
+        )
+        .catch(
+          res
+            .status(500)
+            .json({
+              errorMsg: `Internal error when trying to find project ${project_id}`
+            })
+        )
     : res.status(400).json({
         message:
           "Bad request, please include project_id, description, and notes."
