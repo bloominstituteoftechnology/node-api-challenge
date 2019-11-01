@@ -1,7 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 
-// const actionsRouter = require("./actionsRouter");
+const actionsRouter = require("./actionsRouter");
 const projectsRouter = require("./projectsRouter");
 
 const server = express();
@@ -19,7 +19,7 @@ server.use(express.json());
 
 // Routes
 
-// server.use(`/api/actions`, actionsRouter);
+server.use(`/api/actions`, actionsRouter);
 server.use(`/api/`, projectsRouter);
 
 server.get(`/`, (req, res) => {

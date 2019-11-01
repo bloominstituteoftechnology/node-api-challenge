@@ -65,7 +65,7 @@ router.delete(`/:id`, (req, res) => {
     });
 });
 
-router.put(`/:id`, (req, res) => {
+router.put(`/:id`, validateProject, (req, res) => {
   db.update(req.params.id, req.body)
     .then(newProject => {
       newProject
