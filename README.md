@@ -47,6 +47,7 @@ Once a request is sucessfully responded to, the API can will return a status cod
 
 A nice way to do this is to organize our code in separate files. For example, we can keep our index.js and server.js file separately so it is easily modifiable when debugging. Another example is, keeping all the routers, separated from the helpers. Again, this also makes it easier to debug especially for other developers who wants to see your code.
 
+
 ## Project Setup
 
 Follow these steps to set up and work on your project:
