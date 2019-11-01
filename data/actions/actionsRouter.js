@@ -5,14 +5,13 @@ router.use(express.json());
 
 
 router.get("/", (req, res) => {
-   db.get()
-     .then(actions => {
-       console.log(actions)
-       res.status(200).json(actions);
-     })
-     .catch(err => {
-       res.status(500).json({ error: "The info could not be found" });
-     });
+ db.get()
+ .then(actions => {
+   console.log(actions)
+   res.status(200).json(actions);
+ })
+ .catch(err => {
+   res.status(500).json({error: "Cant do that !"}) })
  });
  
  router.get("/:id",validateActionsId, (req, res) => {
@@ -26,9 +25,10 @@ router.get("/", (req, res) => {
      });
  });
  
- router.post("/", validateActionsId, (req, res) => {
+ router.post("/:id", (req, res) => {
    const action = req.body;
-   db.insert(action)
+   const {id} = req.params;
+   db.insert({...action,project_id: id})
      .then(actions => {
        res.status(200).json(actions);
      })
@@ -60,8 +60,17 @@ router.get("/", (req, res) => {
        res.status(500).json({ error: "Items could not be updated!" });
      });
  });
+ function validateAction(req,res,next){
+   if(!req.body.notes || !req.body.description) {
+     res.status(400).json({message: "notes and description required"})
+   }else {
+     next();
+   }
+ } 
+
  function validateActionsId(req, res, next) {
    let id = req.params.id;
+   req.action = id
    db.get(id)
      .then(actions => {
        if (actions) {
