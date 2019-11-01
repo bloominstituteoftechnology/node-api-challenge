@@ -26,13 +26,26 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+The top 2 things I learned about Express this week is:
+1. Express allows us to use middlewares to respond to HTTP requests
+2. It administers routing to perform specific actions depending on the HTTP method, request or URL
+
 - [ ] Describe Middleware?
+
+In node.js, Middleware is everywhere! We use middleware to gain access to requests and response objects. There are 3 types of middleware built-in, third-party, and custom. They all have specific uses but they are always at the middle of the request and response. 
+(it's actually hard to explain this if I were to try to explain it to someone with no clue haha)
 
 - [ ] Describe a Resource?
 
+A resource is what we use to fill or specify our API.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+Once a request is sucessfully responded to, the API can will return a status code that indicates that the request was sucessfully completed. Usually for fetching api successfully the response code recieved is 200 while creating something to the api gives us a 201 response.
+
 - [ ] How can we partition our application into sub-applications?
+
+A nice way to do this is to organize our code in separate files. For example, we can keep our index.js and server.js file separately so it is easily modifiable when debugging. Another example is, keeping all the routers, separated from the helpers. Again, this also makes it easier to debug especially for other developers who wants to see your code.
 
 ## Project Setup
 
