@@ -29,4 +29,35 @@ server.get("/:id", (req, res) => {
     })
 })
 
+//POST
+server.post("/", validateUserId,(req, res) => {
+    const body = req.body;
+    db.insert(body)
+    .then(actions => {
+        res.status(200).json(actions);
+    })
+    .catch(error => {
+        res.status(500).json({ error: "POST / error" })
+    })
+})
+
+//middleware
+//ID validation
+function validateUserId(req, res, next) {
+    let id = req.params.id;
+    db.get(id)
+      .then(actions => {
+        if (actions) {
+          next();
+        } else {
+          res.status(400).json({ message: "id is invalid" });
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ error: "YOU SHALL NOT PASS!!" });
+      });
+  }
+
+  
+
 module.exports = server;

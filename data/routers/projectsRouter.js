@@ -2,8 +2,8 @@ const express = require("express");
 
 const db = require("../dbConfig");
 
-const router = express.Router();
+const server = express.Router();
 
-router.use(express.json());
+server.use(express.json());
 
-module.exports = router;
+module.exports = server;
