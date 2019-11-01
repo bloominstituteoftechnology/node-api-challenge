@@ -2,7 +2,7 @@ const express = require("express");
 const helmet = require("helmet");
 
 // const actionsRouter = require("./actionsRouter");
-// const projectsRouter = require("./projectsRouter");
+const projectsRouter = require("./projectsRouter");
 
 const server = express();
 
@@ -19,8 +19,8 @@ server.use(express.json());
 
 // Routes
 
-server.use(`/api/actions`, actionsRouter);
-server.use(`/api/projects`, projectsRouter);
+// server.use(`/api/actions`, actionsRouter);
+server.use(`/api/`, projectsRouter);
 
 server.get(`/`, (req, res) => {
   res.status(200).json({ message: `I'm in the mainframe.` });
