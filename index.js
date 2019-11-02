@@ -12,3 +12,15 @@ I need this code, just don't know where, perhaps should make some middleware, do
 
 Go code!
 */
+
+require('dotenv').config();
+
+const server = require('./server');
+const _port = process.env.PORT || 8080;
+
+const onStart = () =>{
+    console.log(`Server started successfully on port: ${_port}`);
+};
+
+
+server.listen(_port, onStart);
