@@ -15,39 +15,49 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", validateActionId, (req, res) => {
-  const id = req.params.id;
   res.status(200).json(req.action);
 });
 
 router.post("/:id", validateActionId, (req, res) => {
   const postBody = { ...req.body, project_id: req.action.project_id };
 
-  Action.insert(postBody)
-    .then(action => {
-      res.status(201).json(action);
-    })
-    .catch(err =>
-      res
-        .status(500)
-        .json({ message: "There was an error creating this action" })
-    );
+  if (!req.body.description) {
+    return res.status(400).json({ message: "Must add a description" });
+  } else if (!req.body.notes) {
+    return res.status(400).json({ message: "Must add a note" });
+  } else
+    Action.insert(postBody)
+      .then(action => {
+        res.status(201).json(action);
+      })
+      .catch(err =>
+        res
+          .status(500)
+          .json({ message: "There was an error creating this action" })
+      );
 });
 
 router.put("/:id", validateActionId, (req, res) => {
   const postBody = { ...req.body, project_id: req.action.project_id };
   const id = req.params.id;
-  console.log(postBody);
-  Action.update(id, postBody)
-    .then(action => {
-      res.status(200).json({ message: "Update was successful." });
-    })
-    .catch(err =>
-      res.status(500).json({ message: "Update was unsuccessful." })
-    );
+
+  if (!req.body.description) {
+    return res.status(400).json({ message: "Must add a description" });
+  } else if (!req.body.notes) {
+    return res.status(400).json({ message: "Must add a note" });
+  } else
+    Action.update(id, postBody)
+      .then(action => {
+        res.status(200).json({ message: "Update was successful." });
+      })
+      .catch(err =>
+        res.status(500).json({ message: "Update was unsuccessful." })
+      );
 });
 
 router.delete("/:id", validateActionId, (req, res) => {
   const id = req.params.id;
+
   Action.remove(id)
     .then(action => res.status(200).json({ message: "Successfully removed." }))
     .catch(err =>
@@ -63,7 +73,7 @@ function validateActionId(req, res, next) {
         req.action = action;
         next();
       } else {
-        res.status(400).json({ message: "invalid action id" });
+        res.status(404).json({ message: "Action could not be found." });
       }
     })
     .catch(err => {
