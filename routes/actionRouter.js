@@ -42,6 +42,16 @@ router.post(
   }
 );
 
+router.put("/:id", validateId, validateBody, validateActionKeys, (req, res) => {
+  db.update(req.params.id, req.body)
+    .then(update => {
+      res.status(200).json(update);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error updating action", err });
+    });
+});
+
 // ***** MIDDLEWARE *****
 
 function validateId(req, res, next) {
@@ -71,12 +81,9 @@ function validateActionKeys(req, res, next) {
 
   body.description && body.notes
     ? next()
-    : res
-        .status(400)
-        .json({
-          message:
-            "Missing description or notes key on body"
-        });
+    : res.status(400).json({
+        message: "Missing description or notes key on body"
+      });
 }
 
 function validateProjectId(req, res, next) {
