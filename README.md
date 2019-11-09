@@ -23,7 +23,8 @@ In this challenge, create a web API around the following resources: `Projects` a
 ## Self-Study/Essay Questions
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
-[x] Mention two parts of Express that you learned about this week.
+
+- [x] Mention two parts of Express that you learned about this week.
 
     Express provides routing. A way to select which request handler function is executed based on the URL and which HTTP Method was used. 
 
