@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
       res.status(200).json(projects);
     })
     .catch(err => {
-      res.status(500).json(err);
+      res.status(500).json({ message: "Error getting projects", err });
     });
 });
 
@@ -20,7 +20,7 @@ router.get("/:id", validateID, (req, res) => {
       res.status(200).json(project);
     })
     .catch(err => {
-      res.status(500).json(err);
+      res.status(500).json({ message: "Error getting project", err });
     });
 });
 
@@ -31,13 +31,33 @@ router.post("/", validateBody, validateProjectKeys, (req, res, next) => {
       res.status(201).json(newProj);
     })
     .catch(err => {
-      res.status(500).json(err);
+      res.status(500).json({ message: "Error adding new project", err });
     });
 });
 
 router.put("/:id", validateID, validateBody, (req, res, next) => {
   const id = req.params.id;
   const projectUpdate = req.body;
+  router
+    .update(id, projectUpdate)
+    .then(updatedProject => {
+      res.status(200).json(updatedProject);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error updating project", err });
+    });
+});
+
+router.delete("/:id", validateID, (req, res) => {
+  const id = req.params.id;
+
+  db.remove(id)
+    .then(deleted => {
+      res.status(200).json(deleted);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error deleting project", err });
+    });
 });
 
 // *** MIDDLEWARE ***
