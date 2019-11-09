@@ -14,15 +14,39 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", validateUserId, (req, res) => {
+  const id = req.params.id;
+  res.status(200).json(req.user);
+});
+
+router.post("/:id", validateUserId, (req, res) => {
+  const post = { ...req.body, project_id: req.user.project_id };
+
+  Action.insert(post)
+    .then(user => {
+      res.status(201).json(user);
+    })
+    .catch(err =>
+      res
+        .status(500)
+        .json({ message: "There was an error creating this action" })
+    );
+});
+
+function validateUserId(req, res, next) {
   const id = req.params.id;
   Action.get(id)
-    .then(action => {
-      res.status(200).json(action);
+    .then(user => {
+      if (user) {
+        req.user = user;
+        next();
+      } else {
+        res.status(400).json({ message: "invalid user id" });
+      }
     })
     .catch(err => {
-      res.status(500).json({ message: "There was an error!" });
+      res.status(500).json({ message: "This id does not exsist" });
     });
-});
+}
 
 module.exports = router;
