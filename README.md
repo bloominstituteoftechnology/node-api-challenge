@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+We learned that express is capable of server side routing. This helps keep the code legible by separating endpoints. We also learned about middleware, functions that can be ran before a response from the server. This helps to keep responses easily readable by separating what they do from numerous checks.
+
 - [ ] Describe Middleware?
+
+Middleware is any function the server runs between the request and the response.
 
 - [ ] Describe a Resource?
 
+A resource is any information in the form of an object passed by the url.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+The API can return status codes and json messages to help a client know the result of their request.
+
 - [ ] How can we partition our application into sub-applications?
+
+You can use routing to partition the application into sub-apps.
 
 ## Project Setup
 
