@@ -32,6 +32,28 @@ router.post("/", (req, res) => {
       );
 });
 
+router.put("/:id", validateProjectId, (req, res) => {
+  const project = req.body;
+  console.log(req.project.id);
+  console.log(project);
+  if (Object.keys(project).length === 0) {
+    return res
+      .status(400)
+      .json({ message: "Please enter a name and description" });
+  } else if (!req.body.description) {
+    return res.status(400).json({ message: "Must add a description" });
+  } else if (!req.body.name) {
+    return res.status(400).json({ message: "Must add a name" });
+  } else
+    Project.update(req.project.id, project)
+      .then(project =>
+        res.status(200).json({ message: "Project has been updated." })
+      )
+      .catch(err =>
+        res.status(500).json({ message: "Could not update post." })
+      );
+});
+
 function validateProjectId(req, res, next) {
   const id = req.params.id;
   Project.get(id)
