@@ -16,16 +16,20 @@ router.get("/:id", validateProjectId, (req, res) => {
 
 router.post("/", (req, res) => {
   const project = req.body;
-  // if (!req.body.description) {
-  //   return res.status(400).json({ message: "Must add a description" });
-  // } else if (!req.body.notes) {
-  //   return res.status(400).json({ message: "Must add a note" });
-  // } else
-  Project.insert(project)
-    .then(project => res.status(201).json(project))
-    .catch(err =>
-      res.status(500).json({ message: "Could not create new post." })
-    );
+  if (Object.keys(project).length === 0) {
+    return res
+      .status(400)
+      .json({ message: "Please enter a name and description" });
+  } else if (!req.body.description) {
+    return res.status(400).json({ message: "Must add a description" });
+  } else if (!req.body.name) {
+    return res.status(400).json({ message: "Must add a name" });
+  } else
+    Project.insert(project)
+      .then(project => res.status(201).json(project))
+      .catch(err =>
+        res.status(500).json({ message: "Could not create new post." })
+      );
 });
 
 function validateProjectId(req, res, next) {

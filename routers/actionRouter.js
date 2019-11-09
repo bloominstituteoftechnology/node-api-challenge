@@ -19,9 +19,13 @@ router.get("/:id", validateActionId, (req, res) => {
 });
 
 router.post("/:id", validateActionId, (req, res) => {
-  const postBody = { ...req.body, project_id: req.action.project_id };
+  const postBody = { ...req.body, project_id: req.params.id };
 
-  if (!req.body.description) {
+  if (Object.keys(project).length === 0) {
+    return res
+      .status(400)
+      .json({ message: "Please enter a name and description" });
+  } else if (!req.body.description) {
     return res.status(400).json({ message: "Must add a description" });
   } else if (!req.body.notes) {
     return res.status(400).json({ message: "Must add a note" });
@@ -41,7 +45,11 @@ router.put("/:id", validateActionId, (req, res) => {
   const postBody = { ...req.body, project_id: req.action.project_id };
   const id = req.params.id;
 
-  if (!req.body.description) {
+  if (Object.keys(project).length === 0) {
+    return res
+      .status(400)
+      .json({ message: "Please enter a name and description" });
+  } else if (!req.body.description) {
     return res.status(400).json({ message: "Must add a description" });
   } else if (!req.body.notes) {
     return res.status(400).json({ message: "Must add a note" });
