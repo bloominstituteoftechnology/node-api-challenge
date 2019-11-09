@@ -14,4 +14,85 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id", validateId, (req, res) => {
+  const id = req.params.id;
+
+  db.get(id)
+    .then(action => {
+      res.status(200).json(action);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error retrieving action", err });
+    });
+});
+
+router.post(
+  "/",
+  validateBody,
+  validateProjectId,
+  validateActionKeys,
+  (req, res) => {
+    db.insert(req.body)
+      .then(action => {
+        res.status(201).json(action);
+      })
+      .catch(err => {
+        res.status(500).json({ message: "Error adding action", err });
+      });
+  }
+);
+
+// ***** MIDDLEWARE *****
+
+function validateId(req, res, next) {
+  const id = req.params.id;
+  db.get(id)
+    .then(action => {
+      action
+        ? next()
+        : res
+            .status(404)
+            .json({ message: "No action with the provided ID exists" });
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error retrieving action", err });
+    });
+}
+
+function validateBody(req, res, next) {
+  const body = req.body;
+  Object.keys(body).length > 0
+    ? next()
+    : res.status(400).json({ message: "Missing body on request" });
+}
+
+function validateActionKeys(req, res, next) {
+  const body = req.body;
+
+  body.description && body.notes
+    ? next()
+    : res
+        .status(400)
+        .json({
+          message:
+            "Missing description or notes key on body"
+        });
+}
+
+function validateProjectId(req, res, next) {
+  const id = req.body.id;
+  projDb
+    .get(id)
+    .then(action => {
+      action
+        ? next()
+        : res
+            .status(404)
+            .json({ message: "No project with the provided ID exists" });
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error retrieving project", err });
+    });
+}
+
 module.exports = router;
