@@ -14,17 +14,17 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", validateUserId, (req, res) => {
+router.get("/:id", validateActionId, (req, res) => {
   const id = req.params.id;
-  res.status(200).json(req.user);
+  res.status(200).json(req.action);
 });
 
-router.post("/:id", validateUserId, (req, res) => {
-  const post = { ...req.body, project_id: req.user.project_id };
+router.post("/:id", validateActionId, (req, res) => {
+  const postBody = { ...req.body, project_id: req.action.project_id };
 
-  Action.insert(post)
-    .then(user => {
-      res.status(201).json(user);
+  Action.insert(postBody)
+    .then(action => {
+      res.status(201).json(action);
     })
     .catch(err =>
       res
@@ -33,15 +33,37 @@ router.post("/:id", validateUserId, (req, res) => {
     );
 });
 
-function validateUserId(req, res, next) {
+router.put("/:id", validateActionId, (req, res) => {
+  const postBody = { ...req.body, project_id: req.action.project_id };
+  const id = req.params.id;
+  console.log(postBody);
+  Action.update(id, postBody)
+    .then(action => {
+      res.status(200).json({ message: "Update was successful." });
+    })
+    .catch(err =>
+      res.status(500).json({ message: "Update was unsuccessful." })
+    );
+});
+
+router.delete("/:id", validateActionId, (req, res) => {
+  const id = req.params.id;
+  Action.remove(id)
+    .then(action => res.status(200).json({ message: "Successfully removed." }))
+    .catch(err =>
+      res.status(500).json({ message: "Could not delete this action" })
+    );
+});
+
+function validateActionId(req, res, next) {
   const id = req.params.id;
   Action.get(id)
-    .then(user => {
-      if (user) {
-        req.user = user;
+    .then(action => {
+      if (action) {
+        req.action = action;
         next();
       } else {
-        res.status(400).json({ message: "invalid user id" });
+        res.status(400).json({ message: "invalid action id" });
       }
     })
     .catch(err => {
