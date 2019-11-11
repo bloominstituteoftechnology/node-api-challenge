@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+    -We learned about Middleware and routing in express last week.
+
 - [ ] Describe Middleware?
+
+    - Middleware are functions that run before the main http method gets requeted
 
 - [ ] Describe a Resource?
 
+    -Resources are what a client recives when requesting a certain endpoint.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+    -An API can return a status code response to identify if a request was sucessful
+
 - [ ] How can we partition our application into sub-applications?
+
+    -We can partiton our application out by using routes.
 
 ## Project Setup
 
