@@ -14,6 +14,14 @@ router.get("/:id", validateProjectId, (req, res) => {
   res.status(200).json(req.project);
 });
 
+router.get("/:id/action", validateProjectId, (req, res) => {
+  Project.getProjectActions(req.params.id)
+    .then(action => res.status(200).json(action))
+    .catch(err =>
+      res.status(500).json({ message: "Could not get project actions." })
+    );
+});
+
 router.post("/", (req, res) => {
   const project = req.body;
   if (Object.keys(project).length === 0) {
