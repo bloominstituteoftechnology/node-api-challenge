@@ -14,12 +14,21 @@ Project.get()
 });
 });
 // ----------------------thanks Karen! 
- router.get('/project/:id', (req, res) => {
 
+ router.get('/project/:id', (req, res) => {
+const { id } = req.params;
+Project.get({id})
+.then(project => {
+    res.status(200).json(project);
+})
+.catch(err => {
+    res.status(500).json({message:"error"});
+});
  });
 // ----------------------thanks Karen! 
- router.post('/', (req, res) => {
 
+ router.post('/projects/', (req, res) => {
+ 
  });
 // ----------------------thanks Karen! 
  router.put('/', (req, res) => {

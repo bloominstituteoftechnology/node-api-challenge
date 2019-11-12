@@ -14,7 +14,7 @@ Go code!
 */
 
 
-const server = require('./server.js');
+const server = require('./api/server.js/index.js');
 
 server.listen(6001, () => {
   console.log('\n* Server Running on http://localhost:6001 *\n');
