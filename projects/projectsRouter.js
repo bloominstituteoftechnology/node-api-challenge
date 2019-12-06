@@ -82,6 +82,26 @@ router.delete('/:id', (req, res) => {
             console.log("Error with GET on DELETE /projects/:id", err);
             res.status(404).json({error: "No post with that ID exists."})
         })
+});
+
+router.get('/:id/actions', (req, res) => {
+    const {id} = req.params;
+
+    Projects.get(id)
+        .then(project => {
+            if(project){
+                Projects.getProjectActions(project.id)
+                    .then(action => {
+                        res.status(200).json(action)
+                    })
+                    .catch(err => {
+                        console.log("error with GET /:id/actions", err);
+                        res.status(500).json({error: "There was a problem fetching requested actions"})
+                    })
+            }else{
+                res.status(404).json({error: "Requested project doesn't exists."})
+            }
+        })
 })
 
 module.exports = router;
