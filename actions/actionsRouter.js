@@ -27,11 +27,18 @@ router.get("/", (req, res)=>{
 
 // //POST
 
-// router.post('/', (req, res)=>{
+router.post('/', (req, res)=>{
 
+    Actions.insert(req.body)
+    .then(newResource => {
+            res.status(200).json(newResource)
+    })
+    .catch(err => {
+        res.status(500).json({error: "Failed on actions POST, check request body"})
+    }
+    )
 
-
-// })
+})
 
 
 // //PUT
@@ -50,6 +57,12 @@ router.get("/", (req, res)=>{
 // })
 
 //MIDDLEWARE
+
+// function validateProjectId(req, res, next){
+//     const projectId = req.params.id
+
+//     Actions.
+// }
 
 
 module.exports = router
