@@ -62,4 +62,24 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  const { name, description } = req.body;
+  const updatedProject = await Projects.update(req.params.id, req.body);
+
+  if (!name || !description) {
+    res
+      .status(400)
+      .json("Please make sure your project has a name and description");
+  }
+  try {
+    if (updatedProject) {
+      res.status(201).json(updatedProject);
+    } else {
+      res.status(404).json("We could not find a project with the specified id");
+    }
+  } catch {
+    res.status(500).json("There was an error updating the project");
+  }
+});
+
 module.exports = router;
