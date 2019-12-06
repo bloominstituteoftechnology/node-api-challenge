@@ -40,13 +40,24 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+1. Express is a framework so it has some opinions about how we write our code.
+2. Express gives us low level functionality that makes node easier to use(just like React builds on JS, Express builds on Node).
+
 - [ ] Describe Middleware?
+
+Middleware, in Express specifically, are functions that process the requests made before the final response is made (for instance, validating an id exists). It does this using a next callback function parameter. It can also end the process if there is an issue and return its own response.
 
 - [ ] Describe a Resource?
 
+Every _thing_ in a database is a resource. They are usually the nouns that we want to do something with. We can do something with each resource using its unique id.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+An API can return different statuses, errors, and messages that will tell the client if they were successful in their request and if not, more specifically where they failed.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can use routers to partition our application into sub-applications and then have a main server hub that uses all those routers. 
 
 ## Minimum Viable Product
 
