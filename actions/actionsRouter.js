@@ -25,6 +25,16 @@ router.get("/", (req, res)=>{
     })
 })
 
+router.get(`/:id`, (req, res)=>{ //I had forgotten to put this one in and only noticed when I was doing front end
+    
+    Actions.get(req.params.id)
+    .then(action => {
+        res.status(200).json(action)
+    })
+    .catch(err => {
+        res.status(500).json({error: "Error req projects on GET root, server"})
+    })})
+
 // //POST
 
 router.post('/', (req, res)=>{
