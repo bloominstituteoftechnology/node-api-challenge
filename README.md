@@ -62,7 +62,7 @@ Please read the following sections before implementing the Minimum Viable Produc
 
 ### Database Schemas
 
-The _schemas_ (properties and data type of each property) used to store and retrieve the resources inside the included database (`./data/lambda.db3`) is described below.
+The description of the structure and extra information about each _resource_ stored in the included database (`./data/lambda.db3`) is listed below.
 
 #### Projects
 
