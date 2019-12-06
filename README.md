@@ -1,6 +1,6 @@
 # Sprint Challenge: Express and Node.js - Projects & Actions
 
-This Sprint we covered _"Building RESTful Web APIs with Express and Node.js"_, _"Server-side Routing"_, _"Writing and using Express Middleware"_ and how to _"Deploy and API to Heroku"_.
+This Sprint we covered _"Building RESTful Web APIs with Express and Node.js"_, _"Server-side Routing"_, _"Writing and using Express Middleware"_ and how to _"Deploy an API to Heroku"_.
 
 In this challenge, you will demonstrate proficiency of those concepts by writing a Web API using `Node.js` and `Express`, deployment is optional.
 
