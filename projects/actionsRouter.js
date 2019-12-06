@@ -4,19 +4,6 @@ const router = express.Router();
 
 router.use(express.json());
 
-// middleware to make sure there is a project id
-function validateProjectId(req, res, next) {
-  const id = req.params.id;
-  Actions.get(id).then(retrieved => {
-    if (retrieved) {
-      console.log("success");
-    } else {
-      res.status(400).json({ errorMessage: "Invalid user id" });
-    }
-  });
-  next();
-}
-
 router.get("/:id", async (req, res) => {
   const action = await Actions.get(req.params.id);
   try {
@@ -27,6 +14,23 @@ router.get("/:id", async (req, res) => {
     }
   } catch {
     res.status(500).json("There was an error retrieving this action");
+  }
+});
+
+router.post("/", async (req, res) => {
+  const { description, notes, project_id } = req.body;
+  const newAction = await Actions.insert(req.body);
+  if (!description || !notes || !project_id) {
+    res
+      .status(400)
+      .json(
+        "Please provide a description, notes, and a project ID for your action"
+      );
+  }
+  try {
+    res.status(201).json(newAction);
+  } catch {
+    res.status(500).json("There was an error adding an action");
   }
 });
 
