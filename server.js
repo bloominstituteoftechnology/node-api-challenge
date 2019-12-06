@@ -9,6 +9,8 @@ const server = express();
 server.use('/projects', projectsRouter);
 server.use('/actions', actionsRouter);
 
+server.use(helmet());
+
 server.use(express.json());
 
 server.get('/', (req, res) => {
