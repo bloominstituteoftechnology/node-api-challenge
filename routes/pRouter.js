@@ -55,7 +55,7 @@ router.put('/:id', (req, res) => {
         projectDb.update(req.params.id, req.body)
           .then(puts => {
             // console.log(response);
-            if (response) {
+            if (puts) {
               res.status(200).json(puts);
             } else {
               res.status(404).json({message: 'The project with given id does not exist'});
@@ -82,26 +82,45 @@ router.delete('/:id', (req, res) => {
     })
 })
 router.get('/:id/actions', (req, res) => {
-    projectDb.get(req.params.id)
-    .then(gets => {
-        if (gets){
-            projectDb.getProjectActions(req.params.id)
-            .then(getsActions => {
-                res.status(200).json(getsActions)
-            })
-            .catch(error => {
-                console.log(error);
-                res.status(500).send({message: 'There was a problem in getting projects actions from the database'});
-              })
-          } else {
-            res.status(404).send({message: 'Project with provided id does not exist'});
-          }   
+    
+    if(!req.body){
+        res.status(404).json({message: 'Project with provided id does not exist'})
+    }else{
+        projectDb.getProjectActions(req.params.id)  
+        .then(getsActions => {
+            res.status(200).json(getsActions)
         })
         .catch(error => {
-          console.log(error);
-          res.status(500).send({message: 'There was a problem in getting projects actions from the database'});
-        })
+            console.log(error);
+            res.status(500).send({message: 'There was a problem in getting projects actions from the database'});
+          })
+    }
+    
+    // projectDb.get(req.params.id)
+    // .then(gets => {
+    //     if (gets){
+    //         projectDb.getProjectActions(req.params.id)
+    //         .then(getsActions => {
+    //             res.status(200).json(getsActions)
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //             res.status(500).send({message: 'There was a problem in getting projects actions from the database'});
+    //           })
+    //       } else {
+    //         res.status(404).send({message: 'Project with provided id does not exist'});
+    //       }   
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //       res.status(500).send({message: 'There was a problem in getting projects actions from the database'});
+    //     })
 })
+    
+
+
+
+
 
 
 module.exports = router
