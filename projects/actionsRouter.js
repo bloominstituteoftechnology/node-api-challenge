@@ -51,4 +51,29 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  const { description, notes } = req.body;
+  const updatedAction = await Actions.update(req.params.id, req.body);
+
+  if (!description || !notes) {
+    res
+      .status(400)
+      .json(
+        "Please provide a description, notes, and a project ID for your action"
+      );
+  }
+
+  try {
+    if (updatedAction) {
+      res.status(201).json(updatedAction);
+    } else {
+      res
+        .status(400)
+        .json("An action with the specified id could not be found");
+    }
+  } catch {
+    res.status(500).json("There was an error updating the action");
+  }
+});
+
 module.exports = router;
