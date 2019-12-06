@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Node API Challenge",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LambdaSchool/webapi-challenge.git"
@@ -24,6 +27,7 @@
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
-    "knex-cleaner": "^1.3.0"
+    "knex-cleaner": "^1.3.0",
+    "nodemon": "2.0.1"
   }
 }
