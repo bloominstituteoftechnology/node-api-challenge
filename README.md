@@ -65,7 +65,7 @@ Design and build the necessary endpoints to:
 
 Please read the following sections before implementing the Minimum Viable Product, they describe how the database is structured and the files and methods available for interacting with the data.
 
-### Database Schemas   ggg
+### Database Schemas  
 
 The description of the structure and extra information about each _resource_ stored in the included database (`./data/lambda.db3`) is listed below.
 
