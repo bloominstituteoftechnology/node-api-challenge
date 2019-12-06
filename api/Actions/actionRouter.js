@@ -1,7 +1,7 @@
 const express = require('express')
 const actionDb = require('./actionModel.js')
 
-const { validateId, validateAction } = require('./actionMiddleware.js')
+const { validateId } = require('./actionMiddleware.js')
 
 const router = express.Router()
 
