@@ -47,7 +47,7 @@ Follow these steps to set up and work on your project:
 
 Follow these steps for completing your project.
 
-- [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into master on your fork. **Please don't merge your own pull request.**
+- [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into master on your fork. **Please don't merge your own pull request and Please don't make Pull Requests against Lambda's Repository**
 - [ ] Add your _Team Lead_ as a Reviewer on the Pull-request
 - [ ] Your _Team Lead_ will count the challenge as done by merging the branch into _master_.
 
