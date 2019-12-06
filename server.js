@@ -1,6 +1,7 @@
 //LIBRARIES
 const express = require("express")
 const helmet = require('helmet')
+const cors = require('cors')
 
 //LOCAL FILES
 
@@ -15,6 +16,7 @@ const server = express()
 //global
 server.use(express.json())
 server.use(helmet())
+server.use(cors())
 
 //routers
 server.use("/api/actions",actionRouter)
