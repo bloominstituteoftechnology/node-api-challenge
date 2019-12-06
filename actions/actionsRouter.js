@@ -43,18 +43,34 @@ router.post('/', (req, res)=>{
 
 // //PUT
 
-// router.put('/', (req, res)=>{
+router.put(`/:id`, (req, res)=>{
 
+    Actions.update(req.params.id, req.body)
+    .then(updatedResource => {
+        res.status(200).json(updatedResource)
+    })
+    .catch(err =>{
+        console.log("error on action PUT", err)
+        res.status(500).json(null)
+    })
 
     
-// })
+ })
 
 // //DEL
-// router.delete('/', (req, res)=>{
+router.delete(`/:id`, (req, res)=>{
 
-
+    Actions.remove(req.params.id)
+    .then(numberDeleted => {
+        res.status(200).json({message: `You deleted ${numberDeleted} record`})
+    })
+    .catch(err => {
+        console.log("This is action delete error", err)
+        res.status(500).json({error: "Failed to delete action, server"})
+    })
     
-// })
+})
+
 
 //MIDDLEWARE
 
