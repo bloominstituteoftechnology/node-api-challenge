@@ -43,6 +43,45 @@ router.post('/', (req, res) => {
         })
 });
 
+router.put('/:id', (req, res) => {
+    const {id} = req.params;
+    const {name, description} = req.body;
 
+    Projects.get(id)
+        .then(post => {
+            if(post){
+            Projects.update(id, {name, description})
+                .then(updated => {
+                    res.status(200).json(updated)
+                })
+                .catch(err => {
+                    console.log("There was an error with PUT /projects/:id", err);
+                    res.status(500).json({error: "There was a problem editing project"})
+                })
+            }else {
+                res.status(404).json({error: "No project with that id exists"})
+            }   
+        });
+});
+
+router.delete('/:id', (req, res) => {
+    const {id} = req.params;
+
+    Projects.get(id)
+        .then(project => {
+            if(project){
+                Projects.remove(id)
+                    .then(removed => {
+                        res.status(200).json(removed)
+                    })
+            }else {
+                res.status(500).json({error: "There was a problem deleting requested project."})
+            }
+        })
+        .catch(err =>{
+            console.log("Error with GET on DELETE /projects/:id", err);
+            res.status(404).json({error: "No post with that ID exists."})
+        })
+})
 
 module.exports = router;
