@@ -7,8 +7,8 @@ const server = express();
 
 server.use(express.json());
 server.use(logger);
-server.use('./api/action', actionRouter);
-server.use('./api/project', projectRouter);
+server.use('/action', actionRouter);
+server.use('/project', projectRouter);
 
 
 server.get('/', (request, response) => {
