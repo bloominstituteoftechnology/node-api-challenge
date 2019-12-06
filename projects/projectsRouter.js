@@ -24,6 +24,16 @@ router.get("/", (req, res)=>{
     })
 })
 
+router.get(`/:id`, (req, res)=>{ //I had forgotten to put this one in and only noticed when I was doing front end
+    
+    Projectos.get(req.params.id)
+    .then(project => {
+        res.status(200).json(project)
+    })
+    .catch(err => {
+        res.status(500).json({error: "Error req projects on GET root, server"})
+    })})
+
 router.get("/:id/actions", (req, res)=>{ //added actions url as a mental note that I would want to be able to get all the aspects of a project or each part individually
     Projectos.getProjectActions(req.params.id)
     .then(projectsActions => {
