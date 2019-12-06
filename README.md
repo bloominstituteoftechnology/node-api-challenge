@@ -1,10 +1,12 @@
 # Sprint Challenge: Express and Node.js - Projects & Actions
 
-This challenge allows you to practice the concepts and techniques learned over the past Sprint and apply them in a concrete project. This Sprint explored Building RESTful Web APIs with Express and Node.js, Server-side Routing, Express Middleware & Deployment and Good Practices. In your challenge for this Sprint, you will demonstrate proficiency by creating an Web API using Node.js and Express.
+This Sprint we covered _"Building RESTful Web APIs with Express and Node.js"_, _"Server-side Routing"_, _"Writing and using Express Middleware"_ and how to _"Deploy and API to Heroku"_.
+
+In this challenge, you will demonstrate proficiency of those concepts by writing a Web API using `Node.js` and `Express`, deployment is optional.
 
 ## Instructions
 
-**Read these instructions carefully. Understand exactly what is expected _before_ starting this Sprint Challenge.**
+**Read these instructions carefully. Understand exactly what is expected _before_ starting.**
 
 This is an individual assessment. All work must be your own. Your challenge score is a measure of your ability to work independently using the material covered through this sprint. You need to demonstrate proficiency in the concepts and objectives introduced and practiced in preceding days.
 
