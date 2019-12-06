@@ -46,4 +46,20 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  const countDeleted = await Projects.remove(id);
+  try {
+    if (countDeleted > 0) {
+      res
+        .status(201)
+        .json({ message: `Post with id:${id} was deleted successfully` });
+    } else {
+      res.status(404).json("We could not find a post with the specified id");
+    }
+  } catch {
+    res.status(500).json("There was an error deleting the post");
+  }
+});
+
 module.exports = router;
