@@ -28,9 +28,26 @@ router.post("/", async (req, res) => {
       );
   }
   try {
-    res.status(201).json(newAction);
+    if (newAction) {
+      res.status(201).json(newAction);
+    } else {
+      res.status(400).json("We could not find a project with the specified id");
+    }
   } catch {
     res.status(500).json("There was an error adding an action");
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const deletedCount = await Actions.remove(req.params.id);
+  try {
+    if (deletedCount > 0) {
+      res.status(201).json({
+        message: `Action with id:${req.params.id} was successfully deleted`
+      });
+    } else res.status(400).json("There was an error deleting the action");
+  } catch {
+    res.status(500).json("There was an error deleting the action");
   }
 });
 
