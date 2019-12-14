@@ -4,7 +4,7 @@
   "description": "Node API Challenge",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon -r dotenv/config index.js",
+    "server": "nodemon -r dotenv/config server.js",
     "start": "nodemon index.js"
   },
   "repository": {
