@@ -1,6 +1,6 @@
 const express = require('express');
 
-const actions = require('../actions')
+const validateAction = require('../middleware/validateAction')
 
 const router = express.Router();
 
