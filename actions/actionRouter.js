@@ -16,16 +16,21 @@ router.get('/', async (req, res, next) => {
 // getProjectActions()
 router.get('/:id', validateAction, async (req, res, next) => {
     try {
-       
+        return res.json(await action.getProjectActions(req.body.id))
     }
     catch (err) {
         next(err)
     }
 })
 // insert()
-router.post('/:id', validateAction, async (req, res, next) => {
+router.post('/', validateAction, async (req, res, next) => {
     try {
-    
+        const actions = {
+            name: req.body.name,
+            text: req.body.text,
+        }
+
+        return res.json(await actions.insert(actions))
     }
     catch (err) {
         next(err)
@@ -34,7 +39,8 @@ router.post('/:id', validateAction, async (req, res, next) => {
 // update()
 router.put('/:id', validateAction, async (req, res, next) => {
     try {
-        
+        await projectsId.update(req.params.id, req.body)
+        return res.json(await actionsId(req.params.id))
     }
     catch (err) {
         next(err)
