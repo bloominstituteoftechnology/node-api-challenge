@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 // getProjectActions()
 router.get('/:id', validateProject, async (req, res, next) => {
     try {
-
+        return res.json(await projects.getProjectActions(req.body.id))
     }
     catch (err) {
         next(err)
@@ -25,7 +25,12 @@ router.get('/:id', validateProject, async (req, res, next) => {
 // insert()
 router.post('/:id', validateProject, async (req, res, next) => {
     try {
+        const projects = {
+            name: req.body.name,
+            text: req.body.text,
+        }
 
+            return res.json(await projects.insert(projects))
     }
     catch (err) {
         next(err)
@@ -34,7 +39,8 @@ router.post('/:id', validateProject, async (req, res, next) => {
 // update()
 router.put('/:id', validateProject, async (req, res, next) => {
     try {
-
+        await projects.update(req.params.id, req.body)
+        return res.json(await projects.getProjectActions(req.params.id))
     }
     catch (err) {
         next(err)

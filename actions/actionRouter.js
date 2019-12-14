@@ -14,34 +14,34 @@ router.get('/', async (req, res, next) => {
     }
 })
 // getProjectActions()
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', validateAction, async (req, res, next) => {
     try {
-
+       
     }
     catch (err) {
         next(err)
     }
 })
 // insert()
-router.post('/:id', async (req, res, next) => {
+router.post('/:id', validateAction, async (req, res, next) => {
     try {
-
+    
     }
     catch (err) {
         next(err)
     }
 })
 // update()
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', validateAction, async (req, res, next) => {
     try {
-
+        
     }
     catch (err) {
         next(err)
     }
 })
 // remove()
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', validateAction, async (req, res, next) => {
     try {
         await actions(req.params.id)
         return res.status(204).end()
