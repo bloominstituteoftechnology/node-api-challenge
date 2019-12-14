@@ -3,7 +3,7 @@ async function validateProject(req, res, next) {
         return res.status(400).json({ message: "missing project id number" })
     }
 
-    if (!req.body.description) {
+    if (!req.body) {
         return res.status(400).json({ message: "missing required description" })
     }
     next()
