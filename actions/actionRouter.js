@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 // getProjectActions()
 router.get('/:id', validateAction, async (req, res, next) => {
     try {
-        return res.json(await action.getProjectActions(req.body.id))
+        return res.json(await action.getProjectActions(req.params.id))
     }
     catch (err) {
         next(err)
@@ -56,6 +56,5 @@ router.delete('/:id', validateAction, async (req, res, next) => {
         next(err)
     }
 })
-
 
 module.exports = router
