@@ -1,6 +1,6 @@
 const express = require('express');
 
-const projects = require('../projects')
+const validateProject = require('../middleware/validateProject')
 
 const router = express.Router();
 
