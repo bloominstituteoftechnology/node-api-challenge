@@ -23,7 +23,7 @@ router.get('/:id', validateProject, async (req, res, next) => {
     }
 })
 // insert()
-router.post('/:id', validateProject, async (req, res, next) => {
+router.post('/', validateProject, async (req, res, next) => {
     try {
         const projects = {
             name: req.body.name,
@@ -39,8 +39,8 @@ router.post('/:id', validateProject, async (req, res, next) => {
 // update()
 router.put('/:id', validateProject, async (req, res, next) => {
     try {
-        await projects.update(req.params.id, req.body)
-        return res.json(await projects.getProjectActions(req.params.id))
+        await projectsId.update(req.params.id, req.body)
+        return res.json(await projectsId.getProjectActions(req.params.id))
     }
     catch (err) {
         next(err)
