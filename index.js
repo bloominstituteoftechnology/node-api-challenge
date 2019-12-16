@@ -12,3 +12,12 @@ I need this code, just don't know where, perhaps should make some middleware, do
 
 Go code!
 */
+
+const express = require('express')
+const app = express()
+const PORT = process.env.PORT || 4000
+app.use(express.json());
+
+app.get('/', (req, res) => res.send('<h2> WORKING!<h2>'))
+
+app.listen(PORT, () => console.log(`http://localhost:${PORT}`))
