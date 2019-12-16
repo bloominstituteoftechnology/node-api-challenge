@@ -16,6 +16,22 @@ router.get('/', (req, res) => {
     })
   })
 
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    db.get( id )
+
+     .then(action => {
+            res.status(200).json(action)
+          }
+     )
+    .catch(err => {
+        res.status(500).json({
+          message: 'Could not retrieve action.',
+          err
+        })
+    })
+  })
+
   
 router.post('/', (req, res) => {
     const { object } = req.body;

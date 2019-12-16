@@ -24,7 +24,9 @@ server.use('/api/actions', actions);
 
 
 
-
+server.get('/', (req, res) => {
+    res.send(`<h1>Hey there!</h1>`);
+})
 
 server.listen(4000, () => {
     console.log('Server is running on port 4000...')
