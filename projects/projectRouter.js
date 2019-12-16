@@ -50,7 +50,7 @@ router.put('/:id', validateProject, async (req, res, next) => {
 router.delete('/:id', validateProject, async (req, res, next) => {
     try {
         await projects.remove(req.params.id)
-        return res.status(204).end()
+        return res.status(204).del()
     }
     catch (err) {
         next(err)
