@@ -1,4 +1,3 @@
-
 const express = require('express')
 
 const actionRouter = require('./actions/actionRouter')
@@ -18,9 +17,10 @@ module.export = server
 server.get('/', (req, res) => {
     res.send(200).json({ message: "Welcome! I am working." })
 })
+next()
 
 server.use((err, req, res, next) => {
-    res.status(500).json({ error, message: "This is not what your are looking for. Bye-eeeeee" })
+    res.status(500).json({ error, message: "This is not what your are looking for. Bye-eeeee" })
 })
 
 // for deployment
