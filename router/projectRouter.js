@@ -1,7 +1,10 @@
 const express = require('express');
-router = express.Router();
+const router = express.Router();
 const db = require('./../data/helpers//projectModel');
 const { validateProjectBody , validateProjectId} = require('./../middleware/projectmiddleware')
+const actionRouter = require('./actionRouter');
+
+router.use('/:id/action', actionRouter)
 
 router.get('/', async (req, res)=>{
     try {
@@ -61,15 +64,15 @@ router.put('/:id', validateProjectId(), validateProjectBody(), async (req, res)=
 router.delete('/:id', validateProjectId(), async (req, res)=>{
     const id = req.id;
     try {
-        const projectToDelete = await db.remove(id)
-        if(projectToDelete === 0){
+        const projectDelete = await db.remove(id)
+        if(projectDelete === 0){
            return res.status(500).json({
                 message: 'Error'
             })
         }
         res.status(200).json({
             message: 'Deleted',
-            deleteCopunt:  projectToDelete});
+            deleteCount:  projectDelete});
     } catch (err){
         res.status(404).json({
             message: 'Error', 
