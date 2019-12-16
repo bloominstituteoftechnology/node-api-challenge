@@ -26,11 +26,13 @@ router.get('/:id', validateAction, async (req, res, next) => {
 router.post('/', validateAction, async (req, res, next) => {
     try {
         const actions = {
-            name: req.body.name,
+            project_id: req.body.project_id,
             text: req.body.text,
+            notes: req.body.notes,
         }
 
         return res.json(await actions.insert(actions))
+
     }
     catch (err) {
         next(err)
@@ -39,9 +41,16 @@ router.post('/', validateAction, async (req, res, next) => {
 // update()
 router.put('/:id', validateAction, async (req, res, next) => {
     try {
-        await projectsId.update(req.params.id, req.body)
+        await projectsId.update(req.params.id, req.params.project_id)
         return res.json(await actionsId(req.params.id))
     }
+
+        // const updates ={
+        //     notes: req.body.notes,
+        // }
+
+        // return res.json(await updates.insert(count > 0 ? notes.get(id) : null))
+
     catch (err) {
         next(err)
     }
@@ -50,7 +59,7 @@ router.put('/:id', validateAction, async (req, res, next) => {
 router.delete('/:id', validateAction, async (req, res, next) => {
     try {
         await actions(req.params.id)
-        return res.status(204).end()
+        return res.status(204).del()
     }
     catch (err) {
         next(err)
