@@ -39,14 +39,20 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 - [ ] Mention two parts of Express that you learned about this week.
+    Express.json allows the browser to parse data and return it as JSON.
+    Express.use allos our routers to use different end points as baselines for cleaner subsite code.
 
 - [ ] Describe Middleware?
+    Middleware intercepts our data before it is returned to us and does stuff with it before we see it again.
 
 - [ ] Describe a Resource?
+    A resource is any data held in the back end of an application or API.
 
 - [ ] What can the API return to help clients know if a request was successful?
+    A status code and a json message.
 
 - [ ] How can we partition our application into sub-applications?
+    By using express.use('/arb_endpoint', endpointRouter).
 
 ## Minimum Viable Product
 
