@@ -1,9 +1,8 @@
 const express= require('express')
-const server= express();
 const db=require('./data/helpers/actionModel')
+const router = express.Router();
 
-
-server.get('/', (req, res) => {
+router.get('/', (req, res) => {
     db.get()
      .then(actions => {
             res.status(200).json(actions)
@@ -11,32 +10,34 @@ server.get('/', (req, res) => {
      )
     .catch(err => {
         res.status(500).json({
-          message: 'Could not retrieve actions.'
+          message: 'Could not retrieve actions.',
+          err
         })
     })
   })
 
   
-  server.post('/', (req, res) => {
+router.post('/', (req, res) => {
     const { object } = req.body;
-    db.insert(object)
+    db.insert({object})
   
     .then(added => {
       res.status(201).json(added)
   
     .catch(err => {
       res.status(500).json({
-        message: 'Could not add action at this time.'
+        message: 'Could not add action at this time.',
+        err
       })
     })
   })
   })
   
-  server.put('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     const { id } = req.params;
     const { object } = req.body;
     
-    db.update( id, object )
+    db.update( {id}, {object} )
     .then(updated => {
       if(!id || !object)
         res.status(404).json({
@@ -49,14 +50,15 @@ server.get('/', (req, res) => {
     )
     .catch(err => {
       res.status(500).json({
-        message: 'Could not update action at this time.'
+        message: 'Could not update action at this time.', 
+        err
       })
     })
   })
   
-  server.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const { id } = req.params;
-    db.remove(id)
+    db.remove({id})
   
     .then(deleted => {
       if(deleted)
@@ -71,9 +73,10 @@ server.get('/', (req, res) => {
     })
     .catch(err => {
       res.status(500).json({
-        message: 'Could not delete action at this time.'
+        message: 'Could not delete action at this time.',
+        err
       })
     })
   });
 
-  module.exports= server;
+  module.exports= router;
