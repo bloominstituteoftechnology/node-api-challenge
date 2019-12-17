@@ -1,5 +1,7 @@
 const express = require('express');
-
+// import db helpers
+const actions = require("../data/helpers/actionModel")
+// import middleware
 const validateAction = require('../middleware/validateAction')
 
 const router = express.Router();
@@ -14,7 +16,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 // getProjectActions()
-router.get('/:id', validateAction, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
         return res.json(await action.getProjectActions(req.params.id))
     }
@@ -25,11 +27,11 @@ router.get('/:id', validateAction, async (req, res, next) => {
 // insert()
 router.post('/', validateAction, async (req, res, next) => {
     try {
-        const actions = {
-            project_id: req.body.project_id,
-            text: req.body.text,
-            notes: req.body.notes,
-        }
+        // const actions = {
+        //     project_id: req.body.project_id,
+        //     description: req.body.description,
+        //     notes: req.body.notes,
+        // }
 
         return res.json(await actions.insert(actions))
 
@@ -56,7 +58,7 @@ router.put('/:id', validateAction, async (req, res, next) => {
     }
 })
 // remove()
-router.delete('/:id', validateAction, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
     try {
         await actions(req.params.id)
         return res.status(204).del()
