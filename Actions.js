@@ -21,9 +21,14 @@ router.get('/:id', (req, res) => {
     db.get( id )
 
      .then(action => {
+       if (!id) 
+       res.status(404).json({
+         message: "Could not find action with this ID."
+       })
+       else {
             res.status(200).json(action)
           }
-     )
+     })
     .catch(err => {
         res.status(500).json({
           message: 'Could not retrieve action.',
@@ -33,12 +38,15 @@ router.get('/:id', (req, res) => {
   })
 
   
-router.post('/', (req, res) => {
-    const { object } = req.body;
-    db.insert({object})
+router.post('/:id', (req, res) => {
+    const newAction = req.body;
+    console.log(newAction);
+
+    db.insert(newAction)
   
     .then(added => {
       res.status(201).json(added)
+    })
   
     .catch(err => {
       res.status(500).json({
@@ -46,35 +54,42 @@ router.post('/', (req, res) => {
         err
       })
     })
-  })
-  })
+  });
+
   
 router.put('/:id', (req, res) => {
     const { id } = req.params;
-    const { object } = req.body;
+    const object = req.body;
     
-    db.update( {id}, {object} )
-    .then(updated => {
-      if(!id || !object)
-        res.status(404).json({
-          error: null
+    if(!id || !object){
+        res.status(400).json({
+          error: "Please include all fields"
         })
-      else {
-        res.status(200).json(updated)
       }
-    }
-    )
+      
+      else {
+        db.update(req.params.id, req.body)
+        .then(action => 
+          {
+            if(action){
+              res.status(200).json(action)
+            } else {
+              res.status(404).json({
+                message: "The post with this ID does not exist."
+                })
+            }
+    })   
     .catch(err => {
-      res.status(500).json({
-        message: 'Could not update action at this time.', 
-        err
+          res.status(500).json({
+            message: 'Could not update action at this time.', 
+            err
       })
     })
-  })
+  }})
   
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
-    db.remove({id})
+    db.remove(id)
   
     .then(deleted => {
       if(deleted)
