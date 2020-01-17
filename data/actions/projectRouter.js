@@ -17,6 +17,26 @@ router.get('/', (req, res) => {
     }   
 );
 
+router.get('/:id', (req, res) => {
+    const {id} = req.params;
+
+    Projects.get(id)
+        .then(project => {
+            if (!id)
+            res.status(404).json({
+                message: 'could not find project with that id'
+            })
+            else {
+                res.status(200).json(project)
+            }
+        })
+        .catch(error => {
+            res.status(400).json({
+                message: 'could not find info', error
+            })
+        })
+})
+
 //post
 
 router.post('/', (req, res) => {
@@ -28,3 +48,7 @@ router.post('/', (req, res) => {
             res.status(500).json({error: 'error while saving the project to the database'})
         })
 });
+
+
+
+module.exports = router;

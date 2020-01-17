@@ -14,7 +14,6 @@ app.listen(port, () => {
 })
 
 app.use('/projects', projectRouter);
-app.use('/actions', actionRouter);
 
 app.get("*", (req, res) => {
 	res.status(200).json({ message: "it works " });
