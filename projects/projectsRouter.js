@@ -93,34 +93,6 @@ router.post("/", (req, res) => {
     });
 });
 
-// // create a new action
-// router.post("/:id/actions", (req, res) => {
-//     const body = req.body;
-//     actionsDb.insert(body);
-//     const id = req.params.id;
-
-//     projectDb.get(id)
-//     .then(newAction => {
-//         if (!id) {
-//             res.status(404).json({
-//                 message: "The project with the specific ID does not exist"
-//             })
-//         } else if (!newAction.description && !newAction.notes) {
-//             res.status(400).json({
-//                 errorMessage: "Please provide a description and notes for your new action"
-//             })
-//         } else {
-//             res.status(201).json({ newAction })
-//         }
-//     })
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json({
-//             errorMessage: "There was an error while adding the action to the database"
-//         });
-//     });
-// });
-
 
 // update a project
 router.put("/:id", (req, res) => {
