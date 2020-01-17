@@ -50,25 +50,26 @@ router.get("/:id", (req, res) => {
 
 // get a projects actions
 router.get("/:id/actions", (req, res) => {
-    const project_id = req.params.id
+  const project_id = req.params.id;
 
-    projectDb.getProjectActions(project_id)
+  projectDb
+    .getProjectActions(project_id)
     .then(actions => {
-        if (project_id) {
-            res.status(200).json(actions);
-        } else {
-            res.status(404).json({
-                message: "The project with the specific ID does not exist"
-            })
-        }
+      if (project_id) {
+        res.status(200).json(actions);
+      } else {
+        res.status(404).json({
+          message: "The project with the specific ID does not exist"
+        });
+      }
     })
     .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: "The actions information could not be found"
-        })
-    })
-})
+      console.log(err);
+      res.status(500).json({
+        error: "The actions information could not be found"
+      });
+    });
+});
 
 // add a new project
 router.post("/", (req, res) => {
@@ -92,7 +93,6 @@ router.post("/", (req, res) => {
       });
     });
 });
-
 
 // update a project
 router.put("/:id", (req, res) => {
@@ -141,6 +141,35 @@ router.delete("/:id", (req, res) => {
       console.log(err);
       res.status(500).json({
         error: "The project could not be removed"
+      });
+    });
+});
+
+// create new action...well if I can figure it out
+router.post("/:id/actions", (req, res) => {
+  const body = req.body;
+  actionsDb.insert(body);
+  const project_id = req.body.project_id;
+
+  projectDb
+    .get(project_id)
+    .then(newAction => {
+      if (newAction.length === 0) {
+        res.status(400).json({
+          message: "missing action data"
+        });
+      } else if (!body.description && !body.notes) {
+        res.status(400).json({
+          message: "missing required description and notes fields"
+        });
+      } else {
+        res.status(200).json({ body });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        errorMessage: "There was an error while saving the action"
       });
     });
 });

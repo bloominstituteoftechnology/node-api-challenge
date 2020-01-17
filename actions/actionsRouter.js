@@ -2,8 +2,6 @@ const express = require("express");
 
 const actionsDb = require("../data/helpers/actionModel.js");
 
-const projectDb = require("../data/helpers/projectModel.js");
-
 const router = express.Router();
 
 // get all actions
@@ -95,20 +93,32 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// create new action...well if I can figure it out
-router.post('/', (req, res) => {
-    const newAction = req.body;
-  
-    actionsDb
-      .insert(newAction)
-      .then(action => {
-        res.status(200).json(action);
-      })
-      .catch(error => {
-        res.status(500).json({ 
-            errorMessage: '', error 
-        });
-      });
-  });
+// // create new action...well if I can figure it out
+// router.post("/:id/actions", (req, res) => {
+//   const body = req.body;
+//   const project_id = req.params.id;
+//   const newAction = { required: body.description && body.notes, project_id };
+
+//   actionsDb
+//     .insert(newAction)
+//     .then(action => {
+//       if (!body) {
+//         res.status(400).json({
+//           message: "missing action data"
+//         });
+//       } else if (!body.description && !body.notes) {
+//         res.status(400).json({
+//           message: "missing required description and notes fields"
+//         });
+//       } else {
+//         res.status(200).json({ newAction });
+//       }
+//     })
+//     .catch(err => {
+//       res.status(500).json({
+//         errorMessage: "There was an error while saving the action"
+//       });
+//     });
+// });
 
 module.exports = router;
