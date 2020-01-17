@@ -2,8 +2,6 @@ const express = require("express");
 
 const projectDb = require("../data/helpers/projectModel.js");
 
-const actionsDb = require("../data/helpers/actionModel.js");
-
 const router = express.Router();
 
 // router.get("/", (req, res) => {
@@ -141,35 +139,6 @@ router.delete("/:id", (req, res) => {
       console.log(err);
       res.status(500).json({
         error: "The project could not be removed"
-      });
-    });
-});
-
-// create new action...well if I can figure it out
-router.post("/:id/actions", (req, res) => {
-  const body = req.body;
-  actionsDb.insert(body);
-  const project_id = req.body.project_id;
-
-  projectDb
-    .get(project_id)
-    .then(newAction => {
-      if (newAction.length === 0) {
-        res.status(400).json({
-          message: "missing action data"
-        });
-      } else if (!body.description && !body.notes) {
-        res.status(400).json({
-          message: "missing required description and notes fields"
-        });
-      } else {
-        res.status(200).json({ body });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        errorMessage: "There was an error while saving the action"
       });
     });
 });
