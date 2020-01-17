@@ -28,11 +28,11 @@ function get(id) {
                 return null;
             }
         });
+    } else {
+        return query.then(projects => {
+            return projects.map(project => mappers.projectToBody(project));
+        });
     }
-
-    return query.then(projects => {
-        return projects.map(project => mappers.projectToBody(project));
-    });
 }
 
 function insert(project) {
