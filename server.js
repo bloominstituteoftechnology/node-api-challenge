@@ -5,7 +5,7 @@ const actionModels = require('./actionModels/actionModels.js')
 
 
 server.use(express.json());
-server.use('api/lambda', projectModels)
+server.use('/api/book', projectModels)
 server.use ('/api/lambda', actionModels);
 
 

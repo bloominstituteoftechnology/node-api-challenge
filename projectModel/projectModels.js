@@ -1,5 +1,6 @@
 const express = require('express');
 const Port = require('../data/helpers/projectModel.js')
+const project_Id= require('../data/helpers/projectModel.js')
 const projectModels = express.Router();
 
 
@@ -20,14 +21,14 @@ projectModels.get('/', (req, res) => {
 
   projectModels.get('/name', (req, res) => {
     Port.getProjectActions(req.params.id)
-    .then(Ports => {
-      res.status(200).json(Ports);
+    .then(actions => {
+      res.status(200).json(actions);
     })
     .catch(error => {
       // log error to projectModels
       console.log(error);
       res.status(500).json({
-        message: 'Error retrieving the Port',
+        message: 'Error retrieving the Project',
       });
     });
   });
@@ -38,7 +39,7 @@ projectModels.get('/', (req, res) => {
         if (port) {
       res.status(201).json(port);
         } else {
-            res.status(500).json({message: 'cannot add Port'})
+            res.status(500).json({message: 'cannot add Projectt'})
         }
     })
     .catch(error => {
@@ -75,14 +76,14 @@ projectModels.get('/', (req, res) => {
       if (Port) {
         res.status(200).json(Port);
       } else {
-        res.status(404).json({ message: 'The Port could not be found' });
+        res.status(404).json({ message: 'The Project could not be found' });
       }
     })
     .catch(error => {
       // log error to projectModels
       console.log(error);
       res.status(500).json({
-        message: 'Error updating the Port',
+        message: 'Error updating the Project',
       });
     });
   });
