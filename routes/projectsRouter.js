@@ -92,7 +92,7 @@ router.get('/:id/projects', (req, res) => {
         message: 'Error retrieving the PROJECT',
       });
     });
-
+});
 
 /////////////////////////////////////////////////////
 
@@ -105,12 +105,14 @@ router.get('/:id/projects', (req, res) => {
         req.user = user
         next();
       }else{(!user)
-        res.status(400).json({ message: "invalid user id" })
+        res.status(400).json({ message: "invalid PROJECT id" })
      
       }
     })
       .catch(error => {
         console.log(error);
-       res.status(500).json({error: 'validating user ID'})
+       res.status(500).json({error: 'validating PROJECT ID'})
     });
   }
+
+module.exports = router;
