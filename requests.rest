@@ -8,3 +8,13 @@ GET http://localhost:2020/api/projects
 ###
 
 GET http://localhost:2020/api/projects/2
+
+###
+
+GET http://localhost:2020/api/actions
+
+###
+
+GET http://localhost:2020/api/actions/4
+
+###
