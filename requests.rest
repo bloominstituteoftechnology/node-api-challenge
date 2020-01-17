@@ -1,0 +1,10 @@
+
+GET http://localhost:2020/
+
+###
+
+GET http://localhost:2020/api/projects
+
+###
+
+GET http://localhost:2020/api/projects/2
