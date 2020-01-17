@@ -45,21 +45,21 @@ router.put('/:id',  (req, res) => {
       if (post) {
         res.status(200).json(post);
       } else {
-        res.status(404).json({ message: 'The User could not be edited!' });
+        res.status(404).json({ message: 'The PROJECT could not be edited!' });
       }
     })
     .catch(error => {
       console.log(error);
       res.status(500).json({
-        message: 'Error updating the User'
+        message: 'Error updating the PROJECT'
       });
     });
   });
 
-  //DELETE Project (REMOVE)
+//DELETE Project (REMOVE)
 ///////////////////////////////////////////////////////////////////////
 //,validateUserId
-router.remove('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const id = req.params.id
     ProjectInfo.remove(id)
     .then(count => {
@@ -81,7 +81,6 @@ router.remove('/:id', (req, res) => {
 /////////////////////////////////////////////////////////////////////
 //,validateUserId
 router.get('/:id/projects', (req, res) => {
-    // do your magic!
     const id = req.params.id
     ProjectInfo.getProjectActions(id)
     .then(user => {
