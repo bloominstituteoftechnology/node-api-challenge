@@ -89,8 +89,7 @@ router.put('/:id', (req, res) => {
                 console.log(error);
                 res.status(500).json({ error: "this project could not be found " });
           });
-        }
-    );
+        });
 
 
 
