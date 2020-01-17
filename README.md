@@ -40,13 +40,18 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+
 - [ ] Describe Middleware?
+    A software used to translate code that's foreign to the server.
 
 - [ ] Describe a Resource?
+    A resource is the identifiable piece of data that can be retrieved.
 
 - [ ] What can the API return to help clients know if a request was successful?
+    Status codes can be returned to give users the information. 
 
 - [ ] How can we partition our application into sub-applications?
+    Create routes to access code stored somewhere else.
 
 ## Minimum Viable Product
 
