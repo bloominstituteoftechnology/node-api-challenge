@@ -11,8 +11,8 @@ const router = express.Router();
 router.get("/", (req, res) => {
   actionsDb
     .get()
-    .then(projects => {
-      res.status(200).json(projects);
+    .then(actions => {
+      res.status(200).json(actions);
     })
     .catch(err => {
       console.log(err);
@@ -43,5 +43,15 @@ router.get("/:id", (req, res) => {
       });
     });
 });
+
+// router.post("/", (req, res) => {
+//     const newAction = req.body;
+
+//     actionsDb
+//     .insert(newAction)
+//     .then(newAction => {
+//         if (newAction.)
+//     })
+// })
 
 module.exports = router;
