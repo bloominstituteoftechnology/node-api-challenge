@@ -19,7 +19,7 @@ projectModels.get('/', (req, res) => {
     });
   });
 
-  projectModels.get('/name', (req, res) => {
+  projectModels.get('/:id', (req, res) => {
     Port.getProjectActions(req.params.id)
     .then(actions => {
       res.status(200).json(actions);
