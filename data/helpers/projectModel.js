@@ -54,6 +54,7 @@ function remove(id) {
         .del();
 }
 
+
 function getProjectActions(projectId) {
     return db("actions")
         .where("project_id", projectId)
