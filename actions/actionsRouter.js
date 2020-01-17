@@ -8,6 +8,8 @@ const router = express.Router();
 //     res.send("let's see if this works")
 // });
 
+
+// get all actions
 router.get("/", (req, res) => {
   actionsDb
     .get()
@@ -22,6 +24,8 @@ router.get("/", (req, res) => {
     });
 });
 
+
+// get action by id
 router.get("/:id", (req, res) => {
   const id = req.params.id;
 
@@ -44,14 +48,5 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// router.post("/", (req, res) => {
-//     const newAction = req.body;
-
-//     actionsDb
-//     .insert(newAction)
-//     .then(newAction => {
-//         if (newAction.)
-//     })
-// })
 
 module.exports = router;
