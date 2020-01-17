@@ -32,7 +32,7 @@ router.get('/:id', validateActionId, (req, res) => {
 
 // Create an action.
 // Ensure the associated project exists and the action data is valid.
-router.post('/:id', validateProjectId, validateActionData, (req, res) => {
+router.post('/', validateProjectExists, validateActionData, (req, res) => {
   const actioninfo = req.body;
   actions.insert(actioninfo)
     .then(() => res.status(201))
@@ -49,7 +49,10 @@ router.delete('/:id', validateActionId, (req, res) => {
 });
 
 // Modify: Check action id to replace. Ensure replacement info is valid.
-router.put('/:id', validateActionId, validateActionData, (req, res) => {
+router.put('/:id', 
+      validateActionId, 
+      validateProjectExists,
+      validateActionData, (req, res) => {
   const actioninfo = req.body;
   actions.update(req.params.id, actioninfo)
     .then(() => res.status(200).json(actioninfo))
@@ -59,20 +62,26 @@ router.put('/:id', validateActionId, validateActionData, (req, res) => {
 
 // === Middleware ===
 
- // TODO: This is a duplicate of the function in projectRouter.
- // Make code DRY by including the other version.
-function validateProjectId(req, res, next) {
-  projects.get(req.params.id)
-    .then(project => {
-      if(project) {
-        req.project = project;
-        next();
-      }
-      else {
-        res.status(400).json({ message: "invalid project id" });
-      }
-    })
-    .catch(err => console.log(err));
+function validateProjectExists(req, res, next) {
+  const projectId = req.body.project_id;
+  if(!projectId) {
+    res.status(400).json({ message: "Project ID is required."});
+  }
+  else {
+    projects.get(projectId)
+      .then(project => {
+        if(project) {
+          // req.project = project;
+          console.log("Project exists");
+          next();
+        }
+        else {
+          console.log("Project doesn't exist.")
+          res.status(400).json({ message: "Invalid project id." });
+        }
+      })
+      .catch (err => console.log(err));
+  }
 }
 
 function validateActionId(req, res, next) {
@@ -93,7 +102,7 @@ function validateActionData(req, res, next) {
   if (!req.body || Object.keys(req.body).length === 0) {
     res.status(400).json({ message: "Missing Action data" });
   }
-  else if ( !req.body.project_id   ||
+  else if ( !req.body.project_id  ||
             !req.body.description ||
             !req.body.notes ) {
     res.status(400).json({ message: "Missing required field" });

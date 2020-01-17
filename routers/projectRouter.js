@@ -57,6 +57,7 @@ router.put('/:id', validateProjectId, validateProjectData, (req, res) => {
 // =========== Middleware =============
 
 function validateProjectId(req, res, next) {
+  console.log("Checking the project ID from projectRouter");
   projects.get(req.params.id)
     .then(project => {
       if(project) {

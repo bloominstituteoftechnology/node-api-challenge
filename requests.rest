@@ -1,4 +1,4 @@
-
+### ---------- GET requests --------------
 GET http://localhost:2020/
 
 ###
@@ -7,7 +7,7 @@ GET http://localhost:2020/api/projects
 
 ###
 
-GET http://localhost:2020/api/projects/2
+GET http://localhost:2020/api/projects/1
 
 ###
 
@@ -15,6 +15,33 @@ GET http://localhost:2020/api/actions
 
 ###
 
-GET http://localhost:2020/api/actions/4
+GET http://localhost:2020/api/actions/3
+
+### -------------- POST requests ----------------
+
+### New project
+POST http://localhost:2020/api/projects
+content-type: application/json
+
+{
+    "name": "Another new project",
+    "description": "...for a new day.",
+    "completed": false
+}
 
 ###
+POST http://localhost:2020/api/actions/
+content-type: application/json
+
+{
+    "project_id": 1,
+    "description": "Be Happy.",
+    "notes": "Turn that frown upside down.",
+    "completed": false
+}
+
+### ------------ DELETE requests ----------------
+DELETE http://localhost:2020/api/projects/2
+
+###
+DELETE http://localhost:2020/api/actions/15
