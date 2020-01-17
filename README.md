@@ -40,14 +40,35 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+    <!-- 
+    1. build web applications
+    2.  simple, and compatible with connect middleware.
+    -->
+
 - [ ] Describe Middleware?
+    <!--
+    Like react but for backend. - Functions that trigger some action – (example: logging or security)
+    --> 
 
 - [ ] Describe a Resource?
+    <!--
+    Everything is a resource, accessible via a unique URI resource, (backend write out of URL)
+    Examples are – songs, users, restaurants
+    http://localhost:3000/api/songs - songs is the resource.
+
+    -->
 
 - [ ] What can the API return to help clients know if a request was successful?
+     <!-- 
+    Displays a message that says request was successful, which would be a status of 200.
+	res.status(200).json({message: ‘Request was successful!”});
+    --> 
 
 - [ ] How can we partition our application into sub-applications?
-
+     <!--
+     Partition our app into sub apps by breaking it down into different route files. For instance: 1.  Posts-routes.js 2. Users-routes.js. Then we create a Db.js (file for said routes) and then import said file – const UserInfo = require(‘../users/userDb’); into User-routes.  Makes it more organized and easier to api routes.
+    --> 
+    
 ## Minimum Viable Product
 
 - [ ] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
