@@ -12,3 +12,24 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+const express = require("express");
+const server = express();
+
+const projectsRoutes = require("./routes/projects");
+
+server.use(express.json());
+
+const port = process.env.PORT || 3131;
+
+server.listen(port, () => {
+	console.log("listening on " + port);
+});
+
+server.use("/api/projects", projectsRoutes);
+
+server.get("*", (req, res) => {
+	res.status(200).json({ message: "ok" });
+});
+
+// module.exports = server;
