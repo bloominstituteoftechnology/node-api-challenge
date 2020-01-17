@@ -1,6 +1,5 @@
 const express = require('express');
 const Post = require('../data/helpers/actionModel.js')
-
 const actionModels = express.Router();
 
 
