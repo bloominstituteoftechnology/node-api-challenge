@@ -51,7 +51,7 @@ router.put('/:id',  (req, res) => {
     .catch(error => {
       console.log(error);
       res.status(500).json({
-        message: 'Error updating the PROJECT'
+        message: 'Error updating the ACTION'
       });
     });
   });  
