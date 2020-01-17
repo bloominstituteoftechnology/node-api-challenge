@@ -12,3 +12,18 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+const express = require('express');
+
+const server = express();
+const projectRouter = require('./routers/projectRouter');
+const actionRouter = require('./routers/actionRouter');
+
+server.use(express.json());
+
+server.use('/api/projects', projectRouter);
+server.use('/api/projects/:id/actions', actionRouter);
+
+
+const PORT = process.env.PORT || 6002;
+server.listen(PORT, () => console.log(`\n*** The Server is running on port: ${PORT}****\n`));
