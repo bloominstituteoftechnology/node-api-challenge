@@ -2,6 +2,8 @@ const express = require("express");
 
 const projectDb = require("../data/helpers/projectModel.js");
 
+const actionsDb = require("../data/helpers/actionModel.js");
+
 const router = express.Router();
 
 // router.get("/", (req, res) => {
@@ -45,6 +47,28 @@ router.get("/:id", (req, res) => {
       });
     });
 });
+
+// get a projects actions
+router.get("/:id/actions", (req, res) => {
+    const project_id = req.params.id
+
+    projectDb.getProjectActions(project_id)
+    .then(actions => {
+        if (project_id) {
+            res.status(200).json(actions);
+        } else {
+            res.status(404).json({
+                message: "The project with the specific ID does not exist"
+            })
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: "The actions information could not be found"
+        })
+    })
+})
 
 // add a new project
 router.post("/", (req, res) => {
@@ -93,6 +117,29 @@ router.put("/:id", (req, res) => {
       console.log(err);
       res.status(500).json({
         error: "The project information could not be updated"
+      });
+    });
+});
+
+// delete a project
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+
+  projectDb
+    .remove(id)
+    .then(deletedP => {
+      if (!id) {
+        res.status(404).json({
+          message: "The project with the specific ID does not exist"
+        });
+      } else {
+        res.status(200).json({ deletedP });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: "The project could not be removed"
       });
     });
 });
