@@ -126,12 +126,7 @@ router.get('/projects/:id', (req, res) => {
   });
 
   router.put('/projects/:id/actions', (req, res) => {
-    const { notes, description } = req.body;
-      project_id = Number(req.params.id);
-
-    console.log("req body", req.body)
-    console.log("id", )
-
+    project_id = Number(req.params.id);
     projectDB.getProjectActions(req.params.id)
         .then(hubs => {
          if(!hubs[0]){
@@ -145,6 +140,23 @@ router.get('/projects/:id', (req, res) => {
         })
         .catch(error => {
             res.status(500).json({error: "There was an error trying to update action"})
+        })
+});
+
+router.delete('/projects/:id/actions/', (req, res) => {
+    project_id = Number(req.params.id);
+    projectDB.getProjectActions(req.params.id)
+        .then(hubs => {
+         if(!hubs[0]){
+            res.status(404).json({message: "id could not be found"})
+        }
+    })
+    actionDB.remove(project_id)
+        .then(hubs => {
+            res.status(200).json(hubs)
+        })
+        .catch(error => {
+            res.status(500).json({error: "There was an error removing action"})
         })
 });
 
