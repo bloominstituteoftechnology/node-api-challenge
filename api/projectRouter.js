@@ -20,7 +20,7 @@ const validateId = (req, res, next) => {
     }
 const validateProject = (req, res, next) => {
     const { name, description } = req.body
-
+    
         if (!req.body) {
             res.status(400).json({ message: 'Please add information' })
         } else if (!name) {
@@ -77,6 +77,15 @@ router.delete('/:id', validateId, (req, res) => {
         .remove(id)
         .then(() => res.status(200).json(`${req.project.name} was deleted`))
         .catch(err => res.status(500).json({ message: 'Server was unable to delete Project', err }))
+})
+
+router.put('/:id', validateId, (req, res) => {
+    const { id } = req.params
+    const body = req.body
+    projectDb
+        .update(id, body)
+        .then(() => res.status(200).json(`${req.project.name} was updated`))
+        .catch(err => res.status(500).json({ message: 'Server was unable to update Project', err }))
 })
 
 
