@@ -20,7 +20,7 @@ const validateId = (req, res, next) => {
     }
 const validateProject = (req, res, next) => {
     const { name, description } = req.body
-    
+
         if (!req.body) {
             res.status(400).json({ message: 'Please add information' })
         } else if (!name) {
@@ -86,6 +86,22 @@ router.put('/:id', validateId, (req, res) => {
         .update(id, body)
         .then(() => res.status(200).json(`${req.project.name} was updated`))
         .catch(err => res.status(500).json({ message: 'Server was unable to update Project', err }))
+})
+
+router.post('/', validateProject, (req, res) => {
+    projectDb
+        .insert(req.body)
+        .then(project => res.status(201).json(project))
+        .catch(err => res.status(500).json({ message: 'Server was unable to create new project', error: err }))
+})
+
+router.post('/:id/actions', validateId, validateAction, (req, res) => {
+    const { id } = req.params
+    const { description, notes } = req.body
+    actionDb
+        .insert({description, notes, project_id: id})
+        .then(action => res.status(201).json(action))
+        .catch(err => res.status(500).json({ message: 'Server was unable to create new action', error: err }))
 })
 
 
