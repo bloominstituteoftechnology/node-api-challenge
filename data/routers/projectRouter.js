@@ -7,10 +7,15 @@ const projectDB = require('../helpers/projectModel')
 router.use(express.json());
 
 
-router.get('/projects', (req, res) => {
-    projectDB.get()
+router.get('/projects/:id', (req, res) => {
+    projectDB.get(req.params.id)
     .then(hubs => {
-      res.status(200).json(hubs);
+        if(!hubs){
+            res.status(404).json({message: "Id cannot be found"})
+        } else{
+          res.status(200).json(hubs);  
+        }
+      
     })
     .catch(error => {
       // log error to database
@@ -20,5 +25,10 @@ router.get('/projects', (req, res) => {
       });
     });
   });
+
+
+
+
+
 
 module.exports = router;
