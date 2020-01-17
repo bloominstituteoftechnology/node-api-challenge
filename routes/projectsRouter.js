@@ -6,7 +6,7 @@ const ProjectInfo = require('../data/helpers/projectModel');
 
 //GET PROJECT
 router.get('/',(req, res) => {
-    ProjectInfo.get(req.query)
+    ProjectInfo.get()
     .then(user => {
       res.status(200).json(user);
     })

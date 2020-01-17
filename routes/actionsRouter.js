@@ -6,7 +6,7 @@ const ActionInfo = require('../data/helpers/actionModel');
 
 //GET ACTION
 router.get('/',(req, res) => {
-    ActionInfo.get(req.query)
+    ActionInfo.get()
     .then(user => {
       res.status(200).json(user);
     })
@@ -21,7 +21,7 @@ router.get('/',(req, res) => {
 //POST(ADD/INSERT) ACTION
 /////////////////////////////////////////////////////////////////////////
 // validateUser,
-router.post('/', (req, res) => {
+router.post('/', validateUser, (req, res) => {
     ActionInfo.insert(req.body)
       .then(post => {
         res.status(201).json(post);
@@ -77,4 +77,20 @@ router.delete('/:id', (req, res) => {
     });
   });  
   
+////////////////////////////////////////////////
+  function validateUser(req, res, next) {
+    // do your magic!
+    if (!req.body) {
+      res.status(400).json({ errorMessage: 'missing user data'});
+    }else if(!req.body.project_id){ 
+      res.status(400).json({ message: "missing required project id" })
+    } else {
+      next();
+    }
+  
+  }
+
+
+
+
 module.exports = router;  
