@@ -101,6 +101,34 @@ router.delete("/:id", (req, res) => {
       });
   });
 
+  // updates an action...well if I can figure it out
+  router.put("/:id", (req, res) => {
+    const id = req.params.id;
+    const body = req.body;
+  
+    actionsDb
+      .update(id, body)
+      .then(updatedA => {
+        if (!id) {
+          res.status(404).json({
+            message: "The action with the specific ID does not exist"
+          });
+        } else if (!updatedA.description || !updatedA.notes) {
+          res.status(400).json({
+            message: "Please provide description and notes for updated actions"
+          });
+        } else {
+          res.status(200).json({ updatedA });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: "The action information could not be updated"
+        });
+      });
+  });
+
 
 
 module.exports = router;
