@@ -102,7 +102,7 @@ router.post("/:id/actions", checkAction, (req, res) => {
   actionsDb
     .insert(newAction)
     .then(action => {
-     res.status(200).json({ action })
+      res.status(200).json({ action });
     })
     .catch(err => {
       res.status(500).json({

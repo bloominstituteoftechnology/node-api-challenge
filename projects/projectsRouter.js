@@ -4,10 +4,6 @@ const projectDb = require("../data/helpers/projectModel.js");
 
 const router = express.Router();
 
-// router.get("/", (req, res) => {
-//     res.send("projectsRouter working!")
-// });
-
 // get all projects
 router.get("/", (req, res) => {
   projectDb

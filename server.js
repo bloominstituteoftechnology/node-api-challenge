@@ -13,7 +13,7 @@ server.use("/api/projects", projectsRouter);
 server.use("/api/actions", actionsRouter);
 
 server.get("/", (req, res) => {
-    res.send("Let's code! You got this Chels!");
+  res.send("Let's code! You got this Chels!");
 });
 
 module.exports = server;
