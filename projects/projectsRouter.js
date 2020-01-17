@@ -24,6 +24,31 @@ router.get("/", (req, res) => {
     });
 });
 
+// get a specific project
+router.get("/:id", (req, res) => {
+    const id = req.params.id;
+  
+    projectDb
+      .get(id)
+      .then(specificP => {
+        if (id) {
+          res.status(200).json(specificP);
+        } else {
+          res.status(404).json({
+            error: "No project with that ID"
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: "The project information could not be found"
+        });
+      });
+  });
+
+
+// add a new project
 router.post("/", (req, res) => {
     const newProject = req.body;
 
@@ -44,5 +69,8 @@ router.post("/", (req, res) => {
         });
     });
 });
+
+
+
 
 module.exports = router;
