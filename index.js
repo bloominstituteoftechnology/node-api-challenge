@@ -13,17 +13,26 @@ I need this code, but don't know where, perhaps should make some middleware, don
 Go code!
 */
 
-const express = require('express');
+const express = require("express");
+const cors = require("cors");
 
 const server = express();
-const projectRouter = require('./routers/projectRouter');
-const actionRouter = require('./routers/actionRouter');
+const projectRouter = require("./routers/projectRouter");
+const actionRouter = require("./routers/actionRouter");
 
 server.use(express.json());
-
-server.use('/api/projects', projectRouter);
-server.use('/api/projects/:id/actions', actionRouter);
-
+server.use(cors());
+server.use("/api/projects", projectRouter);
+server.use("/api/projects/:id/actions", actionRouter);
 
 const PORT = process.env.PORT || 6002;
-server.listen(PORT, () => console.log(`\n*** The Server is running on port: ${PORT}****\n`));
+const app = server.listen(PORT, () =>
+  console.log(`\n*** The Server is running on port: ${PORT}****\n`)
+);
+
+// Handle unhandled promise rejection
+
+process.on('unhandledRejection', (err, promise) => {
+    console.log(`Error: ${err.message}`);
+    app.close(() => process.exit(1));
+});

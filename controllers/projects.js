@@ -56,14 +56,12 @@ exports.getProject = (req, res) => {
 exports.getProjectActions = (req, res) => {
     const id  = req.params.id;
     projectDb.getProjectActions(id)
-    .then(actions => {
-        if (actions.length > 1)
+    .then(actions => 
+      
             res.status(200).json(actions)
-        else
-            res.status(200).json({
-                message: `No action is available for this id: ${id}`
-            })
-    })
+        
+        
+    )
     .catch(err => {
         console.log(err);
         res.status(500).json({

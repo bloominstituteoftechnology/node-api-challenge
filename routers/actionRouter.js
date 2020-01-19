@@ -1,5 +1,6 @@
 const router = require('express').Router();
-
+const idChecker = require('../middleware/idChecker');
+const logger = require('../middleware/logger');
 const { 
 createAction,
 updateAction,
@@ -10,7 +11,7 @@ removeAction
 router
 .route('/')
 // .get(getActions)
-.post(createAction);
+.post(idChecker,logger, createAction);
 
 router
 .route('/:id')

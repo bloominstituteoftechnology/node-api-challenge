@@ -1,5 +1,6 @@
 
 const actionDb = require('../data/helpers/actionModel');
+
 // const projectDb = require('../data/helpers/projectModel');
 
 // @desc: Get all actions
@@ -24,14 +25,14 @@ const actionDb = require('../data/helpers/actionModel');
 // @access: private
 
 exports.createAction = (req, res) => {
-    // console.log('params', req.params);
+    console.log('req', req);
     actionDb.insert(req.body)
     
     .then(action => res.status(201).json(action))
     .catch(err => {
         console.log(err);
         res.status(500).json({
-            errorMessage: 'Unable to create a action to the server'
+            errorMessage: 'Unable to create an action on the server'
         })
     })
 }
@@ -45,6 +46,7 @@ exports.createAction = (req, res) => {
 exports.getAction = (req, res) => {
     const id  = req.params.id;
     console.log('id', id);
+   
     actionDb.get(id)
     .then(action => res.status(200).json(action))
     .catch(err => {
