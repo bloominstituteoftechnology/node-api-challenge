@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const actionDB = require("../helpers/actionModel");
 const projectDB = require("../helpers/projectModel");
 
-console.log("routers.jsx is running....");
+console.log("projectRouter.jsx is running....");
 
-const { getStuff } = require("../controllers/actionController.jsx");
+const { getStuff } = require("../controllers/projectController.jsx");
 
 router.route("/").get(getStuff);
 // .post()
