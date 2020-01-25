@@ -39,14 +39,20 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 - [ ] Mention two parts of Express that you learned about this week.
+    1) .json/.end stops the response and won't allow it to continue until corrected. 
+    2) Middlewear
 
 - [ ] Describe Middleware?
+    The helper functions are "verbs". The requests are on a chain and middlewear helps to move the requests to the next one unless it is stopped by .json/.end
 
 - [ ] Describe a Resource?
+    A piece of data that can be retrieved
 
 - [ ] What can the API return to help clients know if a request was successful?
+    It can either return the item(data) that was requested and/or success: true status./ 
 
 - [ ] How can we partition our application into sub-applications?
+    We can create a folder called routes and then files for each route we want to make. Such as actionRoutes and projectRoutes.
 
 ## Minimum Viable Product
 
