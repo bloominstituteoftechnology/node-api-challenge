@@ -17,7 +17,8 @@ const {
 
 const {
   createAction,
-  getAction
+  getAction,
+  deleteAction
 } = require("../controllers/actionController.jsx");
 
 router
@@ -39,7 +40,8 @@ router
 
 router
   .route("/:id/actions/:actionId")
-  .get(validateId, validateActionId, getAction);
+  .get(validateId, validateActionId, getAction)
+  .delete(validateId, validateActionId, deleteAction);
 
 //custom middleware
 //

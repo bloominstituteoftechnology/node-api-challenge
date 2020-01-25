@@ -19,7 +19,7 @@ exports.getAction = (req, res, next) => {
 // @desc    POST/CREATE new action to :id
 // @route   POST to /api/project
 exports.createAction = (req, res, next) => {
-  console.log("getStuff");
+  console.log("createAction:", req.body);
   actionController
     .insert(req.body)
     .then(action => {
@@ -46,3 +46,21 @@ exports.createAction = (req, res, next) => {
 // ================================
 // @desc    DELETE action with :id AND :actionId
 // @route   DELETE to /api/project/:id/actions/:actionId
+exports.deleteAction = (req, res, next) => {
+  console.log("deleteAction: ", req.action);
+  actionController
+    .remove(req.action.id)
+    .then(action => {
+      res
+        .status(200) //success
+        .json({
+          message: `Project_id: ${req.action.project_id} successfully removed`
+        });
+    })
+    .catch(e => {
+      console.log(e);
+      res
+        .status(500) //server error
+        .json({ error: "Error in createAction" });
+    });
+};
