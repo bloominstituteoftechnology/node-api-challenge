@@ -6,8 +6,8 @@ server.use(express.json());
 server.use(logger);
 server.use(cors());
 
-// const name = require('');
-// server.use('/api', name);
+const routers = require("./data/routers/routers.jsx");
+server.use("/api", routers);
 
 server.get("/", (req, res) => {
   res.send(`<h2>Let's code some shiz!!</h2>`);
