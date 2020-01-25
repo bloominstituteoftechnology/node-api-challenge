@@ -88,3 +88,6 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# wrong CRA
+.christian-node-api-challenge-app
