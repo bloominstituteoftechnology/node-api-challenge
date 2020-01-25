@@ -7,9 +7,9 @@ server.use(logger);
 server.use(cors());
 
 const projectRouter = require("./data/routers/projectRouter.jsx");
-const actionRouter = require("./data/routers/actionRouter.jsx");
+// const actionRouter = require("./data/routers/actionRouter.jsx");
 server.use("/api/project", projectRouter);
-server.use("/api/action", actionRouter);
+// server.use("/api/action", actionRouter);
 
 server.get("/", (req, res) => {
   res.send(`<h2>Let's code some shiz!!</h2>`);

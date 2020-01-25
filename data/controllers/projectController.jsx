@@ -33,6 +33,25 @@ exports.getProject = (req, res, next) => {
     .json(req.project);
 };
 
+exports.getActions = (req, res, next) => {
+  console.log("getActions: ", req.project);
+  projectController
+    .getProjectActions(req.project.id)
+    .then(actions => {
+      res
+        .status(200) //success
+        .json(req.project);
+    })
+    .catch(e => {
+      console.log(e);
+      res
+        .status(500) //server error
+        .json({
+          message: `error retrieving actions given project ID: ${req.project.id}`
+        });
+    });
+};
+
 // ================================
 //            POST
 // ================================
@@ -58,25 +77,43 @@ exports.addProject = (req, res, next) => {
 // ================================
 //            PUT
 // ================================
+// @desc    update/changed data to project with :id
+// @route   PUT to /api/project/:id
+exports.updateProject = (req, res, next) => {
+  console.log("updateProject: ", req.body, req.project);
+  projectController
+    .update(req.project.id, req.body)
+    .then(updated => {
+      console.log("updateProject, updated: ", updated);
+      res
+        .status(200) //success
+        .json({
+          message: `Project details chaged with ID: ${req.project.id}.`,
+          changes: updated
+        });
+    })
+    .catch(e => {
+      console.log("updateProject error!");
+      res
+        .status(500) //server error
+        .json({ message: "Error in updateProject" });
+    });
+};
 
 // ================================
 //            DELETE
 // ================================
+// @desc    DELETE project with :id
+// @route   DELETE to /api/project/:id
 exports.deleteProject = (req, res, next) => {
   console.log("deleteProject: ", req.body, req.project);
   projectController
     .remove(req.project.id)
     .then(project => {
       console.log("deleteProject, .then: ", project);
-      if (!!project) {
-        res
-          .status(200) //success
-          .json({ message: `Project ID of ${req.project.id} was deleted` });
-      } else {
-        res
-          .status(400) //project not found
-          .json({ message: "Project with ID not found" });
-      }
+      res
+        .status(200) //success
+        .json({ message: `Project ID of ${req.project.id} was deleted` });
     })
     .catch(e => {
       console.log("deleteProject err: ", err);
