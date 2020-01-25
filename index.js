@@ -12,3 +12,9 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+const server = require('./server')
+// const cors = require ('cors');
+server.listen(4000, ()=> {
+    console.log('server running on port 4000')
+})
