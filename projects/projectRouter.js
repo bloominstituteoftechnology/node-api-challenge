@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
           .catch(err => {
               res.status(500).json({ error: "The information could not be retrieved." });
           })
-  });
+});
 
 router.get('/:id', (req, res) => {
     Project.get(req.params.id)
@@ -34,7 +34,7 @@ router.post('/', validateProject, (req, res) => {
 
     Project.insert(projectInfo)
         .then(project => {
-            res.status(201).json(project)
+            res.status(201).json(project);
         })
         .catch(err => {
             res.status(500).json({ error: "There was an error while saving the action to the database" });
@@ -60,9 +60,26 @@ router.delete('/:id', (req, res) => {
             res.status(200).json(action);
         })
         .catch(err => {
-            res.status(500).json({error: "The project could not be removed"})
+            res.status(500).json({error: "The project could not be removed"});
+        })
+});
+
+router.get('/:id/action', (req, res) => {
+
+    Project.getProjectActions(req.params.id)
+        .then(project => {
+            if(project) {
+                res.status(200).json(project);
+            } else {
+                res.status(400).json({message: "The project with the specified ID does not exist"});
+            }
+        })
+        .catch(err => {
+            res.status(500).json({error: "The project information could not be retrieved"});
         })
 })
+
+
 
   /**************************************************************** Custom Middleware */
 
