@@ -1,10 +1,10 @@
 const express = require ('express');
 const server = express();
-// const projectRoutes = require('./routes/projectRoutes');
+const projectRoutes = require('./routes/projectRoutes');
 const actionRoutes = require('./routes/actionRoutes');
 
-// server.use('/projects', projectRoutes);
-server.use('/actions', actionRoutes);
+server.use('/api/projects', projectRoutes);
+server.use('/api/actions', actionRoutes);
 
 server.use(express.json());
 
