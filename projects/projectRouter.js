@@ -68,7 +68,9 @@ router.get('/:id/action', (req, res) => {
 
     Project.getProjectActions(req.params.id)
         .then(project => {
-            if(project) {
+            if (project.length < 1 ) {
+                res.status(400).json({message: "There are no actions associated with this project"});
+            } else if (project) {
                 res.status(200).json(project);
             } else {
                 res.status(400).json({message: "The project with the specified ID does not exist"});
@@ -94,6 +96,6 @@ function validateProject(req, res, next) {
     } else {
       next();
     }
-  }
+}
 
 module.exports = router;
