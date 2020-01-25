@@ -8,7 +8,7 @@ const projectsDb = require("../data/helpers/projectModel");
 //POST PROJECT// (CREATE)
 //-----------------------------------------//
 
-router.post("/", (req, res) => {
+router.post('/projects', (req, res) => {
     projectsDb.insert(req.body)
       .then(result => {
         res.status(201).json(result);
@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
 //GET PROJECT// (READ)
 //-----------------------------------------//
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
     projectsDb.get()
     .then(result => {
       res.status(200).json(result);
@@ -45,7 +45,7 @@ router.get("/", (req, res) => {
 //GET PROJECT BY ID// (READ)
 //-----------------------------------------//A
 
-router.get("/:id", (req, res) => {
+router.get('/projects/:id', (req, res) => {
   const id = req.params.id;
 
   projectsDb.get(id)
@@ -74,7 +74,7 @@ router.get("/:id", (req, res) => {
 //-----------------------------------------//
 
 
-router.put("/:id", (req, res) => {
+router.put('/projects/:id', (req, res) => {
   const id = req.params.id;
   const body = req.body;
 
@@ -110,7 +110,7 @@ router.put("/:id", (req, res) => {
 //DELETE PROJECT//
 //-----------------------------------------//
 
-router.delete("/:id", (req, res) => {
+router.delete('/projects/:id', (req, res) => {
   const id = req.params.id;
 
   projectsDb.remove(id)

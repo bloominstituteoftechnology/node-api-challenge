@@ -6,15 +6,16 @@ const router = express.Router();
 //-----------------------------------------//
 //POST ACTION// (CREATE)
 //-----------------------------------------//
-router.post("/:id", (req, res) => {
+router.post('/actions/:id', (req, res) => {
     const body = req.body;
 
     actionDb.insert(body)
-      .then(action => {
-        res.status(201).json(action);
+      .then(actions => {
+        res.status(201).json(actions);
       })
       .catch(error => {
         res.status(404).json
+        console.log(error)
         ({
             success: false, 
             errorMessage: "Could not post action", error
@@ -43,13 +44,13 @@ router.get('/', (req, res) => {
 //GET ACTION BY ID// (READ)
 //-----------------------------------------//
 
-router.get('./:id', (req,res) => {
+router.get('/actions/:id', (req,res) => {
     const id = req.params.id;
 
     actionDb.get(id)
-    .then (action => {
+    .then (actions => {
         if(id) {
-            res.status(200).json(action);
+            res.status(200).json(actions);
 
         } else {
 
@@ -73,13 +74,13 @@ router.get('./:id', (req,res) => {
 //UPDATE ACTION//
 //-----------------------------------------//
 
-router.put('/:id', (req, res) => {
+router.put('/actions/:id', (req, res) => {
     const id = req.params.id;
     const body = req.body;
 
     actionDb.update(id, body)
-      .then(action => {
-        res.status(200).json(action);
+      .then(actions => {
+        res.status(200).json(actions);
       })
       .catch(error => {
         res.status(500).json
@@ -94,12 +95,12 @@ router.put('/:id', (req, res) => {
 //DELETE ACTION//
 //-----------------------------------------//
 
-router.delete('/:id', (req, res) => {
+router.delete('/actions/:id', (req, res) => {
     const id = req.params.id;
 
     actionDb.remove(id)
-      .then(action => {
-        res.status(200).json(action);
+      .then(actions => {
+        res.status(200).json(actions);
       })
       .catch(error => {
         res.status(500).json
