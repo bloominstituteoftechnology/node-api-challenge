@@ -13,8 +13,10 @@ I need this code, but don't know where, perhaps should make some middleware, don
 Go code!
 */
 
+// require('dotenv').config();
 const server = require('./server.js');
 
-server.listen(9999, () => {
+const port = process.env.PORT || 9999;
+server.listen(port, () => {
   console.log('Server running on http://localhost:9999');
 });
