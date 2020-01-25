@@ -40,6 +40,25 @@ exports.createAction = (req, res, next) => {
 // ================================
 // @desc    update/changed data to project with :id AND :actionId
 // @route   PUT to /api/project/:id/actions/:actionId
+exports.updateAction = (req, res, next) => {
+  console.log("updateAction: ");
+  actionController
+    .update(req.params.actionId, req.body)
+    .then(updated => {
+      console.log("updateAction, updated: ", updated);
+      res
+        .status(200) //success
+        .json({
+          message: `Action with ID of ${req.params.actionId} updated.`,
+          changes: updated
+        });
+    })
+    .catch(e => {
+      res
+        .status(500) //server error
+        .json({ message: "Error in updateAction" });
+    });
+};
 
 // ================================
 //            DELETE
