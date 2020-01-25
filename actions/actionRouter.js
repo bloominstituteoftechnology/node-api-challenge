@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
     .catch(err => {
         res.status(500).json({error: "The action information could not be retrieved"});
     })
-})
+});
 
 router.post('/', validateAction, (req, res) => {
     const actionInfo = req.body
@@ -36,8 +36,31 @@ router.post('/', validateAction, (req, res) => {
             res.status(201).json(action)
         })
         .catch(err => {
-            res.status(500).json({ error: "There was an error while saving the user to the database" });
+            res.status(500).json({ error: "There was an error while saving the action to the database" });
       })
+});
+
+router.put('/:id', validateAction, (req, res) => {
+    const actionInfo = req.body
+
+    Action.update(req.params.id, actionInfo)
+        .then(action => {
+            res.status(200).json(action);
+        })
+        .catch(err => {
+            res.status(500).json({error: "The information could not be modified"});
+        })  
+});
+
+router.delete('/:id', (req, res) => {
+
+    Action.remove(req.params.id)
+        .then(action => {
+            res.status(200).json(action);
+        })
+        .catch(err => {
+            res.status(500).json({error: "The action could not be removed"})
+        })
 })
 
 
