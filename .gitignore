@@ -90,4 +90,4 @@ typings/
 .dynamodb/
 
 # wrong CRA
-christian-node-api-challenge-app/
+christian-node-api-challenge-app
