@@ -25,7 +25,7 @@ router.post("/:id", (req, res) => {
 //-----------------------------------------//
 //GET ACTION// (READ)
 //-----------------------------------------//
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
     actionDb.get()
       .then(actions => {
         res.status(200).json(actions);
