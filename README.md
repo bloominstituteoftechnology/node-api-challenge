@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+    I learned about express.Routing and middleware (specifically the middleware chain) this week. express.Routing allows you to create mini-apps in your main application and the middleware chain is how middleware functions within the express framework.
+
 - [ ] Describe Middleware?
+
+    Middleware within node is a function that comes between the req and res object. It has access to both of those objects as well as the 'next' function of the req-res life cycle. Middleware can: execute any code, make changes to req, res objects, end the req-res cycle, or call the next middleware using next. The three are pre-installed middleware, custom middleware and third-party middleware.
 
 - [ ] Describe a Resource?
 
+    A resource is a primary data representation. Any information that can be named can be a resource. REST APIs use Uniform Resource Indentifiers (URIs) to name resources. ie. localhost:5000/api/:id/comments
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+    An API can return a response method, most commonly,  of a 'status' or 'send' to let clients know if a request was succesfull. ie. res.status(200).json({message: "request was succesfull"})
+
 - [ ] How can we partition our application into sub-applications?
+
+    Applications can be partitioned into sub-applications by using routers. Using express.Router creates a complete middleware and routing system. ie. Create router as module, loads middleware, defines routes, mounts router module on path in main app.
 
 ## Minimum Viable Product
 
