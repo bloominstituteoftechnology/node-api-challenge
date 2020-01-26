@@ -8,8 +8,10 @@ const projectsDb = require("../data/helpers/projectModel");
 //POST PROJECT// (CREATE)
 //-----------------------------------------//
 
-router.post('/projects', (req, res) => {
-    projectsDb.insert(req.body)
+router.post('/', (req, res) => {
+    const body = req.body;
+
+    projectsDb.insert(body)
       .then(result => {
         res.status(201).json(result);
       })
@@ -74,11 +76,11 @@ router.get('/projects/:id', (req, res) => {
 //-----------------------------------------//
 
 
-router.put('/projects/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id;
   const body = req.body;
 
-  projectsDb.update(id, updatedProject)
+  projectsDb.update(id, body)
     .then(project => {
       if (!id) {
         res.status(404).json

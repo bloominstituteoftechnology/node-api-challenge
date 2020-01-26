@@ -1,27 +1,29 @@
 const express = require('express'); 
-const actionDb = require ('../data/helpers/actionModel.js');
+const actionDb = require ('../data/helpers/actionModel');
 const router = express.Router();
+
+router.use(express.json())
 
 
 //-----------------------------------------//
 //POST ACTION// (CREATE)
 //-----------------------------------------//
-router.post('/actions/:id', (req, res) => {
+router.post('/', (req, res) => {
     const body = req.body;
 
     actionDb.insert(body)
-      .then(actions => {
-        res.status(201).json(actions);
+      .then(result => {
+        res.status(201).json(result);
       })
       .catch(error => {
-        res.status(404).json
-        console.log(error)
+        res.status(500).json
         ({
             success: false, 
-            errorMessage: "Could not post action", error
+            errorMessage: "Could not add action", error
         });
       });
   });
+
 
 //-----------------------------------------//
 //GET ACTION// (READ)
@@ -45,11 +47,12 @@ router.get('/', (req, res) => {
 //-----------------------------------------//
 
 router.get('/actions/:id', (req,res) => {
+
     const id = req.params.id;
 
     actionDb.get(id)
     .then (actions => {
-        if(id) {
+        if(actions) {
             res.status(200).json(actions);
 
         } else {
@@ -74,44 +77,66 @@ router.get('/actions/:id', (req,res) => {
 //UPDATE ACTION//
 //-----------------------------------------//
 
-router.put('/actions/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     const id = req.params.id;
     const body = req.body;
 
     actionDb.update(id, body)
-      .then(actions => {
-        res.status(200).json(actions);
-      })
-      .catch(error => {
+    .then(action => {
+        if(action){
+            return res.status(200).json(action);
+
+        } else {
+
+            res.status(404).json
+            ({ 
+                success: false, 
+                errorMessage: "This action does not exist" })
+        }
+    })
+    .catch(error => {
         res.status(500).json
-        ({
+        ({ 
             success: false, 
-            errorMessage: "The action could not be updated", error
-        });
-      });
-  });
+            message: "Action could not be updated" , error
+        })
+    })
+})
+
 
 //-----------------------------------------//
 //DELETE ACTION//
 //-----------------------------------------//
 
-router.delete('/actions/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const id = req.params.id;
 
     actionDb.remove(id)
-      .then(actions => {
-        res.status(200).json(actions);
-      })
-      .catch(error => {
+    .then(count => {
+        if(count > 0) {
+            return res.status(200).json
+            ({ 
+                success: true, 
+                errorMessage: "Action removed!" 
+            })
+        } else {
+            return res.status(404).json
+            ({ 
+                success: false, 
+                errorMessage: "Action cannot be found." 
+            })
+        }
+    })
+    .catch( error => {
+        console.log(error)
         res.status(500).json
-        ({
-            success: false,
-            errorMessage: "unable to delete", error
-        });
-      });
-  });
+        ({ 
+            success: false, 
+            errorMessage: "Action cannot be removed."
+        })
+    })
+})
+
   
-
-
 
 module.exports = router;
