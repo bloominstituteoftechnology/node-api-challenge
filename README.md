@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+express offers middleware and routes. Routes can be used to have multiple routing for api calls
+
 - [ ] Describe Middleware?
+
+middleware are function which are utilitiezed to perform specific tasks such as validation, and then push the reques to the api call
 
 - [ ] Describe a Resource?
 
+resources are data which are retrieved through api calls
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+status 200 ok
+
 - [ ] How can we partition our application into sub-applications?
+
+through route and middleware
 
 ## Minimum Viable Product
 
