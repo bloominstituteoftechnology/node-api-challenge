@@ -6,22 +6,38 @@ const router = express.Router();
 // Post Action
 router.post("/", (req, res) => {
   const newAction = req.body;
+  const projectId = req.body.project_id;
 
-  if (!newAction.notes || !newAction.description || !newAction.project_id) {
+  if (!newAction.notes || !newAction.description || !projectId) {
     res.status(400).json({
       errorMessage:
         "Please provide project id, notes, and description for this action."
     });
   } else {
-    actionModel
-      .insert(newAction)
-      .then(post => {
-        res.status(201).json(post);
+    projectsModel
+      .get(projectId)
+      .then(project => {
+        if (project) {
+            actionModel
+            .insert(newAction)
+            .then(post => {
+                res.status(201).json(post);
+            })
+            .catch(err => {
+                res.status(500).json({
+                errorMessage:
+                    "There was an error while saving the action to the database"
+                });
+            });
+        } else {
+            res.status(500).json({
+                errorMessage: "Project does not exist"
+            });
+        }
       })
       .catch(err => {
-        res.status(500).json({
-          errorMessage:
-            "There was an error while saving the action to the database"
+        res.status(404).json({
+          errorMessage: "Failed to get project from database"
         });
       });
   }
@@ -34,32 +50,43 @@ router.post("/", (req, res) => {
 
 
 router.put("/:id", (req, res) => {
-  const projectId = req.params.project_id;
-  const actionId = req.params.id;
+  
   const editAction = req.body;
+  const actionId = req.params.id;
+  const projectId = editAction.project_id;
 
-  if (!editAction.notes || !editAction.description || !editAction.project_id) {
+  if (!editAction.notes || !editAction.description) {
     res.status(400).json({
-      errorMessage: "Please provide notes, description, and project id for the post."
+      errorMessage: "Please provide notes and description for the action."
     });
   } else {
     console.log(projectId);
     console.log(editAction);
-    actionModel.get(projectId).then(project => {
-      if (project.length > 0) {
-        actionModel
-          .update(actionId, editAction)
-          .then(action => {
-            res.status(200).json(action);
-          })
-          .catch(err => {
-            res.status(500).json({
-              errorMessage: "The post information could not be modified."
-            });
-          });
+    console.log(actionId);
+    projectsModel.get(projectId).then(project => {
+      if (project) {
+        actionModel.get(actionId)
+        .then(action => {
+            if (action) {
+                actionModel
+                .update(actionId, editAction)
+                .then(action => {
+                    res.status(200).json(action);
+                })
+                .catch(err => {
+                    res.status(500).json({
+                        errorMessage: "The action information could not be modified."
+                    });
+                });
+             } else {
+                res.status(500).json({
+                    errorMessage: "Action does not exist"
+                });
+            }
+        });
       } else {
         res.status(404).json({
-          message: "The post with the specified ID does not exist."
+          message: "The project with the specified id does not exist"
         });
       }
     });

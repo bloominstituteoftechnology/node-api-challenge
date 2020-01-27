@@ -39,32 +39,64 @@ router.get("/", (req, res) => {
     });
 });
 
-// Update a project
-router.put("/:id", async (req, res) => {
-  const id = req.params.id;
-  const editProject = req.body;
+// // Update a project
+// router.put("/:id", async (req, res) => {
+//   const id = req.params.id;
+//   const editProject = req.body;
 
-  if (!editProject.name || !editProject.description || !editProject.id) {
+//   if (!editProject.name || !editProject.description || !editProject.id) {
+//     res.status(400).json({
+//       errorMessage:
+//         "Please provide project id, name, and description for this action."
+//     });
+//   } else {
+//     try {
+//       const project = await projectsModel.get(id);
+//       if (project.length > 0) {
+//         const updateProject = await projectModel.update(id, editProject);
+//         res.json(updateProject);
+//       } else {
+//         res.status(404).json({
+//           message: "The project with the specified ID does not exist."
+//         });
+//       }
+//     } catch (err) {
+//       res.status(500).json({
+//         errorMessage: "The project information could not be modified."
+//       });
+//     }
+//   }
+// });
+
+router.put("/:id", (req, res) => {
+  const editProject = req.body;
+  const projectId = req.params.id;
+
+  if (!editProject.name || !editProject.description) {
     res.status(400).json({
-      errorMessage:
-        "Please provide project id, name, and description for this action."
+      errorMessage: "Please provide name and description for the project."
     });
   } else {
-    try {
-      const project = await projectsModel.get(id);
-      if (project.length > 0) {
-        const updateProject = await projectModel.update(id, editProject);
-        res.json(updateProject);
+    console.log(projectId);
+    console.log(editProject);
+    projectModel.get(projectId).then(project => {
+      if (project) {
+        projectModel
+            .update(projectId, editProject)
+            .then(action => {
+                res.status(200).json(project);
+            })
+            .catch(err => {
+                res.status(500).json({
+                    errorMessage: "The project information could not be modified."
+                });
+            });
       } else {
         res.status(404).json({
-          message: "The project with the specified ID does not exist."
+          message: "The project with the specified id does not exist"
         });
       }
-    } catch (err) {
-      res.status(500).json({
-        errorMessage: "The project information could not be modified."
-      });
-    }
+    });
   }
 });
 
