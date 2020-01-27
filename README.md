@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+How to perform CRUD operations, how and when to use middleware.
+
 - [ ] Describe Middleware?
+
+Middleware are just pre-written functions that can perform actions within your express API code.
 
 - [ ] Describe a Resource?
 
+A resources in this context is just an API or endpoint
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+Status codes and messages
+
 - [ ] How can we partition our application into sub-applications?
+
+Using folders and routers for specific parts of the API
 
 ## Minimum Viable Product
 
