@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import { Route, Link } from "react-router-dom";
+import { Nav, Navbar } from "react-bootstrap";
 
-import { ProjectStyle } from "../styles/styles";
+import { ProjectStyle, ProjectSubNavStyle } from "../styles/styles";
 import { axiosProjectCall } from "../axiosCall";
 import ProjectCard from "./ProjectCard";
+
+import ActionList from "./actions/ActionList";
 
 export default class Project extends Component {
   constructor(props) {
@@ -27,6 +31,29 @@ export default class Project extends Component {
     return (
       <ProjectStyle>
         <ProjectCard key={this.state.project.id} project={this.state.project} />
+        <ProjectSubNavStyle>
+          <Navbar>
+            <Nav>
+              <Nav.Item>Edit Project</Nav.Item>
+              <Nav.Item>Delete Project</Nav.Item>
+              <Nav.Item>
+                <Link to={`/project/${this.state.id}/actions`}>
+                  View Project Actions
+                </Link>
+              </Nav.Item>
+            </Nav>
+          </Navbar>
+        </ProjectSubNavStyle>
+
+        {/* <Route
+          path={`/project/${this.state.id}/actions`}
+          render={props => <ActionList {...props} id={this.state.id} />}
+        /> */}
+
+        <Route
+          path={`/project/${this.state.id}/actions`}
+          render={props => <ActionList {...props} id={this.state.id} />}
+        />
       </ProjectStyle>
     );
   }

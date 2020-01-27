@@ -31,7 +31,7 @@ export default class ProjectList extends Component {
         ))} */}
 
         {this.state.projects.map(project => (
-          <Link key={project.id} to={`/${project.id}`}>
+          <Link key={project.id} to={`/project/${project.id}`}>
             <ProjectCard key={project.id} project={project} />
           </Link>
         ))}
