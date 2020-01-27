@@ -39,6 +39,29 @@ router.get("/", (req, res) => {
     });
 });
 
+// Get All Actions for Projct
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
+
+  projectModel
+    .get(id).then(project => {
+      if (project) {
+        projectModel.getProjectActions(id)
+        .then(actionResults => {
+          res.status(200).json(actionResults);
+        })
+        .catch(err => {
+          res.status(500).json({ errorMessage: "Could not load actions" });
+        })
+      } else {
+        res.status(500).json({ errorMessage: "Project doesn't exist" });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ errorMessage: "Error while loading project from database" });
+    });
+});
+
 // // Update a project
 // router.put("/:id", async (req, res) => {
 //   const id = req.params.id;
