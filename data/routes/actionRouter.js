@@ -10,17 +10,17 @@ router.get("/", (req, res) => {
       .catch(err => res.status(500).json({ message: "could not find actions" }));
   });
   
-//POST/CREATE
-router.post("/:id", (req, res) => {
+//POST/CREATE post/actions/add -> shcema-> select project_id associated with that project [] 
+router.post("/add", (req, res) => {
     actions
-    .insert(req.id)
+    .insert(req.body)
     .then(action => {
       res.status(201).json(action);
     })
     .catch(error => {
       console.log(error);
-      res.status(404).json({
-        errorMessage: "actions ID could not be found"
+      res.status(500).json({
+        errorMessage: "actions cannot post"
       });
     });
 });
@@ -28,10 +28,11 @@ router.post("/:id", (req, res) => {
 //PUT/UPDATE
 router.put("/:id", (req, res) => {
     const id = req.params.id;
+    // add better error handling for id 
     const body = req.body;
     actions.update(id, body)
     .then(action => {res.status(200).json(action)})
-    .catch(err => {res.status(404).json({errorMessage:`cannot update action`})})
+    .catch(err => {res.status(500).json({errorMessage:`cannot update action`})})
 })
 
 // DELETE

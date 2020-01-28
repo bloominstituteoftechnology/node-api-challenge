@@ -47,7 +47,7 @@ router.get("/:id/actions", (req, res) => {
 })
 
 //POST/CREATE
-router.post("/", (req, res) => {
+router.post("/add", (req, res) => {
   projects
     .insert(req.body)
     .then(project => {
@@ -102,5 +102,9 @@ router.delete("/:id", (req, res) => {
     })
     
 })
+
+
+
+
 
 module.exports = router;
