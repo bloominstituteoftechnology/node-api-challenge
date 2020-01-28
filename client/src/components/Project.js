@@ -13,7 +13,8 @@ export default class Project extends Component {
     super(props);
     this.state = {
       project: [],
-      id: this.props.match.params.id
+      id: this.props.match.params.id,
+      isAction: false
     };
   }
 
@@ -27,6 +28,13 @@ export default class Project extends Component {
       })
       .catch(err => console.log(err));
   }
+
+  handleClick = e => {
+    e.preventDefault();
+    this.setState({
+      isAction: !this.state.isAction
+    });
+  };
   render() {
     return (
       <ProjectStyle>
@@ -37,9 +45,25 @@ export default class Project extends Component {
               <Nav.Item>Edit Project</Nav.Item>
               <Nav.Item>Delete Project</Nav.Item>
               <Nav.Item>
-                <Link to={`/project/${this.state.id}/actions`}>
+                {/* <Link to={`/project/${this.state.id}/actions`}>
                   View Project Actions
-                </Link>
+                </Link> */}
+
+                {this.state.isAction ? (
+                  <Link
+                    onClick={this.handleClick}
+                    to={`/project/${this.state.id}`}
+                  >
+                    Close Actions
+                  </Link>
+                ) : (
+                  <Link
+                    onClick={this.handleClick}
+                    to={`/project/${this.state.id}/actions`}
+                  >
+                    View Project Actions
+                  </Link>
+                )}
               </Nav.Item>
             </Nav>
           </Navbar>
@@ -50,10 +74,10 @@ export default class Project extends Component {
           render={props => <ActionList {...props} id={this.state.id} />}
         /> */}
 
-        <Route
+        {/* <Route
           path={`/project/${this.state.id}/actions`}
           render={props => <ActionList {...props} id={this.state.id} />}
-        />
+        /> */}
       </ProjectStyle>
     );
   }

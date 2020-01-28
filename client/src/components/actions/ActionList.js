@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { ActionListStyle } from "../../styles/styles";
 import { axiosProjectCall } from "../../axiosCall";
 
+import ActionCard from "./ActionCard";
+
 export default class ActionList extends Component {
   constructor(props) {
     super(props);
@@ -10,14 +12,12 @@ export default class ActionList extends Component {
       id: this.props.id,
       actions: []
     };
-    console.log("id:", this.props);
   }
 
   componentDidMount() {
     axiosProjectCall()
       .get(`/${this.state.id}/actions`)
       .then(res => {
-        console.log("actions: ", res);
         this.setState({
           actions: res.data
         });
@@ -26,6 +26,12 @@ export default class ActionList extends Component {
   }
 
   render() {
-    return <ActionListStyle>action list</ActionListStyle>;
+    return (
+      <ActionListStyle>
+        {this.state.actions.map(action => (
+          <ActionCard key={action.id} action={action} />
+        ))}
+      </ActionListStyle>
+    );
   }
 }

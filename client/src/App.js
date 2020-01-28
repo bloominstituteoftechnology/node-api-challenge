@@ -5,6 +5,7 @@ import Header from "./components/Header";
 
 import ProjectList from "./components/ProjectList";
 import Project from "./components/Project";
+import ActionList from "./components/actions/ActionList";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
           <main>
             <Switch>
               <Route exact path="/" component={ProjectList} />
-              <Route exact path="/project/:id" component={Project} />
+              <Route path="/project/:id" component={Project} />
+              <Route exact path="/project/:id/actions" component={ActionList} />
             </Switch>
           </main>
         </Container>

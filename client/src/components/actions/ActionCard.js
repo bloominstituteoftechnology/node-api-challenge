@@ -4,13 +4,13 @@ import { Card, CardText } from "react-bootstrap";
 import { ActionCardStyle } from "../../styles/styles";
 
 export default function ActionCard(props) {
-  const { name, description } = props.project;
+  const { description, notes } = props.action;
 
   return (
     <ActionCardStyle>
       <Card>
-        <Card.Title> {name} </Card.Title>
-        <Card.Text> {description} </Card.Text>
+        <Card.Title> {description} </Card.Title>
+        <Card.Text> {notes} </Card.Text>
       </Card>
     </ActionCardStyle>
   );
