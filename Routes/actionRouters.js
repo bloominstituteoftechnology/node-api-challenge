@@ -20,7 +20,7 @@ router.get(`/:id/actions`,validateProjectId,  (req,res) =>{
 });
 
 // Post 
-router.post('/:id/actions', validateProjectId, ( req,res ) =>{
+router.post('/:id/actions',  ( req,res ) =>{
     const info = req.body;
   
      console.log(info);
@@ -36,7 +36,7 @@ router.post('/:id/actions', validateProjectId, ( req,res ) =>{
   });
   
   // put 
-  router.put('/:id/actions/:aid', validateProjectId, ( req,res ) => {
+  router.put('/:pid/actions/:aid', validateProjectId, ( req,res ) => {
     const info = req.body;
     const {aid} = req.params;
   
@@ -50,7 +50,7 @@ router.post('/:id/actions', validateProjectId, ( req,res ) =>{
   });
   
   // Delete 
-  router.delete('/:id/actions/:aid', validateProjectId, ( req,res ) => {
+  router.delete('/:pid/actions/:aid', validateProjectId, ( req,res ) => {
     const info = req.body;
     const {aid} = req.params;
   
