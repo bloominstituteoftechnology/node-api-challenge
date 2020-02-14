@@ -46,6 +46,38 @@ router.post('/', (req, res) => {
       res.status(500).json({ message: "Unable to add new action to database." })
     })
   }
+
+  // PUT =======>
+
+  router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const newAction = req.body;
+    if(newAction.description, newAction.notes, newAction.project_id) {
+      actionsDB
+      .update(id, newAction)
+      .then(() => {
+        res.status(200).json({ message: 'Action successfully updated' })
+      })
+    } else {
+      res.catch(() => {
+        res.status(400)({ message: "Error with request." })
+      })
+      res.catch(() => {
+        res.status(500).json({ message: "Error updating action" })
+      })
+    }
+  })
+
+  // DELETE =======>
+
+  router.delete("/:id", (req, res) => {
+    
+  })
+
+
+
+
+
 })
 
 
