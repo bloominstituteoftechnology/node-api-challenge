@@ -45,6 +45,23 @@ router.post("/", (req, res) => {
   }
 });
 
+// PUT =======>
+
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, description, completed } = req.body;
+  if (name, description, completed && id) {
+    projectsDB.update(id, req.body)
+    .then(() => {
+      res.status(200).json({ message:"Project successfully updated." })
+    })
+  } else {
+    res.catch(() => {
+      res.status(500).json({ message: "Unable to update project." })
+    })
+  }
+})
+
 // DELETE =======>
 
 router.delete("/:id", (req, res) => {
