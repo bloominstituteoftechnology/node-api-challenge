@@ -6,7 +6,7 @@ const projectRouter = require('./routers/projectRouter');
 
 server.use(logger);
 server.use(express.json());
-// server.use('/actions', actionRouter);
+server.use('/actions', actionRouter);
 server.use('/projects', projectRouter);
 
 server.get('/', logger, (req, res) => {
