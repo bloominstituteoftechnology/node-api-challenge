@@ -1,3 +1,37 @@
+const express = require("express");
+
+const server = express();
+
+
+
+const endpointRouter = require("./data/Endpoints")
+
+server.use(express.json());
+
+server.get("/", logger,  (req, res) => {
+  res.send(`<h2>HEY</h2>`);
+});
+
+server.use("/lambda", logger, endpointRouter)
+
+//custom middleware
+
+function logger(req, res, next) {
+  console.log(`${req.method} Request to ${req.originalUrl} at ${Date.now()}`);
+
+  next();
+}
+
+const port = process.env.PORT || 4000;
+server.listen(port, () => console.log(`\n** Running on port ${port}\n`))
+
+
+
+
+module.exports = server
+
+
+
 /*
 play this: https://www.youtube.com/watch?v=d-diB65scQU
 
