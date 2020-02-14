@@ -47,4 +47,14 @@ router.post("/", (req, res) => {
 
 // DELETE =======>
 
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  projectsDB.remove(id);
+  then(projects => {
+    res.json(projects);
+  }).catch(() => {
+    res.status(500).json({ message: "Error removing project from database." });
+  });
+});
+
 module.exports = router;
