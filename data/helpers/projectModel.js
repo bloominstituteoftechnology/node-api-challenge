@@ -6,7 +6,7 @@ module.exports = {
   insert,
   update,
   remove,
-  getProjectActions,
+  getProjectActions
 };
 
 function get(id) {

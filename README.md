@@ -40,13 +40,22 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+  A: express.json <== allows reading of json
+  express.Router <== allows routeing of endpoint
+
 - [ ] Describe Middleware?
+
+  A: can act as a safefty gate to check befor allowing the the request thur on the endpoint
 
 - [ ] Describe a Resource?
 
 - [ ] What can the API return to help clients know if a request was successful?
 
+  A: a response code, or a message
+
 - [ ] How can we partition our application into sub-applications?
+
+  A: useing endpoint routes
 
 ## Minimum Viable Product
 
