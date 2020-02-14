@@ -40,13 +40,37 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Simple
+Unopinionated
+Extensible
+Light-weight
+Compatible with connect middleware. This means we can tap into an extensive collection of modules written for connect. All packaged into a clean, intuitive, and easy to use API.
+
 - [ ] Describe Middleware?
+
+Three types of Middleware:
+-Built-in middleware.
+-Third-party middleware.
+-Custom middleware.
+Built-in middleware is included with Express, but not added to the application automatically. Like the other types, we need to opt-in to using it in our application. All types of middleware work in the same way. We tell Express about the middleware we want to turn on for our application by making a call to .use() on our server and passing .use() the piece of middleware we want to apply. This line must come after the server has been created by calling express(). Third-party middleware are npm modules that we can install and then import into our applications using require(). There are thousands of middleware modules we can use, no need to write our own in most cases. We can write our own Custom Middleware to add functionality needed by our applications that is not included by Express.This is a powerful feature that makes it really easy to extend the Express framework without the need to modify it’s source code.
 
 - [ ] Describe a Resource?
 
+-Everything is a resource.
+-Each resource is accessible via a unique URI.
+-Resources can have multiple representations.
+-Communication happens over a stateless protocol (HTTP).
+-Resource management happens via HTTP methods.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+-200 OK Response
+-201 Create Response
+-202 Accepted Response
+
 - [ ] How can we partition our application into sub-applications?
+
+Developers can break applications into smaller parts by using overlays to load various parts of the application into memory. For example, you can partition one type of application, such as a customer service application, across multiple servers and reduce the load on individual servers.
 
 ## Minimum Viable Product
 
