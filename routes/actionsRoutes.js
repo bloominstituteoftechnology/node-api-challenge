@@ -5,6 +5,7 @@ const Db = require("../data/helpers/actionModel");
 // GET =======>
 
 router.get("/", (req, res) => {
+  console.log('stuff');
   Db.get()
     .then(actions => {
       res.status(200).json(actions);
@@ -16,7 +17,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get(".:id", (req, res) => {
+router.get("/:id", (req, res) => {
   const { id } = req.params;
   actionsDB
     .get(id)
@@ -41,11 +42,9 @@ router.post("/", (req, res) => {
         res.status(200).json({ message: "Add new action to database." });
       })
       .catch(() => {
-        res
-          .status(400)
-          .json({
-            message: "Error occurred when adding new action to database"
-          });
+        res.status(400).json({
+          message: "Error occurred when adding new action to database"
+        });
       });
   } else {
     res.catch(() => {
