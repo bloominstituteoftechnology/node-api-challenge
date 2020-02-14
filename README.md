@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+What we call here at Lambda the homies which are the first two arguments passed by express to a route handler function. The first is an object that represents the request and the second is an object that represents the response.  Express expands those objects with a set of useful properties and methods. Our example uses the `.send()` method of the response object to specify the data sent to the client as the response body. (req, res)
+
 - [ ] Describe Middleware?
+
+Middleware functions are functions that have access to the request object (req), the response object (res), and the next function in the application’s request-response cycle. The next function is a function in the Express router which, when invoked, executes the middleware succeeding the current middleware. We can think of middleware as array of functions that get executed in the order they are introduced into the server code. Express middleware is compatible with connect middleware. Connect is a web application framework for Node.js that only provides the middleware layer.
 
 - [ ] Describe a Resource?
 
+A resource is any data held in the back end of an application or API. Every thing in a database is a resource. They are usually the nouns that we want to do something with. We can do something with each resource using its unique id.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+A status code and a json message. An API can return different statuses, errors, and messages that will tell the client if they were successful in their request and if not, more specifically where they failed.
+
 - [ ] How can we partition our application into sub-applications?
+
+By using express.use('/arb_endpoint', endpointRouter). We can use routers to partition our application into sub-applications and then have a main server hub that uses all those routers.
 
 ## Minimum Viable Product
 
