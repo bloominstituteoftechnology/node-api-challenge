@@ -1,93 +1,122 @@
 const express = require("express");
 
-const Project = require("./projectModel");
-const Actions = require("./actionModel");
+const Projects = require("./projectModel");
 
 const router = express.Router();
 
 router.post("/", (request, response) => {
-  const { project_id, name, description } = request.body;
-  const projects = {
-    project_id,
-    name,
-    description
-  };
-  if (!project_id)
-    return response.status(400).json({ error: "Please provide a project id." });
-  if (!name)
-    return response.status(400).json({ error: "Please provide notes." });
-  if (!description)
-    return response
+  const { name, description } = request.body;
+  const projects = { name, description };
+
+  if (!name) {
+    response.status(400).json({ error: "Please provide a project name." });
+  } else if (!description) {
+    response
       .status(400)
-      .json({ error: "Please provide a description." });
-  Project.get(project_id)
-    .then(project => {
-      Project.insert(projects)
-        .then(action => response.status(201).json(action))
-        .catch(error => {
-          console.log("Error: ", error);
-          response.status(500).json({
-            error:
-              "There was an error while saving the project to the database."
-          });
+      .json({ error: "Please provide a project description." });
+  } else {
+    Projects.insert(projects)
+      .then(project => {
+        response.status(201).json(project);
+      })
+      .catch(error => {
+        console.log("Error: ", error);
+        response.status(500).json({
+          error: "There was an error while saving the project to the database"
         });
-    })
-    .catch(error => {
-      console.log("Error: ", error);
-      response
-        .status(500)
-        .json({ error: "The project with the specified ID does not exist." });
-    });
+      });
+  }
 });
 
 router.get("/", (request, response) => {
-  Project.get()
+  Projects.get()
     .then(projects => response.status(200).json(projects))
     .catch(error => {
       console.log("Error: ", error);
-      response
+      res
         .status(500)
-        .json({ error: "The request for actions could not be retrieved" });
+        .json({ error: "The request for projects could not be retrieved." });
+    });
+});
+
+router.get("/:id", (request, response) => {
+  const { id } = request.params;
+  Projects.get(id)
+    .then(project => {
+      if (!project) {
+        response.status(404).json({
+          error: "The project with the specified ID does not exist."
+        });
+      } else {
+        response.status(200).json(project);
+      }
+    })
+    .catch(error => {
+      console.log("Error: ", error);
+      res
+        .status(500)
+        .json({ error: "The project information could not be retrieved." });
     });
 });
 
 router.put("/:id", (request, response) => {
   const { id } = request.params;
-  const { project_id, name, description } = request.body;
-  const editedProject = {
-    project_id,
-    name,
-    description
-  };
-  Project.update(id, editedProject)
+  const { name, description } = request.body;
+  const editedProject = { name, description };
+  Projects.update(id, editedProject)
     .then(updatedProject => {
-      if (!updatedProject)
-        return response.status(404).json({
-          error: "The action with the specified ID does not exist."
+      if (!updatedProject) {
+        response.status(404).json({
+          error: "The project with the specified ID does not exist."
         });
-      return response.status(202).json(updatedProject);
+      } else {
+        response.status(200).json(updatedProject);
+      }
     })
     .catch(error => {
       console.log("Error: ", error);
       response
-        .status(400)
-        .json({ error: "The action information could not be modified" });
+        .status(500)
+        .json({ error: "The project information could not be modified." });
     });
 });
 
 router.delete("/:id", (request, response) => {
   const { id } = request.params;
-  Project.remove(id)
+  Projects.remove(id)
     .then(removedProject => {
-      if (!removedProject)
-        return response.status(404).json({
-          error: "The action with the specified ID does not exist."
+      if (!removedProject) {
+        response.status(404).json({
+          error: "The project with the specified ID does not exist."
         });
-      return response.status(202).json(removedProject);
+      } else {
+        response.status(202).json(removedProject);
+      }
     })
     .catch(error => {
       console.log("Error: ", error);
-      response.status(500).json({ error: "The action could not be removed." });
+      response.status(500).json({ error: "The project could not be removed." });
+    });
+});
+
+router.get("/:id/actions", (request, response) => {
+  const { id } = request.params;
+  Projects.getProjectActions(id)
+    .then(actions => {
+      if (!actions.length) {
+        response.status(404).json({
+          error:
+            "The actions of the project with the specified ID does not exist."
+        });
+      } else {
+        response.status(200).json(actions);
+      }
+    })
+    .catch(error => {
+      console.log("Error: ", error);
+      response
+        .status(500)
+        .json({ error: "The actions of the projects could not be retrieved" });
     });
 });
 

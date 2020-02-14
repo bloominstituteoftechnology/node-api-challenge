@@ -1,6 +1,6 @@
 const express = require("express");
 
-const Project = require("./projectModel");
+const Projects = require("./projectModel");
 const Actions = require("./actionModel");
 
 const router = express.Router();
@@ -12,35 +12,36 @@ router.post("/", (request, response) => {
     description,
     notes
   };
-  if (!project_id)
+  if (!project_id) {
     return response.status(400).json({ error: "Please provide a project id." });
-  if (!description)
-    return response
-      .status(400)
-      .json({ error: "Please provide a description." });
-  if (description.length > 128)
-    return response.status(422).json({
+  } else if (!description) {
+    response.status(400).json({ error: "Please provide a description." });
+  } else if (description.length > 128) {
+    response.status(422).json({
       error: `Please provide a description less than or equal to 128 characters long. (${description.length})`
     });
-  if (!notes)
-    return response.status(400).json({ error: "Please provide notes." });
-  Project.get(project_id)
-    .then(project => {
-      Actions.insert(actions)
-        .then(action => response.status(201).json(action))
-        .catch(error => {
-          console.log("Error: ", error);
-          response.status(500).json({
-            error: "There was an error while saving the action to the database."
+  } else if (!notes) {
+    response.status(400).json({ error: "Please provide notes." });
+  } else {
+    Projects.get(project_id)
+      .then(project => {
+        Actions.insert(actions)
+          .then(action => response.status(201).json(action))
+          .catch(error => {
+            console.log("Error: ", error);
+            response.status(500).json({
+              error:
+                "There was an error while saving the action to the database."
+            });
           });
-        });
-    })
-    .catch(error => {
-      console.log("Error: ", error);
-      response
-        .status(500)
-        .json({ error: "The project with the specified ID does not exist." });
-    });
+      })
+      .catch(error => {
+        console.log("Error: ", error);
+        response
+          .status(500)
+          .json({ error: "The project with the specified ID does not exist." });
+      });
+  }
 });
 
 router.get("/", (request, response) => {
@@ -64,11 +65,13 @@ router.put("/:id", (request, response) => {
   };
   Actions.update(id, editedAction)
     .then(updatedAction => {
-      if (!updatedAction)
-        return response.status(404).json({
+      if (!updatedAction) {
+        response.status(404).json({
           error: "The action with the specified ID does not exist."
         });
-      return response.status(202).json(updatedAction);
+      } else {
+        response.status(202).json(updatedAction);
+      }
     })
     .catch(error => {
       console.log("Error: ", error);
@@ -82,11 +85,13 @@ router.delete("/:id", (request, response) => {
   const { id } = request.params;
   Actions.remove(id)
     .then(removedAction => {
-      if (!removedAction)
-        return response.status(404).json({
+      if (!removedAction) {
+        response.status(404).json({
           error: "The action with the specified ID does not exist."
         });
-      return response.status(202).json(removedAction);
+      } else {
+        response.status(202).json(removedAction);
+      }
     })
     .catch(error => {
       console.log("Error: ", error);
