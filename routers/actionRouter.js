@@ -27,6 +27,54 @@ router.get('/:id', validateActionId, (req, res) => {
     })
 });
 
+// router.post('/', validateAction, (req, res) => {
+//     Actions
+//     .insert(req.body)
+//     .then(action => {
+//         res.status(200).json({ message: 'This action was added' })
+//     })
+//     .catch(err => {
+//         res.status(500).json({ error: 'Error adding new action' })
+//     })
+// });
+
+router.post('/', validateAction, (req, res) => {
+    Actions
+    .insert(req.body)
+    .then(action => {
+        res.status(200).json({ message: 'This action was added' })
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({ error: 'Error adding new action' })
+    })
+});
+
+router.put('/:id', validateActionId, validateAction, (req, res) => {
+    const { id } = req.params;
+    const {description, notes} = req.body;
+    Actions
+    .update(id, {description, notes})
+    .then(updated => {
+        res.status(201).json({description, notes})
+    })
+    .catch(err => {
+        res.status(500).json({ error: 'Error updating the action' })
+    })
+});
+
+router.delete('/:id', validateActionId, (req, res) => {
+    const { id } = req.params;
+    Actions
+    .remove(id)
+    .then(removed => {
+        res.status(200).json({ message: 'This action was removed'})
+    })
+    .catch(err => {
+        res.status(500).json({ error: 'Error removing the action' })
+    })
+});
+
 function validateActionId(req, res, next) {
     const { id } = req.params;
     Actions.get(id)
@@ -43,14 +91,14 @@ function validateActionId(req, res, next) {
     })
 };
 
-// function validateAction(req, res, next) {
-//     const project = req.body;
-//         if (!project) {
-//             res.status(400).json({ error: 'missing project data' })
-//         } else if (!project.name || !project.description) {
-//         res.status(400).json({ error: 'missing required name and description field' })
-//     }
-//     next();
-// };
+function validateAction(req, res, next) {
+    const action = req.body;
+        if (!action) {
+            res.status(400).json({ error: 'missing action data' })
+        } else if (!action.description || !action.notes) {
+        res.status(400).json({ error: 'missing required description and/or notes field' })
+    }
+    next();
+};
 
 module.exports = router;

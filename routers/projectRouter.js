@@ -32,10 +32,10 @@ router.post('/', validateProject, (req, res) => {
     Projects
     .insert(req.body)
     .then(project => {
-        res.status(200).json(project)
+        res.status(200).json({ message: 'This project was added' })
     })
     .catch(err => {
-        res.status(500).json({ error: 'Error adding project' })
+        res.status(500).json({ error: 'Error adding new project' })
     })
 });
 
@@ -60,7 +60,7 @@ router.delete('/:id', validateProjectId, (req, res) => {
         res.status(200).json({ message: 'This project was removed'})
     })
     .catch(err => {
-        res.status(500).json({ error: 'Error updating the user' })
+        res.status(500).json({ error: 'Error removing the project' })
     })
 });
 
