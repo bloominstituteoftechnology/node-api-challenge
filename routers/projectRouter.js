@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     })
     .catch(err => {
         console.log(err)
-        res.status(500).json({ error: 'Could not retrieve projects from the database' })
+        res.status(500).json({ error: 'Error retrieving projects from the database' })
     })
 });
 
@@ -23,6 +23,9 @@ router.get('/:id', validateProjectId, (req, res) => {
     .then(project => {
         res.status(201).json(project)
     })
+    .catch(err => {
+        res.status(500).json({ error: 'Error retrieving project by ID' })
+    })
 });
 
 router.post('/', validateProject, (req, res) => {
@@ -32,7 +35,32 @@ router.post('/', validateProject, (req, res) => {
         res.status(200).json(project)
     })
     .catch(err => {
-        res.status(500).json({ error: 'error adding user' })
+        res.status(500).json({ error: 'Error adding project' })
+    })
+});
+
+router.put('/:id', validateProjectId, validateProject, (req, res) => {
+    const { id } = req.params;
+    const {name, description} = req.body;
+    Projects
+    .update(id, {name, description})
+    .then(updated => {
+        res.status(201).json({name, description})
+    })
+    .catch(err => {
+        res.status(500).json({ error: 'Error updating the user' })
+    })
+});
+
+router.delete('/:id', validateProjectId, (req, res) => {
+    const { id } = req.params;
+    Projects
+    .remove(id)
+    .then(removed => {
+        res.status(200).json({ message: 'This project was removed'})
+    })
+    .catch(err => {
+        res.status(500).json({ error: 'Error updating the user' })
     })
 });
 
@@ -40,24 +68,24 @@ function validateProjectId(req, res, next) {
     const { id } = req.params;
     Projects.get(id)
     .then(project => {
-      if (project) {
-        req.project = project;
+        if (project) {
+            req.project = project;
         next();
       } else {
-        res.status(400).json({ message: 'Invalid project by ID' })
+        res.status(400).json({ error: 'Invalid project by ID' })
       }
     })
     .catch(err  => {
-      res.status(500).json({ error: 'The project information could not be retrieved'})
+        res.status(500).json({ error: 'The project information could not be retrieved' })
     })
-  };
+};
 
 function validateProject(req, res, next) {
     const project = req.body;
         if (!project) {
-            res.status(400).json({ message: 'missing project data' })
+            res.status(400).json({ error: 'missing project data' })
         } else if (!project.name || !project.description) {
-        res.status(400).json({ message: 'missing required name and description field' })
+        res.status(400).json({ error: 'missing required name and description field' })
     }
     next();
 };
