@@ -25,10 +25,10 @@ Follow these steps to set up and work on your project:
 
 Follow these steps for completing your project.
 
-- [ ] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
-- [ ] Please don't merge your own pull request.
-- [ ] Add your _Team Lead_ as a Reviewer on the Pull-request
-- [ ] Your _Team Lead_ will count the challenge as done by merging the branch into _master_.
+- [X] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
+- [X] Please don't merge your own pull request.
+- [X] Add your _Team Lead_ as a Reviewer on the Pull-request
+- [X] Your _Team Lead_ will count the challenge as done by merging the branch into _master_.
 
 ## Commits
 
@@ -38,15 +38,21 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [X] Mention two parts of Express that you learned about this week.
+        ```Server side routing: Routing is a way to select which request handler function is executed. It does so based on the URL visited and the HTTP method used. Routing provides a way to break an application into smaller parts.```
+        ```Middleware: Middleware functions can get the request and response objects, operate on them, and (when specified) trigger some action. Examples are logging or security. Express’ middleware stack is basically an array of functions. Middleware CAN change the request or response but it doesn’t have to.```
 
-- [ ] Describe Middleware?
+- [X] Describe Middleware?
+    ```Middleware is a function that can get the request and response objects as well as next and error, and then triggers some actions.```
 
-- [ ] Describe a Resource?
+- [X] Describe a Resource?
+    ```Resources are data points inside the REST API. Users are resources. Orders that the users create are resources. Etc. ```
 
-- [ ] What can the API return to help clients know if a request was successful?
+- [X] What can the API return to help clients know if a request was successful?
+    ``` The requested information with a status 200 code. ```
 
-- [ ] How can we partition our application into sub-applications?
+- [X] How can we partition our application into sub-applications?
+    ``` By creating separate routes that aim at each section of the main application. For ex: main app /host. APi is at /api, Web is at /, errors are mounted in the root express app at /middleware etc. ```
 
 ## Minimum Viable Product
 
