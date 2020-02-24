@@ -20,14 +20,14 @@ Follow these steps to set up and work on your project:
 - [X] Add your _Team Lead_ as collaborator on Github.
 - [X] Clone your forked version of the Repository.
 - [X] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
-- [ ] Implement the project on this Branch, committing changes regularly.
-- [ ] Push commits: git push origin `firstName-lastName`.
+- [X] Implement the project on this Branch, committing changes regularly.
+- [X] Push commits: git push origin `firstName-lastName`.
 
 Follow these steps for completing your project.
 
-- [ ] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
-- [ ] Please don't merge your own pull request.
-- [ ] Add your _Team Lead_ as a Reviewer on the Pull-request
+- [X] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
+- [X] Please don't merge your own pull request.
+- [x] Add your _Team Lead_ as a Reviewer on the Pull-request
 - [ ] Your _Team Lead_ will count the challenge as done by merging the branch into _master_.
 
 ## Commits
@@ -39,14 +39,20 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 - [ ] Mention two parts of Express that you learned about this week.
+   - I learned that express is similar to React where a lot of the Javascript is simplified 
 
 - [ ] Describe Middleware?
+   - Middleware to me is similar to a checkpoint.  If one gets to a point where one is writing a lot, 
+      one can simplify this using MW
 
 - [ ] Describe a Resource?
+   - I don't remember studying what resources are. 
 
 - [ ] What can the API return to help clients know if a request was successful?
+   - The API can return a message to let the client know whether the request was successful. 
 
 - [ ] How can we partition our application into sub-applications?
+   - By using middleware
 
 ## Minimum Viable Product
 
