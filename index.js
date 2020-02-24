@@ -12,3 +12,11 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+const port =2020
+const server=require('./server')
+
+server.listen(port,()=>{
+    console.log(`server listen on port ${port}`)
+})
+
