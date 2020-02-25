@@ -43,7 +43,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
         ```Middleware: Middleware functions can get the request and response objects, operate on them, and (when specified) trigger some action. Examples are logging or security. Express’ middleware stack is basically an array of functions. Middleware CAN change the request or response but it doesn’t have to.```
 
 - [X] Describe Middleware?
-    ```Middleware is a function that can get the request and response objects as well as next and error, and then triggers some actions.```
+    ```Middleware is a function that can get the request and response params as well as next and error, and then triggers some actions.```
 
 - [X] Describe a Resource?
     ```Resources are data points inside the REST API. Users are resources. Orders that the users create are resources. Etc. ```
