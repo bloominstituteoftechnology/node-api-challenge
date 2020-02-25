@@ -39,14 +39,19 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 - [ ] Mention two parts of Express that you learned about this week.
+---> Express is like React, but for the backend. It uses express.router() and route handlers.
 
 - [ ] Describe Middleware?
+---> Express Middleware can be custom code written to handle specific functions that are executed in the order in which they are introduced in the server. 
 
 - [ ] Describe a Resource?
+---> Everything is a resource. It is the data contained in the API. 
 
 - [ ] What can the API return to help clients know if a request was successful?
+---> The API can return `res.status`(number) to let the client know if a request was successful or not. 
 
 - [ ] How can we partition our application into sub-applications?
+---> You can partition your application into a sub-application by using routing. Express Routers accomplish this by making apps easier to maintain. 
 
 ## Minimum Viable Product
 
