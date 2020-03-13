@@ -63,10 +63,36 @@ app.get("/api/actions", (req, res) => {
 });
 
 app.post("/api/actions", (req, res) => {
-  actionHelpers.insert(req.body).then(project => {
-    res.status(200).json({ project });
+  actionHelpers.insert(req.body).then(stuff => {
+    res.status(200).json({ stuff });
   });
 });
+
+app.put("/api/actions/:id", (req, res) => {
+  const value = req.body;
+  const id = req.params.id;
+  actionHelpers.update(id, value).then(alex => {
+    if (alex == null) {
+      res.status(404).send("the ID does not match any in the database");
+    } else {
+      res.status(201).json({ alex });
+      //     }
+    }
+    console.log(alex);
+  });
+});
+
+// app.delete("/api/actions/:id", (req, res) => {
+//   const id = req.params.id;
+//   actionHelpers.remove(id).then(stuff => {
+//     if (stuff == 1) {
+//       res.status(400).send("THE PROJECT AS BEEN DELETED");
+//     } else {
+//       res.status(404).send(" the id is not correct");
+//     }
+//   });
+// });
+
 app.listen(PORT, () => {
   console.log(`i am listening on ${PORT}`);
 });
