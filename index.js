@@ -13,11 +13,20 @@ I need this code, but don't know where, perhaps should make some middleware, don
 Go code!
 */
 const express = require("express");
-const helpers = require("./data/lambda.db3");
+const projectHelpers = require("./data/helpers/projectModel");
 
 const app = express();
+const cors = require("cors");
+app.use(express.json());
 
+app.use(cors());
 const PORT = 6565;
+
+app.get("/api/projects", (req, res) => {
+  projectHelpers.get().then(stuff => {
+    res.status(200).json({ stuff });
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`i am listening on ${PORT}`);
