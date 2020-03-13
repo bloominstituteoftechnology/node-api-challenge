@@ -6,7 +6,7 @@ server.use(express.json());
 
 //create
 //this works
-router.post('/', (req, res) => {
+router.post('/', validatePost, (req, res) => {
   const project = req.body;
 
   projectModel.insert(project).then(newProject => {
@@ -59,6 +59,20 @@ router.get('/:id/actions', (req, res) => {
       res.status(200).json(project);
     }
   })
-})
+});
+
+//validation
+function validatePost(req, res, next) {
+
+  const { description } = req.body;
+  // console.log(req.body);
+  if (!req.body) {
+    res.status(400).json({ message: "missing post data" });
+  }
+  if (!description) {
+    res.status(400).json({ message: "missing required description field" });
+  }
+  next();
+}
 
 module.exports = router;
