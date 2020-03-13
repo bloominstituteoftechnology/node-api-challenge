@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     })
     .catch(err => {
       res.status(500).json({
-        error: "Cannot get projects at this time"
+        error: "cannot get projects at this time"
       });
     });
 });
@@ -18,12 +18,12 @@ router.get('/:id', (req, res) => {
     const { id } = req.params;
     Projects.get(id)
     .then(project => {
-        id
+        project
         ? res.status(200).json(project)
-        : res.status(500).json({ error: "That project does not exist"})
+        : res.status(500).json({ error: "that project does not exist"})
     })
     .catch(err => {
-        res.status(500).json({ error: "Cannot fetch id at this time"})
+        res.status(500).json({ error: "cannot fetch id at this time"})
     })
 });
 
@@ -35,12 +35,14 @@ router.get("/:id/actions", (req, res) => {
       project
         ? Projects.getProjectActions(id)
             .then(actions => {
-              res.status(200).json(actions);
+              actions.length
+              ? res.status(200).json(actions)
+              : res.status(500).json({ error: "No actions associated with this project" });
             })
             .catch(err => {
               res
                 .status(500)
-                .json({ error: "Could not get project actions at this time" });
+                .json({ error: "Unable to retrieve actions at this time" });
             })
         : res.status(500).json({ error: "That project id does not exist" });
     })
@@ -72,8 +74,8 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const name = req.body.title;
-  const desc = req.body.desc;
+  const name = req.body.name;
+  const desc = req.body.description;
 
   Projects.get(id)
     .then(project => {
