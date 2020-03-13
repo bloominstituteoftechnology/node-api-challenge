@@ -27,6 +27,11 @@ app.get("/api/projects", (req, res) => {
     res.status(200).json({ stuff });
   });
 });
+app.post("/api/projects", (req, res) => {
+  projectHelpers.insert(req.body).then(project => {
+    res.status(200).json({ project });
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`i am listening on ${PORT}`);
