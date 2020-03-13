@@ -5,8 +5,8 @@ server.use(express.json());
 const actionsRouter = require('./api/actionsRouter.js');
 const projectsRouter = require('./api/projectsRouter.js');
 
-server.use('api/actions', actionsRouter);
-server.use('api/projects', projectsRouter);
+server.use('/api/actions', actionsRouter);
+server.use('/api/projects', projectsRouter);
 
 server.get("/", (req, res) => {
   const environment = process.env;
