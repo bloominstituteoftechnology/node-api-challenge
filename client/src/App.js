@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useParams } from 'react';
 import axios from 'axios';
 import Styled from 'styled-components';
 import { Route, Link } from 'react-router-dom';
@@ -6,6 +6,7 @@ import './App.css';
 
 const App = () => {
 	const [projects, setProjects] = useState([]);
+	const [status, setStatus] = useState();
 
 	useEffect(() => {
 		axios
@@ -33,18 +34,22 @@ const App = () => {
 
 	return (
 		<div>
-			<Route path='/'>
-				<h1>Projects</h1>
-				<Container>
-					{projects.map(project => (
-						<Card key={project.id}>
-							<h2>{project.name}</h2>
-							<p>{project.description}</p>
-							<Link to='/:id/actions'>Actions</Link>
-						</Card>
-					))}
-				</Container>
-			</Route>
+			<h1>Projects</h1>
+			<Container>
+				{projects.map(project => (
+					<Card key={project.id}>
+						<h2>{project.name}</h2>
+						<p>{project.description}</p>
+						{project.completed ? (
+							<button onClick={() => setStatus(!project.completed)}>
+								Completed
+							</button>
+						) : (
+							<button>Need to do</button>
+						)}
+					</Card>
+				))}
+			</Container>
 		</div>
 	);
 };
