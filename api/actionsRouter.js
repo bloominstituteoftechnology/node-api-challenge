@@ -6,9 +6,17 @@ const router = express.Router();
 server.use(express.json());
 
 //create
+//this works
+router.post('/', (req, res) => {
+  const project = req.body;
+
+  actionsModel.insert(project).then(newProject => {
+    res.status(201).json(newProject);
+  })
+})
 
 //read
-
+//this works
 router.get('/', (req, res) => {
   actionsModel.get().then(action => {
     res.status(200).json(action);
@@ -21,6 +29,7 @@ router.get('/', (req, res) => {
 })
 
 //update
+// this works
 router.put('/:id', (req, res) => {
   actionsModel.update(req.params.id, req.body).then(updateProject => {
     if (updateProject) {
@@ -34,6 +43,7 @@ router.put('/:id', (req, res) => {
 })
 
 //delete
+//this works
 router.delete("/:id", (req, res) => {
   actionsModel.remove(req.params.id).then(count => {
     res.status(200).json(count);
