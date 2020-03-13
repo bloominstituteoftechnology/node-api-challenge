@@ -139,6 +139,8 @@ function validateAction(req, res, next) {
     res.status(400).json({ message: "Missing required description field" });
   } else if (!action.notes) {
     res.status(400).json({ message: "Missing required notes field" });
+  } else if (req.body.description.length > 128){
+    res.status(400).json({error: "Project description length cannot exceed 128 characters."});
   } else {
     next();
   }

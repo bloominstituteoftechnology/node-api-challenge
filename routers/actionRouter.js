@@ -42,10 +42,7 @@ router.delete('/:id', validateActionId, (req, res) => {
 router.put('/:id', validateActionId, (req, res) => {
   // do your magic!
   const id = req.params.id;
-  const {project_id, description, notes} = req.body;
-  if(!project_id){
-    res.status(400).json({error: "Action requires project_id"})
-  }
+  const {description, notes} = req.body;
   if(!description){
     res.status(400).json({error: "Action requires description"})
   }
@@ -71,7 +68,7 @@ router.put('/:id', validateActionId, (req, res) => {
 
 function validateActionId(req, res, next) {
   // do your magic!
-  const {id} = req.params;
+  const {id} = req.params.id;
 
   Actions.get(id)
     .then(action => {
@@ -99,6 +96,8 @@ function validateAction(req, res, next) {
       res.status(400).json({ message: "Missing required description field" });
     } else if (!action.notes) {
       res.status(400).json({ message: "Missing required notes field" });
+    }else if (req.body.description.length > 128){
+      res.status(400).json({error: "Project description length cannot exceed 128 characters."});
     } else {
       next();
     }
