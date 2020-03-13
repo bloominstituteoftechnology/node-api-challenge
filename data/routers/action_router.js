@@ -4,7 +4,7 @@ const router = express.Router();
 const Actions = require('../helpers/actionModel');
 const Projects = require('../helpers/projectModel');
 
-router.get('/:id', (req, res) => {
+router.get('/:id', validateActionId, (req, res) => {
 	const { id } = req.params;
 
 	Actions.get(id)
@@ -35,7 +35,7 @@ router.post('/:id', validateProjectId, (req, res) => {
 		});
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', validateActionId, (req, res) => {
 	const { id } = req.params;
 	const changes = {
 		description: req.body.description,
@@ -52,7 +52,7 @@ router.put('/:id', (req, res) => {
 		});
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validateActionId, (req, res) => {
 	const { id } = req.params;
 
 	Actions.remove(id)
@@ -73,6 +73,18 @@ function validateProjectId(req, res, next) {
 	Projects.get(id).then(project => {
 		if (!project) {
 			return res.status(500).json({ message: 'No project found with that ID' });
+		} else {
+			next();
+		}
+	});
+}
+
+function validateActionId(req, res, next) {
+	const { id } = req.params;
+
+	Actions.get(id).then(response => {
+		if (!response) {
+			res.status(500).json({ message: 'Action ID not found' });
 		} else {
 			next();
 		}

@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 		});
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', validateId, (req, res) => {
 	const { id } = req.params;
 
 	Projects.get(id)
@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
 		});
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', validateId, (req, res) => {
 	const { id } = req.params;
 	const changes = {
 		name: req.body.name,
@@ -63,7 +63,7 @@ router.put('/:id', (req, res) => {
 		});
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validateId, (req, res) => {
 	const { id } = req.params;
 
 	Projects.remove(id)
@@ -76,7 +76,7 @@ router.delete('/:id', (req, res) => {
 		});
 });
 
-router.get('/:id/actions', (req, res) => {
+router.get('/:id/actions', validateId, (req, res) => {
 	const { id } = req.params;
 
 	Projects.getProjectActions(id)
@@ -90,5 +90,17 @@ router.get('/:id/actions', (req, res) => {
 });
 
 // ************** Validation Goes Here
+
+function validateId(req, res, next) {
+	const { id } = req.params;
+
+	Projects.get(id).then(response => {
+		if (!response) {
+			res.status(500).json({ message: 'ID not found' });
+		} else {
+			next();
+		}
+	});
+}
 
 module.exports = router;
