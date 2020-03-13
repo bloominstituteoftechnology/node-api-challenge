@@ -124,7 +124,7 @@ function ProjectList() {
           <label>
             completed:
             <input type="checkbox"
-              onClick={e =>
+              onChange={e =>
                 setProjectToEdit({
                   ...projectToEdit,
                   completed: e.target.checked
@@ -163,6 +163,18 @@ function ProjectList() {
                 })
               }
               value={projectToAdd.description}
+            />
+          </label>
+          <label>
+            completed:
+            <input type="checkbox"
+              onChange={e =>
+                setProjectToAdd({
+                  ...projectToAdd,
+                  completed: e.target.checked
+                })
+              }
+              checked={projectToAdd.completed}
             />
           </label>
           <div className="button-row">
