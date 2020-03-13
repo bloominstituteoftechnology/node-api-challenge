@@ -12,3 +12,25 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+const express = require('express');
+const apiRouter = require('./api/api-router.js')
+const server = express();
+
+server.use(express.json());
+
+const port = 5000;
+
+server.use('/api', apiRouter);
+
+server.get('/' , (req, res) => {
+    res.send(`
+        <h2>node-api-challenge</h2>
+    `);
+});
+
+server.listen(port, () => {
+    console.log(`\n
+        Server running on localhost:${port}
+    \n`)
+});
