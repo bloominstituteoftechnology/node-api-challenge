@@ -9,9 +9,22 @@ router.get("/", (req, res) => {
     })
     .catch(err => {
       res.status(500).json({
-        error: "cannot get projects at this time"
+        error: "Cannot get projects at this time"
       });
     });
+});
+
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    Projects.get(id)
+    .then(project => {
+        id
+        ? res.status(200).json(project)
+        : res.status(500).json({ error: "That project does not exist"})
+    })
+    .catch(err => {
+        res.status(500).json({ error: "Cannot fetch id at this time"})
+    })
 });
 
 router.get("/:id/actions", (req, res) => {
@@ -27,13 +40,13 @@ router.get("/:id/actions", (req, res) => {
             .catch(err => {
               res
                 .status(500)
-                .json({ error: "could not get project actions at this time" });
+                .json({ error: "Could not get project actions at this time" });
             })
         : res.status(500).json({ error: "That project id does not exist" });
     })
     .catch(err => {
       res.status(500).json({
-        error: "could not get project or actions at this time"
+        error: "Could not get project or actions at this time"
       });
     });
 });
@@ -102,12 +115,12 @@ router.delete("/:id", (req, res) => {
             res.status(200).json(project)
         })
         .catch(err => {
-            res.status.json({ error: "cannot remove project at this time"})
+            res.status.json({ error: "Cannot remove project at this time"})
         })
       : res.status(500).json({ error: "Project does not exist"})
   })
   .catch(err => {
-      res.status(500).json({ error: "cannot fetch project at this time" })
+      res.status(500).json({ error: "Cannot fetch project at this time" })
   })
 });
 
