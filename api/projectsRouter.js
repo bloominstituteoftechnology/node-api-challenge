@@ -51,4 +51,14 @@ router.delete("/:id", (req, res) => {
   });
 });
 
+//retrieve list of actions for a project
+//this works
+router.get('/:id/actions', (req, res) => {
+  projectModel.getProjectActions(req.params.id).then(project => {
+    if (project) {
+      res.status(200).json(project);
+    }
+  })
+})
+
 module.exports = router;

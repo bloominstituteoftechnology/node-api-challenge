@@ -50,6 +50,6 @@ router.delete("/:id", (req, res) => {
   });
 });
 
-//retrieve list of actions for a project
+
 
 module.exports = router;
