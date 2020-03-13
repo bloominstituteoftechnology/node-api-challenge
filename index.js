@@ -14,6 +14,7 @@ Go code!
 */
 const express = require("express");
 const projectHelpers = require("./data/helpers/projectModel");
+const actionHelpers = require("./data/helpers/actionModel");
 
 const app = express();
 const cors = require("cors");
@@ -32,7 +33,40 @@ app.post("/api/projects", (req, res) => {
     res.status(200).json({ project });
   });
 });
+app.put("/api/projects/:id", (req, res) => {
+  const value = req.body;
+  const id = req.params.id;
+  projectHelpers.update(id, value).then(stuff => {
+    if (stuff == null) {
+      res.status(404).send("the ID does not match any in the database");
+    } else {
+      res.status(201).json({ stuff });
+    }
+  });
+});
+app.delete("/api/projects/:id", (req, res) => {
+  const id = req.params.id;
+  projectHelpers.remove(id).then(stuff => {
+    if (stuff == 1) {
+      res.status(400).send("THE PROJECT AS BEEN DELETED");
+    } else {
+      res.status(404).send(" the id is not correct");
+    }
+  });
+});
 
+//CRUD for actions
+app.get("/api/actions", (req, res) => {
+  actionHelpers.get().then(action => {
+    res.status(200).json({ action });
+  });
+});
+
+app.post("/api/actions", (req, res) => {
+  actionHelpers.insert(req.body).then(project => {
+    res.status(200).json({ project });
+  });
+});
 app.listen(PORT, () => {
   console.log(`i am listening on ${PORT}`);
 });
