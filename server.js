@@ -1,13 +1,15 @@
 const express = require('express');
 const server = express();
-// const postRouter = require('./posts/postRouter');
+const actionsRouter = require('./actions/actionsRouter');
 
 //Databases
 const projectDb = require('./data/helpers/projectModel.js');
-const actionDb = require('./data/helpers/actionModel.js');
 
 //Middleware
 server.use(express.json());
+
+server.use('/actions/', actionsRouter);
+
 
 server.get('/', (req, res) => {
     res.send(`<h2>Welcome!</h2>`);
