@@ -40,13 +40,34 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+1. Server Side Routing with Express Routing to organize code.
+2. Middleware for logging and security.
+
 - [ ] Describe Middleware?
+
+The ability to add functionality to our server side application - they extend features provided by Express. Middleware are small functions that handle one aspect of our application in a modular way. Middleware can be built-in, third-party or custom. 
 
 - [ ] Describe a Resource?
 
+According to the REST principles, everything is a resource e.g. the intended target of a hypertext reference.
+
+REST is a set of principles:
+    - everything is a resource.
+    - each resource is accessible via a unique URI.
+    - resources can have multiple representations.
+    - communication happens over a stateless protocol (HTTP).
+    - resource management happens via HTTP methods.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+A status 200 (OK) or 201 (created) response e.g:
+  res.status(200).send('<h1>Hellow World</h1>');
+
 - [ ] How can we partition our application into sub-applications?
+
+Use server-side routing to different endpoints.
+
+
 
 ## Minimum Viable Product
 
