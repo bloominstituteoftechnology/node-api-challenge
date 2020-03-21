@@ -1,7 +1,7 @@
 const express = require('express');
 
 const Projects = require('./projectModel.js');
-
+const Actions = require('./actionModel');
 const router =express.Router();
 
 router.post('/', (req, res) => {
@@ -32,17 +32,7 @@ router.get('/:id', validateProjectId, (req, res) => {
     });
 });
 
-// router.get('/', (req, res) => {
-//     Projects.get(req.query)
-//       .then((project) => {
-//         res.status(200).json(project);
-//       })
-//       .catch((err) => {
-//         res.status(500).json({
-//           message: 'Error retrieving the projects', err,
-//         });
-//       });
-//   });
+
 
   router.delete('/:id', validateProjectId, (req, res) => {
     Projects.remove(req.params.id)
@@ -70,6 +60,34 @@ router.get('/:id', validateProjectId, (req, res) => {
       });
     }
   });
+
+  router.get('/:id/action', validateProjectId, (req, res) => {
+    Projects.getProjectActions(req.params.id)
+      .then((action) => {
+        res.status(200).json({ success: true, action });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: 'The actions information could not be retrieved.', err });
+      });
+  });
+
+  router.post('/:id/action', validateProjectId, (req, res) => {
+    const userid = req.params.id;
+    const projectInfo = req.body;
+    console.log(projectInfo);
+    if (typeof projectInfo.notes === 'undefined' || typeof projectInfo.description === 'undefined' || typeof projectInfo.completed === 'undefined') {
+        res.status(400).json({ errorMessage: 'Please provide name, description and if it was completed for the project.' });
+      } else {
+    Projects.get(userid)
+      .then(() => {
+          Actions.insert({ notes: projectInfo.notes, description: projectInfo.description, completed:projectInfo.completed, project_id:Number(id )})
+            .then((actionnew) => res.status(201).json({ success: actionnew }));
+      })
+      .catch((err) => {
+        res.status(500).json({ error: 'There was an error while saving the action to the database', err });
+      });
+    }
+});
 
 function validateProjectId(req, res, next) {
     const { id } = req.params;
