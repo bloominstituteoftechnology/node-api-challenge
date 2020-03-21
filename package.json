@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/LambdaSchool/node-api-challenge#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "helmet": "^3.21.2",
     "knex": "^0.20.9",
     "sqlite3": "^4.1.1"
@@ -31,3 +33,4 @@
     "nodemon": "^2.0.2"
   }
 }
+
