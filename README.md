@@ -68,7 +68,6 @@ A status 200 (OK) or 201 (created) response e.g:
 Use server-side routing to different endpoints.
 
 
-
 ## Minimum Viable Product
 
 - [ ] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
