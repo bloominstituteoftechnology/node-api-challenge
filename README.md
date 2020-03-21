@@ -38,15 +38,22 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [X] Mention two parts of Express that you learned about this week.
+Express is a part of nodejs module it allows developers to perform server side routing as well as using middleware functions, the following are two parts of express:
+When we use the router feature of express large complex operations can be handled effectively, this routing feature allows one to build several end points in a less complicated manner. This process is called server side routing
+The middleware functionality in express.js adds extra feature to express. These middlewares are functions that can be executed to run our code effectively 
 
-- [ ] Describe Middleware?
+- [X] Describe Middleware?
+Middlewares are functions that work in between server and client and is used to carry information from one to another. It is a layer of software that lies  between the operating system and applications.
 
-- [ ] Describe a Resource?
+- [X] Describe a Resource?
+The GET, POST, PUT, DELETE methods is a resource. Resource can be defined as an object with a type, associated data and a set of method that operate on it. The fundamental concept in a restful API is a resource.
 
-- [ ] What can the API return to help clients know if a request was successful?
+- [X] What can the API return to help clients know if a request was successful?
+The 200 code can be returned by an API to help clients know that request was successful.A great amount of applications are using Restful APIs that are based on the HTTP protocol for connecting their clients. In all the calls, the server and the endpoint at the client both return a call status to the client which can be in the form of: A success of API call.
 
-- [ ] How can we partition our application into sub-applications?
+- [X] How can we partition our application into sub-applications?
+Using express subapp and also express router we can partition our application into sub-application.
 
 ## Minimum Viable Product
 
