@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 function intToBoolean(int) {
   return int === 1 ? true : false;
 }

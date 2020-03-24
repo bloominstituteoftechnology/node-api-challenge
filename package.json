@@ -22,12 +22,16 @@
   },
   "homepage": "https://github.com/LambdaSchool/node-api-challenge#readme",
   "dependencies": {
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "knex": "^0.20.9",
     "morgan": "^1.10.0",
+    "react-router-dom": "^5.1.2",
+    "reactstrap": "^8.4.1",
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {

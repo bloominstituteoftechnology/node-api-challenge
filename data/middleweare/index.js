@@ -43,10 +43,10 @@ function validateProjectId(req, res, next) {
 }
 
 function validateProjectBody(req, res, next) {
-  const { name, description, completed } = req.body;
+  const { name, description } = req.body;
   Object.entries(req.body).length === 0
     ? res.status(404).json({ message: 'Missing post data' })
-    : !name || !description || !completed
+    : !name || !description
       ? res.status(400).json({ message: 'Missing required name or description field' })
       : next();
 }

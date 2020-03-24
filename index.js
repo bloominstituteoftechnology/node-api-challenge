@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable max-len */
 /*
 play this: https://www.youtube.com/watch?v=d-diB65scQU
 
