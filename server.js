@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const projectRouter = require('./data/helpers/projectRouter');
 const actionRouter = require('./data/helpers/actionRouter');
@@ -7,6 +8,7 @@ const server = express();
 
 server.use(express.json());
 
+server.use(cors());
 server.use(morgan('dev'));
 
 server.use('/api/projects', projectRouter);
