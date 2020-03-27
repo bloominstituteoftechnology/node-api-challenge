@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {
-  CardColumns,
-  Card,
-  CardTitle,
-  CardText,
-  CardBody,
-  Button,
-} from 'reactstrap';
-
 import axios from 'axios';
-import AddProject from './AddProject';
+//import AddProject from './AddProject';
+import Navigation from './Navigation';
+import { Button, Card, Image } from 'semantic-ui-react'
 
 const ProjectList = () => {
   const [projectList, setProjectList] = useState([]);
@@ -23,40 +16,45 @@ const ProjectList = () => {
       .catch((err) => (err));
   }, []);
 
-  const deleteUser = (id) => {
-    axios
-      .delete(`http://localhost:4000/api/projects/${id}`)
-      .then((res) => (res))
-      .catch((err) => (err));
-  };
+  // const deleteUser = (id) => {
+  //   axios
+  //     .delete(`http://localhost:4000/api/projects/${id}`)
+  //     .then((res) => (res))
+  //     .catch((err) => (err));
+  // };
   return (
     <div>
-      <AddProject projectList={projectList} setProjectList={setProjectList} />
+      {/* <AddProject projectList={projectList} setProjectList={setProjectList} /> */}
+      <Navigation/>
       <div className="cards-wrapper">
-        <CardColumns>
+        <Card.Group>
           {projectList.map((project) => (
-            <Card key={project.id}>
-              <CardBody>
-                <CardTitle>
-                  Name:
-                  {project.name}
-                </CardTitle>
-                <CardText>
-                  Id:
-                  {project.id}
-                </CardText>
-                <CardText>
-                  Description:
-                  {project.description}
-                </CardText>
-                <Button onClick={() => deleteUser(project.id)}>Delete</Button>
-                <Button>View project</Button>
-              </CardBody>
+            <Card>
+              <Card.Content>
+                <Image
+                  floated='right'
+                  size='mini'
+                  src='https://images.unsplash.com/photo-1416339684178-3a239570f315?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1334&q=80'
+                />
+                <Card.Header>{project.name}</Card.Header>
+                <Card.Meta>{project.id}</Card.Meta>
+                <Card.Description>
+                {project.description}
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <div className='ui two buttons'>
+                  <Button href ="/api/projectpage" basic color='green'>
+                  View project
+                  </Button>
+                </div>
+              </Card.Content>
             </Card>
           ))}
-        </CardColumns>
+        </Card.Group>
       </div>
     </div>
   );
 };
 export default ProjectList;
+

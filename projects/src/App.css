@@ -1,3 +1,20 @@
 .App {
   text-align: center;
 }
+.cards-wrapper{
+  display: flex;
+  justify-content: center;
+}
+.form{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+.addProjectForm{
+  display: flex;
+  justify-content: center;
+}
+.image-wrapper{
+  display: flex;
+  justify-content: center; 
+}

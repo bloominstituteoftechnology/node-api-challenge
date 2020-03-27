@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavLink, NavbarBrand, Navbar } from 'reactstrap';
-
+import { Icon } from 'semantic-ui-react'
 const Navigation = () => {
     return(
         <div>
@@ -10,8 +10,8 @@ const Navigation = () => {
             Projects keeper
             </NavbarBrand>
             <NavLink tag={Link} to="/api/projects"> View all Projects</NavLink>
-            <NavLink tag={Link} to="/"> Home </NavLink>
-            <NavLink tag={Link} to="/api/newproject"> Add Project </NavLink>
+            <NavLink tag={Link} to="/"> <Icon name="home" size="big"   alternate outline/> </NavLink>
+            <NavLink tag={Link} to="/api/newproject"> <Icon name ="add" size ="big" alternate outline /></NavLink>
         </Navbar>
         </div>
     )
