@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react'
-
+import { useParams, useHistory } from 'react-router-dom'
 import axios from 'axios';
 import Navigation from './Navigation';
 
 const AddProject = () => {
   const [newProject, setNewProject] = useState('');
+  const history = useHistory()
+  const { id } = useParams()
 
   const handleChangesAdd = (e) => {
     setNewProject({
@@ -17,8 +19,11 @@ const AddProject = () => {
   const handleAdd = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:4000/api/projects/`, newProject)
-      .then((res) => (res))
+      .post(`https://node-app-sprint.herokuapp.com/api/projects/`, newProject)
+      .then((res) => { 
+        setNewProject('')
+      history.push(`projects/`)
+    })
       .catch((err) => (err));
   };
   return (
