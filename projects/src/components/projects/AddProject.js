@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios';
-import Navigation from './Navigation';
+import Navigation from '../Navigation';
+import Footer from '../Footer';
 
 const AddProject = () => {
   const [newProject, setNewProject] = useState('');
   const history = useHistory()
-  const { id } = useParams()
 
   const handleChangesAdd = (e) => {
     setNewProject({
@@ -29,6 +29,7 @@ const AddProject = () => {
   return (
    <div>
      <Navigation/>
+     <h1>Add a new project</h1>
      <div className="addProjectForm">
      <Form onSubmit={handleAdd}>
     <Form.Input
@@ -47,6 +48,7 @@ const AddProject = () => {
     <Button type='submit'>Add new Project</Button>
   </Form>
   </div>
+  <Footer/>
    </div>
   );
 };

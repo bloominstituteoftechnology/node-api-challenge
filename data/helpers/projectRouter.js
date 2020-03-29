@@ -9,7 +9,7 @@ const { validateProjectId, validateActionBody, validateProjectBody } = require('
 
 const router = express.Router();
 
-
+// returns the list of all projects
 router.get('/', (req, res) => {
   Projects.get()
     .then((project) => {
@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// Adds a new project to the project's list
 router.post('/', validateProjectBody, (req, res) => {
   const projectInfo = req.body;
   Projects.insert(projectInfo)
@@ -31,6 +32,7 @@ router.post('/', validateProjectBody, (req, res) => {
     });
 });
 
+// Returns a project with a specific ID from the project;s list
 router.get('/:id', validateProjectId, (req, res) => {
   Projects.get(req.params.id)
     .then((project) => {
@@ -41,7 +43,7 @@ router.get('/:id', validateProjectId, (req, res) => {
     });
 });
 
-
+// Deletes a project with a specific ID from the project;s list
 router.delete('/:id', validateProjectId, (req, res) => {
   Projects.remove(req.params.id)
     .then(() => {
@@ -52,6 +54,7 @@ router.delete('/:id', validateProjectId, (req, res) => {
     });
 });
 
+// Updates a project with a specific ID from the project;s list
 router.put('/:id', validateProjectId, validateProjectBody, (req, res) => {
   const { id } = req.params;
 
@@ -64,6 +67,7 @@ router.put('/:id', validateProjectId, validateProjectBody, (req, res) => {
     });
 });
 
+// Returns  the actions of a project with a specific ID from the project;s list
 router.get('/:id/action', validateProjectId, (req, res) => {
   Projects.getProjectActions(req.params.id)
     .then((action) => {
@@ -74,6 +78,7 @@ router.get('/:id/action', validateProjectId, (req, res) => {
     });
 });
 
+// Adds an action to a project with a specific ID from the project;s list
 router.post('/:id/action', validateProjectId, validateActionBody, (req, res) => {
   const project_id = req.params.id;
   const { notes, description } = req.body;

@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
 import { useParams, useHistory } from 'react-router-dom'
-
 import axios from 'axios';
-import Navigation from './Navigation';
+import Navigation from '../Navigation';
+import Footer from '../Footer';
+ const initialState = {
+   id:"",
+   name:"",
+   description:"", 
+   completed:true,
+   actions:[
+     {
+       id:"",
+       project_id:"",
+       description:"",
+       notes:"",
+       completed:false
+     }
+   ]
 
+ }
 const ProjectPage = () => {
-    const [project, setProject] = useState({});
+    const [project, setProject] = useState(initialState);
 
     const { id } = useParams();
     const history = useHistory();
@@ -15,6 +30,7 @@ useEffect(() => {
         axios
           .get(`https://node-app-sprint.herokuapp.com/api/projects/${id}`)
           .then((response) => {
+            console.log("hereeee", response.data.actions)
             setProject(response.data)
           })
           .catch((err) => (err));
@@ -34,9 +50,13 @@ const deleteProject = id => {
     e.preventDefault()
     history.push(`/edit/${project.id}`)
   }
+  const routeToAddAction = e => {
+    e.preventDefault()
+    history.push(`/api/addaction`)
+  }
   
 return (
-         <div>
+    <div>
       <Navigation/>
       <div className="cards-wrapper">
       <Card>
@@ -51,6 +71,11 @@ return (
                 <Card.Description>
                 Description: {project.description}
                 </Card.Description>
+                {/* <Card.Description>
+                Description: {project.actions.map((action)=>(
+                  <h1>{action.notes}</h1>
+                ))}
+                </Card.Description> */}
               </Card.Content>
               <Card.Content extra>
                 <div className='ui two buttons'>
@@ -58,7 +83,7 @@ return (
                     basic color='red' 
                     onClick={() => deleteProject(id)}
                     >
-                  Delete
+                  Delete 
                     <Icon name="trash" alternate outline/>
                   </Button>
                 </div>
@@ -69,16 +94,26 @@ return (
                     basic color='green' 
                     onClick={e => routeToProjectEdit(e, project)} key={project.id}
                     >
-                  Edit 
+                  Edit  
                     <Icon name="edit" alternate outline/>
+                  </Button>
+                </div>
+              </Card.Content>
+              <Card.Content extra>
+                <div className='ui two buttons'>
+                  <Button  
+                    basic color='green' 
+                    onClick={routeToAddAction}
+                    >
+                 Add Action
+                    <Icon name="add" alternate outline/>
                   </Button>
                 </div>
               </Card.Content>
             </Card>
       </div>
+      <Footer/>
     </div>
-)
+)};
 
-
-};
 export default ProjectPage;

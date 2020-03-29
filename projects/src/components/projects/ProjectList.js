@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-//import AddProject from './AddProject';
-import Navigation from './Navigation';
+import Navigation from '../Navigation';
 import { Card} from 'semantic-ui-react';
 import ProjectCard from './ProjectCard';
+import Footer from '../Footer';
 
 const ProjectList = () => {
   const [projectList, setProjectList] = useState([]);
@@ -19,8 +19,8 @@ const ProjectList = () => {
   
   return (
     <div>
-      {/* <AddProject projectList={projectList} setProjectList={setProjectList} /> */}
       <Navigation/>
+      <h1>Projects List</h1>
       <div className="cards-wrapper">
         <Card.Group>
           {projectList.map((project) => (
@@ -28,6 +28,7 @@ const ProjectList = () => {
           ))}
         </Card.Group>
       </div>
+      <Footer/>
     </div>
   );
 };

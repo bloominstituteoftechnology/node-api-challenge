@@ -1,20 +1,29 @@
 .App {
   text-align: center;
 }
-.cards-wrapper{
+.cards, .cards-wrapper, .addProjectForm, .addActionForm, .EditProjectForm, .image-wrapper, .action-wrapper{
   display: flex;
   justify-content: center;
+  margin: 6% 0 15% 0;
 }
 .form{
   width: 70%;
   display: flex;
   flex-direction: column;
 }
-.addProjectForm{
-  display: flex;
-  justify-content: center;
+.content{
+  text-align: left
+}
+.action-wrapper{
+padding: 5% 10%;
+}
+.ui.inverted.segment, .navbar{
+  background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+}
+.container a{
+  text-decoration: none;
+  color:white
 }
 .image-wrapper{
-  display: flex;
-  justify-content: center; 
+ 
 }

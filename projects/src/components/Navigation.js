@@ -9,7 +9,8 @@ const Navigation = () => {
             <NavbarBrand tag={Link} to="/" className="mr-auto">
             Projects keeper
             </NavbarBrand>
-            <NavLink tag={Link} to="/api/projects"> View all Projects</NavLink>
+            <NavLink tag={Link} to="/api/projects">Projects</NavLink>
+            <NavLink tag={Link} to="/api/actions">Actions</NavLink>
             <NavLink tag={Link} to="/"> <Icon name="home" size="big"   alternate outline/> </NavLink>
             <NavLink tag={Link} to="/api/newproject"> <Icon name ="add" size ="big" alternate outline /></NavLink>
         </Navbar>
