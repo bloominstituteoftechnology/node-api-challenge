@@ -6,6 +6,7 @@ const { validateActionId, validateActionBody } = require('../middleweare');
 
 const router = express.Router();
 
+// Returns all the actions
 router.get('/', (req, res) => {
   Actions.get()
     .then((action) => {
@@ -16,6 +17,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// Returns the actions with a specific ID
 router.get('/:id', validateActionId, (req, res) => {
   Actions.get(req.params.id)
     .then((action) => {

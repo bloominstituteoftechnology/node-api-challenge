@@ -4,14 +4,15 @@ import { useHistory } from 'react-router-dom';
 
 const ProjectCard = ({project}) => {
 
-    const history = useHistory()
+  const history = useHistory()
     
-    const routeToProject = e => {
-        e.preventDefault()
-        history.push(`projects/${project.id}`)
-      }
+  const routeToProject = e => {
+      e.preventDefault()
+      history.push(`projects/${project.id}`)
+    };
+
  return (
-    <Card>
+  <Card>
     <Card.Content>
       <Image
         floated='right'
@@ -19,18 +20,14 @@ const ProjectCard = ({project}) => {
         src='https://images.unsplash.com/photo-1416339684178-3a239570f315?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1334&q=80'
       />
       <Card.Header>{project.name}</Card.Header>
-      <Card.Meta>{project.id}</Card.Meta>
-      <Card.Description>
-      {project.description}
-      </Card.Description>
+        <Card.Meta>{project.id}</Card.Meta>
+          <Card.Description>
+          {project.description}
+          </Card.Description>
     </Card.Content>
     <Card.Content extra>
       <div className='ui two buttons'>
-        <Button
-        onClick={routeToProject}
-          basic color='green'>
-        View project
-        </Button>
+        <Button onClick={routeToProject} basic color='green'> View project </Button>
       </div>
     </Card.Content>
   </Card>

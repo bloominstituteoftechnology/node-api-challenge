@@ -8,11 +8,15 @@ import EditProject from './components/projects/EditProject';
 import ActionsList from './components/actions/ActionsList';
 import ProjectPage from './components/projects/ProjectPage';
 import ActionPage from './components/actions/ActionPage';
-import { AddActions } from './components/actions/AddActions';
+import AddActions from './components/actions/AddActions';
 import EditAction from './components/actions/EditAction';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+
 function App() {
   return (
     <div className="App">
+      <Navigation />
       <Route exact path ="/" component={Home} />
       <Route exact path="/api/projects" component={ProjectList}/>
       <Route exact path="/api/newproject" component={AddProject} />
@@ -22,6 +26,7 @@ function App() {
       <Route exact path="/api/actions" component={ActionsList} />
       <Route exact path="/api/actions/:id" component={ActionPage} />
       <Route exact path="/api/addaction" component={AddActions} />
+      <Footer />
     </div>
   );
 }

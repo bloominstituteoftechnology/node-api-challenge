@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Navigation from '../Navigation';
+import { useHistory } from 'react-router-dom';
 import { Card, Icon} from 'semantic-ui-react';
+import axios from 'axios';
 import ActionCard from './ActionCard';
-import { useHistory } from 'react-router-dom'
-import Footer from '../Footer';
 
 const ActionsList = () => {
   const [actionsList, setActionList] = useState([]);
   const history = useHistory();
+
   useEffect(() => {
     axios
       .get(`https://node-app-sprint.herokuapp.com/api/actions/`)
@@ -17,13 +16,14 @@ const ActionsList = () => {
       })
       .catch((err) => (err));
   }, []);
+
   const routeToAddAction = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     history.push(`/api/addaction`)
-  }
+  };
+
   return (
     <div>
-      <Navigation/>
       <h1>Action List</h1>
       <Icon name="add circle" size="large" alternate outline color="blue" onClick={e => routeToAddAction(e)}/>
       <div className="cards-wrapper">
@@ -33,9 +33,7 @@ const ActionsList = () => {
           ))}
         </Card.Group>
       </div>
-      <Footer/>
     </div>
   );
 };
 export default ActionsList;
-

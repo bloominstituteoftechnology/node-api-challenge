@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navigation from '../Navigation';
-import { Card} from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import ProjectCard from './ProjectCard';
-import Footer from '../Footer';
 
 const ProjectList = () => {
   const [projectList, setProjectList] = useState([]);
@@ -19,7 +17,6 @@ const ProjectList = () => {
   
   return (
     <div>
-      <Navigation/>
       <h1>Projects List</h1>
       <div className="cards-wrapper">
         <Card.Group>
@@ -28,9 +25,8 @@ const ProjectList = () => {
           ))}
         </Card.Group>
       </div>
-      <Footer/>
     </div>
   );
 };
-export default ProjectList;
 
+export default ProjectList;

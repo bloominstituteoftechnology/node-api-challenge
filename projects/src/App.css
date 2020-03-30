@@ -1,10 +1,13 @@
 .App {
   text-align: center;
+  background-color: #CDDCDC;
+  background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+  background-blend-mode: screen;
 }
 .cards, .cards-wrapper, .addProjectForm, .addActionForm, .EditProjectForm, .image-wrapper, .action-wrapper{
   display: flex;
   justify-content: center;
-  margin: 6% 0 15% 0;
+  margin: 1% 0 5% 0;
 }
 .form{
   width: 70%;
@@ -18,12 +21,12 @@
 padding: 5% 10%;
 }
 .ui.inverted.segment, .navbar{
-  background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+  background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
 }
 .container a{
   text-decoration: none;
-  color:white
+  color:black;
 }
-.image-wrapper{
- 
+.navbar a{
+  color:black;
 }

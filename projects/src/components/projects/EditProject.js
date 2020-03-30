@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import Navigation from '../Navigation';
-import Footer from '../Footer';
 
 const EditProject = () => {
   const [updatedProject, setUpdatedProject] = useState('');
+
   const { id } = useParams();
   const history = useHistory();
 
@@ -32,11 +31,12 @@ const EditProject = () => {
   //   format will be consistent and have only (name, description)
   const handleUpdate = () => {
     console.log('object info', updatedProject);
+
     const dataToSend = {
       name: updatedProject.name,
       description: updatedProject.description,
     };
-    console.log(dataToSend);
+    //console.log(dataToSend);
     axios
       .put(`https://node-app-sprint.herokuapp.com/api/projects/${id}`, dataToSend)
       .then(console.log('where is the data'))
@@ -49,7 +49,6 @@ const EditProject = () => {
   };
   return (
     <div>
-      <Navigation />
       <div className="EditProjectForm">
         <Form onSubmit={handleUpdate}>
           <Form.Input
@@ -72,10 +71,8 @@ const EditProject = () => {
           <Button type="submit">Save Changes</Button>
         </Form>
       </div>
-      <Footer/>
     </div>
   );
 };
-
 
 export default EditProject;

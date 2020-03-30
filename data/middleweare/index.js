@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-nested-ternary */
 const Projects = require('../helpers/projectModel');
+const Actions = require('../helpers/actionModel');
 
 function validateActionBody(req, res, next) {
   const { notes, description } = req.body;
@@ -12,7 +13,7 @@ function validateActionBody(req, res, next) {
 }
 function validateActionId(req, res, next) {
   const { id } = req.params;
-  Projects.get(id)
+  Actions.get(id)
     .then((action) => {
       if (action) {
         req.action = action;

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'semantic-ui-react'
-import { useParams, useHistory } from 'react-router-dom'
+import { Button, Form } from 'semantic-ui-react';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import Navigation from '../Navigation';
-import Footer from '../Footer';
+
 const initialState = {
   id:"",
   name:"",
@@ -18,12 +17,12 @@ const initialState = {
       completed:false
     }
   ]
-}
+};
 
-export const AddActions = () => {
+const AddActions = () => {
   const [newAction, setNewAction] = useState(initialState);
-  const history = useHistory()
-  const { id } = useParams()
+  const history = useHistory();
+  const { id } = useParams();
 
   const handleChangesAdd = (e) => {
     setNewAction({
@@ -42,32 +41,32 @@ export const AddActions = () => {
     })
       .catch((err) => (err));
   };
+
   return (
-   <div>
-     <Navigation/>
-     <h1>Add new Action to a project</h1>
-     <div className="addActionForm">
-     <Form 
-     onSubmit={handleAdd}
-     >
-    <Form.Input
+    <div>
+      <h1>Add new Action to a project</h1>
+      <div className="addActionForm">
+      <Form onSubmit={handleAdd} >
+        <Form.Input
           required
           label="Note"
           type="text"
           name="notes"
           placeholder='Notes' 
-          onChange={handleChangesAdd}/>
-    <Form.TextArea
-         required
+          onChange={handleChangesAdd}
+        />
+        <Form.TextArea
+          required
           label='Description' 
           name="description"
           placeholder='Description' 
-          onChange={handleChangesAdd} />
-    <Button type='submit'>Add new Action</Button>
-  </Form>
-  </div>
-  <Footer/>
-   </div>
+          onChange={handleChangesAdd} 
+        />
+        <Button type='submit'>Add new Action</Button>
+      </Form>
+      </div>
+    </div>
   );
 };
 
+export default AddActions;
