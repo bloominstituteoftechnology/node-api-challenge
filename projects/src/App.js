@@ -25,7 +25,7 @@ function App() {
       <Route exact path="/editaction/:id" component={EditAction} />
       <Route exact path="/api/actions" component={ActionsList} />
       <Route exact path="/api/actions/:id" component={ActionPage} />
-      <Route exact path="/api/addaction" component={AddActions} />
+      <Route exact path="/api/projects/:id/actionadd" component={AddActions} />
       <Footer />
     </div>
   );

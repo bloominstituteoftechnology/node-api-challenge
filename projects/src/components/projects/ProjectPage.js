@@ -19,17 +19,18 @@ import axios from 'axios';
     ]
  };
 
-const ProjectPage = () => {
+const ProjectPage = ({action}) => {
   const [project, setProject] = useState(initialState);
-
+// console.log("project in projectpage", project)
+ //console.log("project.action in projectpage",project.actions[3].project_id[2])
   const { id } = useParams();
   const history = useHistory();
  
   useEffect(() => {
     axios
-      .get(`https://node-app-sprint.herokuapp.com/api/projects/${id}`)
+      .get(`http://localhost:4000/api/projects/${id}`)
       .then((response) => {
-       // console.log("hereeee", response.data.actions)
+      // console.log("hereeee", response.data)
         setProject(response.data)
       })
       .catch((err) => (err));
@@ -37,7 +38,7 @@ const ProjectPage = () => {
 
   const deleteProject = id => {
     axios
-      .delete(`https://node-app-sprint.herokuapp.com/api/projects/${id}`)
+      .delete(`http://localhost:4000/api/projects/${id}`)
       .then((res) => {
         history.push('/api/projects')
           (res)
@@ -52,8 +53,14 @@ const ProjectPage = () => {
 
   const routeToAddAction = e => {
     e.preventDefault();
-    history.push(`/api/addaction`)
+    history.push(`/api/projects/${project.id}/actionadd`)
   };
+  
+  // it supposed to rediredt to the action page of the specific id
+  const routeToAction = id => {
+   // e.preventDefault()
+    history.push(`/api/actions/${id}/`) //uses the project id not the action id
+};
   
 return (
     <div>
@@ -70,11 +77,14 @@ return (
               <Card.Description>
               Description: {project.description}
               </Card.Description>
-              {/* <Card.Description>
-              Description: {project.actions.map((action)=>(
-                <h1>{action.notes}</h1>
+              <h4>Action notes</h4>
+              <ol>
+              {project.actions.map((item) =>(
+                <Card.Description key={item.id}>
+                  <li onClick={() =>routeToAction(id)} >{item.notes} id:{item.id} | PROJECT_ID {item.project_id}</li>
+                </Card.Description>
               ))}
-              </Card.Description> */}
+                </ol>
           </Card.Content>
           <Card.Content extra>
             <div className='ui two buttons'>

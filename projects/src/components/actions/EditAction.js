@@ -12,7 +12,7 @@ const EditAction = () => {
 
   useEffect(() => {
     axios
-      .get(`https://node-app-sprint.herokuapp.com/api/actions/${id}`)
+      .get(`http://localhost:4000/api/actions/${id}`)
       .then((response) => {
         setUpdatedAction(response.data)
       })
@@ -35,10 +35,10 @@ const EditAction = () => {
       };
 
     axios
-      .put(`https://node-app-sprint.herokuapp.com/api/actions/${id}`, dataToSend)
+      .put(`http://localhost:4000/api/actions/${id}`, dataToSend)
       .then((res) => { 
         setUpdatedAction('')
-      history.push(`actions/`)
+        history.push(`/api/actions`)
     })
       .catch((err) => (err));
   };

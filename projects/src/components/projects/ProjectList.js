@@ -8,7 +8,7 @@ const ProjectList = () => {
  
   useEffect(() => {
     axios
-      .get(`https://node-app-sprint.herokuapp.com/api/projects/`)
+      .get(`http://localhost:4000/api/projects/`)
       .then((response) => {
         setProjectList(response.data)
       })

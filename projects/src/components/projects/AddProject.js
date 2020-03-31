@@ -19,7 +19,7 @@ const AddProject = () => {
   const handleAdd = (e) => {
     e.preventDefault();
     axios
-      .post(`https://node-app-sprint.herokuapp.com/api/projects/`, newProject)
+      .post(`http://localhost:4000/api/projects/`, newProject)
       .then((res) => { 
         setNewProject('')
       history.push(`projects/`)

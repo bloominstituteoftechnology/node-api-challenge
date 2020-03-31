@@ -11,7 +11,7 @@ const ActionPage = () => {
  
   useEffect(() => {
     axios
-      .get(`https://node-app-sprint.herokuapp.com/api/projects/${id}/action`)
+      .get(`http://localhost:4000/api/actions/${id}`)
       .then((response) => {
         console.log("response", response.data);
         setAction(response.data)
@@ -21,7 +21,7 @@ const ActionPage = () => {
 
   const deleteAction = id => {
     axios
-      .delete(`https://node-app-sprint.herokuapp.com/api/actions/${id}`)
+      .delete(`http://localhost:4000/api/actions/${id}`)
       .then((res) => {
         history.push('/api/actions')
           (res)
@@ -46,13 +46,9 @@ const ActionPage = () => {
         <Item>
           <Item.Image size='medium' src='https://images.unsplash.com/photo-1554774853-b3d587d95440?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1463&q=80' />
           <Item.Content>
-            <Item.Header>Notes: "Neque porro quisquam est qui
-              dolorem ipsum quia dolor sit amet, consectetur, 
-              adipisci velit..."{action.notes}
+            <Item.Header>Notes:{action.notes}
             </Item.Header>
-            <Item.Description>Description:  "Neque porro quisquam est qui
-              dolorem ipsum quia dolor sit amet, consectetur, 
-              adipisci velit..."{action.description}
+            <Item.Description>Description: {action.description}
             </Item.Description>
           </Item.Content>
           <Menu icon vertical>
