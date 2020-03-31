@@ -12,7 +12,7 @@ const EditAction = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/actions/${id}`)
+      .get(`https://node-app-sprint.herokuapp.com/api/actions/${id}`)
       .then((response) => {
         setUpdatedAction(response.data)
       })

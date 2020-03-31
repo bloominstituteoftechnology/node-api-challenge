@@ -8,7 +8,7 @@ const ActionsList = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/actions`)
+      .get(`https://node-app-sprint.herokuapp.com/api/actions`)
       .then((response) => {
         setActionList(response.data)
       })

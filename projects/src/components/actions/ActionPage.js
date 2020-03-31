@@ -11,7 +11,7 @@ const ActionPage = () => {
  
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/actions/${id}`)
+      .get(`https://node-app-sprint.herokuapp.com/api/actions/${id}`)
       .then((response) => {
         console.log("response", response.data);
         setAction(response.data)
@@ -21,7 +21,7 @@ const ActionPage = () => {
 
   const deleteAction = id => {
     axios
-      .delete(`http://localhost:4000/api/actions/${id}`)
+      .delete(`https://node-app-sprint.herokuapp.com/api/actions/${id}`)
       .then((res) => {
         history.push('/api/actions')
           (res)

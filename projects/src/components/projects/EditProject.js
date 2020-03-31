@@ -11,7 +11,7 @@ const EditProject = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/projects/${id}`)
+      .get(`https://node-app-sprint.herokuapp.com/api/projects/${id}`)
       .then((response) => {
         console.log('edit project get response', response);
         setUpdatedProject(response.data);
@@ -38,7 +38,7 @@ const EditProject = () => {
     };
     //console.log(dataToSend);
     axios
-      .put(`http://localhost:4000/api/projects/${id}`, dataToSend)
+      .put(`https://node-app-sprint.herokuapp.com/api/projects/${id}`, dataToSend)
       .then(console.log('where is the data'))
       .then((res) => {
         console.log('here is the data', res);

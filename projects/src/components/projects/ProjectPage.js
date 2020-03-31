@@ -28,7 +28,7 @@ const ProjectPage = ({action}) => {
  
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/projects/${id}`)
+      .get(`https://node-app-sprint.herokuapp.com/api/projects/${id}`)
       .then((response) => {
       // console.log("hereeee", response.data)
         setProject(response.data)
@@ -38,7 +38,7 @@ const ProjectPage = ({action}) => {
 
   const deleteProject = id => {
     axios
-      .delete(`http://localhost:4000/api/projects/${id}`)
+      .delete(`https://node-app-sprint.herokuapp.com/api/projects/${id}`)
       .then((res) => {
         history.push('/api/projects')
           (res)
@@ -55,7 +55,7 @@ const ProjectPage = ({action}) => {
     e.preventDefault();
     history.push(`/api/projects/${project.id}/actionadd`)
   };
-  
+
   // it supposed to rediredt to the action page of the specific id
   const routeToAction = id => {
    // e.preventDefault()

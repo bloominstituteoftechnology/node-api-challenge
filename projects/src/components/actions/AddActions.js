@@ -34,7 +34,7 @@ const AddActions = () => {
   const handleAdd = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:4000/api/projects/${id}/action`, newAction)
+      .post(`https://node-app-sprint.herokuapp.com/api/projects/${id}/action`, newAction)
       .then((res) => { 
         setNewAction('')
        history.push(`/api/projects/${id}/`)

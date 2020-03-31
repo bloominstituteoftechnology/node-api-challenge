@@ -16,7 +16,7 @@ const ProjectCard = ({project}) => {
     <Card.Content>
       <Image
         floated='right'
-        size='mini'
+        size='small'
         src='https://images.unsplash.com/photo-1416339684178-3a239570f315?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1334&q=80'
       />
       <Card.Header>{project.name}</Card.Header>
