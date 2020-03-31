@@ -56,12 +56,6 @@ const ProjectPage = ({action}) => {
     history.push(`/api/projects/${project.id}/actionadd`)
   };
 
-  // it supposed to rediredt to the action page of the specific id
-  const routeToAction = id => {
-   // e.preventDefault()
-    history.push(`/api/actions/${id}/`) //uses the project id not the action id
-};
-  
 return (
     <div>
       <div className="cards-wrapper">
@@ -81,7 +75,7 @@ return (
               <ol>
               {project.actions.map((item) =>(
                 <Card.Description key={item.id}>
-                  <li onClick={() =>routeToAction(id)} >{item.notes} id:{item.id} | PROJECT_ID {item.project_id}</li>
+                  <li onClick={() => history.push(`/api/actions/${item.id}/`)} >{item.notes} id:{item.id} | PROJECT_ID {item.project_id}</li>
                 </Card.Description>
               ))}
                 </ol>

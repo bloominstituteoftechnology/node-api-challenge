@@ -35,7 +35,7 @@ const EditAction = () => {
       };
 
     axios
-      .put(`http://localhost:4000/api/actions/${id}`, dataToSend)
+      .put(`https://node-app-sprint.herokuapp.com/api/actions/${id}`, dataToSend)
       .then((res) => { 
         setUpdatedAction('')
         history.push(`/api/actions`)
