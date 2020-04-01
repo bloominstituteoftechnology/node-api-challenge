@@ -18,7 +18,6 @@ router.get('/', (req, res) => {
 });
 
 // Returns the actions with a specific ID
-//removed the validateActionID middleweare
 router.get('/:id', validateActionId, (req, res) => {
   Actions.get(req.params.id)
     .then((action) => {
@@ -31,7 +30,6 @@ router.get('/:id', validateActionId, (req, res) => {
     });
 });
 
-//removed the validateActionID middleweare
 router.delete('/:id',validateActionId, (req, res) => {
   Actions.remove(req.params.id)
     .then((count) => {
