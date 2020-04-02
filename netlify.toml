@@ -1,8 +1,8 @@
 
 [build]
   command = "npm run build"
-  publish="projects/build"
-  base = "projects"
+  publish="/build/"
+  base = "/projects"
 
   [[redirects]]
     from = "/*"
