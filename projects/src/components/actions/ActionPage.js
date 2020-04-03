@@ -23,7 +23,7 @@ const ActionPage = () => {
     axios
       .delete(`https://node-app-sprint.herokuapp.com/api/actions/${id}`)
       .then((res) => {
-        history.push('/api/actions')
+        history.push(`/api/actions`)
           (res)
         })
       .catch((err) => (err));
@@ -39,8 +39,8 @@ const ActionPage = () => {
     history.push(`/api/actions`)
   };
 // console.log("action", action.action);
+   // {action.action.map((action)=> ( // can't map over the actions to render an action by ID 
   return (
-     // {action.action.map((action)=> ( // can't map over the actions to render an action by ID 
     <div className="action-wrapper" >
       <Item.Group link>
         <Item>

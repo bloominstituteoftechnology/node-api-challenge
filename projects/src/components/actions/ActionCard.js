@@ -9,7 +9,7 @@ console.log(action.id, "action in action card")
     
   const routeToAction = e => {
       e.preventDefault()
-      history.push(`/api/actions/${action.id}`)
+      history.push(`actions/${action.id}`)
   };
 
   return (
