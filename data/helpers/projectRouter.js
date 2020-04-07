@@ -78,7 +78,7 @@ router.get('/:id/action', validateProjectId, (req, res) => {
     });
 });
 
-// Adds an action to a project with a specific ID from the project;s list
+// Adds an action to a project with a specific ID from the projects list
 router.post('/:id/action', validateProjectId, validateActionBody, (req, res) => {
   const project_id = req.params.id;
   const { notes, description } = req.body;
