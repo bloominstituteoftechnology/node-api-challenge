@@ -16,7 +16,7 @@ const ProjectList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h1>Projects List</h1>
       <div className="cards-wrapper">
         <Card.Group>

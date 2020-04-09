@@ -8,9 +8,9 @@ const ActionsList = () => {
 
   useEffect(() => {
     axios
-      .get(`https://node-app-sprint.herokuapp.com/api/actions/`)
+      .get('https://node-app-sprint.herokuapp.com/api/actions/')
       .then((response) => {
-        setActionList(response.data)
+        setActionList(response.data);
       })
       .catch((err) => (err));
   }, []);
@@ -21,7 +21,7 @@ const ActionsList = () => {
       <div className="cards-wrapper">
         <Card.Group>
           {actionsList.map((action) => (
-            <ActionCard action={action} key={action.id}/>
+            <ActionCard action={action} key={action.id} />
           ))}
         </Card.Group>
       </div>

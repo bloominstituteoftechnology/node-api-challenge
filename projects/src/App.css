@@ -30,15 +30,4 @@ padding: 5% 10%;
 .navbar a{
   color:black;
 }
-.footer{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0
-}
-.navigation{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0
-}
+

@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
   Button, Card, Image, Icon,
@@ -23,7 +21,7 @@ const initialState = {
   ],
 };
 
-const ProjectPage = ({ action }) => {
+const ProjectPage = () => {
   const [project, setProject] = useState(initialState);
   // console.log("project in projectpage", project)
   // console.log("project.action in projectpage",project.actions[3].project_id[2])
@@ -40,7 +38,7 @@ const ProjectPage = ({ action }) => {
       .catch((err) => (err));
   }, [id]);
 
-  const deleteProject = (id) => {
+  const deleteProject = () => {
     axios
       .delete(`https://node-app-sprint.herokuapp.com/api/projects/${id}`)
       .then((res) => {
@@ -49,7 +47,7 @@ const ProjectPage = ({ action }) => {
       .catch((err) => (err));
   };
 
-  const routeToProjectEdit = (e, project) => {
+  const routeToProjectEdit = (e) => {
     e.preventDefault();
     history.push(`/edit/${project.id}`);
   };
@@ -87,14 +85,10 @@ const ProjectPage = ({ action }) => {
               {project.actions.map((item) => (
                 <Card.Description key={item.id}>
                   <li onClick={() => history.push(`/api/actions/${item.id}/`)}>
+                    Notes:
                     {item.notes}
-                    {' '}
-                    id:
+                    Id:
                     {item.id}
-                    {' '}
-                    | PROJECT_ID
-                    {' '}
-                    {item.project_id}
                   </li>
                 </Card.Description>
               ))}
@@ -112,7 +106,6 @@ const ProjectPage = ({ action }) => {
           <Card.Content extra>
             <div className="ui two buttons">
               <Button basic color="green" onClick={(e) => routeToProjectEdit(e, project)} key={project.id}>
-                {' '}
                 Edit
                 <Icon name="edit" alternate outline />
               </Button>
@@ -121,7 +114,6 @@ const ProjectPage = ({ action }) => {
           <Card.Content extra>
             <div className="ui two buttons">
               <Button basic color="green" onClick={routeToAddAction}>
-                {' '}
                 Add Action
                 <Icon name="add" alternate outline />
               </Button>

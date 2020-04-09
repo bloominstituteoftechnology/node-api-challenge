@@ -19,17 +19,17 @@ const AddProject = () => {
   const handleAdd = (e) => {
     e.preventDefault();
     axios
-      .post(`https://node-app-sprint.herokuapp.com/api/projects/`, newProject)
-      .then((res) => { 
-        setNewProject('')
-      history.push(`projects/`)
-    })
+      .post('https://node-app-sprint.herokuapp.com/api/projects/', newProject)
+      .then(() => {
+        setNewProject('');
+        history.push('projects/');
+      })
       .catch((err) => (err));
   };
 
   return (
     <div>
-     <h1>Add a new project</h1>
+      <h1>Add a new project</h1>
       <div className="addProjectForm">
         <Form onSubmit={handleAdd}>
           <Form.Input
@@ -37,17 +37,17 @@ const AddProject = () => {
             label="Name"
             type="text"
             name="name"
-            placeholder='Name' 
+            placeholder="Name"
             onChange={handleChangesAdd}
           />
           <Form.TextArea
             required
-            label='Description' 
+            label="Description"
             name="description"
-            placeholder='Description' 
-            onChange={handleChangesAdd} 
+            placeholder="Description"
+            onChange={handleChangesAdd}
           />
-          <Button type='submit'> Add new Project </Button>
+          <Button type="submit"> Add new Project </Button>
         </Form>
       </div>
     </div>
