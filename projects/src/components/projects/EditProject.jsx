@@ -36,7 +36,7 @@ const EditProject = () => {
       name: updatedProject.name,
       description: updatedProject.description,
     };
-    //console.log(dataToSend);
+    // console.log(dataToSend);
     axios
       .put(`https://node-app-sprint.herokuapp.com/api/projects/${id}`, dataToSend)
       .then(console.log('where is the data'))

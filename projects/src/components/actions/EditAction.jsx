@@ -14,7 +14,7 @@ const EditAction = () => {
     axios
       .get(`https://node-app-sprint.herokuapp.com/api/actions/${id}`)
       .then((response) => {
-        setUpdatedAction(response.data)
+        setUpdatedAction(response.data);
       })
       .catch((err) => (err));
   }, [id]);
@@ -28,43 +28,43 @@ const EditAction = () => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-  // Data sent to the API contains only the notes and the description  
+    // Data sent to the API contains only the notes and the description
     const dataToSend = {
-        notes: updatedAction.notes,
-        description: updatedAction.description,
-      };
+      notes: updatedAction.notes,
+      description: updatedAction.description,
+    };
 
     axios
       .put(`https://node-app-sprint.herokuapp.com/api/actions/${id}`, dataToSend)
-      .then((res) => { 
-        setUpdatedAction('')
-        history.push(`/api/actions`)
-    })
+      .then(() => {
+        setUpdatedAction('');
+        history.push('/api/actions');
+      })
       .catch((err) => (err));
   };
 
   return (
     <div>
       <div className="addActionForm">
-        <Form onSubmit={handleAdd} >
+        <Form onSubmit={handleAdd}>
           <Form.Input
             required
             label="Note"
             type="text"
             name="notes"
-            placeholder='Notes' 
+            placeholder="Notes"
             onChange={handleChangesAdd}
             value={updatedAction.notes}
           />
           <Form.TextArea
             required
-            label='Description' 
+            label="Description"
             name="description"
-            placeholder='Description' 
-            onChange={handleChangesAdd} 
+            placeholder="Description"
+            onChange={handleChangesAdd}
             value={updatedAction.description}
           />
-          <Button type='submit'> Update Action </Button>
+          <Button type="submit"> Update Action </Button>
         </Form>
       </div>
     </div>

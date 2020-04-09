@@ -26,7 +26,6 @@
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "eslint": "^6.8.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "knex": "^0.20.9",
@@ -37,16 +36,9 @@
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.25.0",
-    "@typescript-eslint/parser": "^2.25.0",
-    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-config-react-app": "^5.2.1",
-    "eslint-plugin-flowtype": "^4.7.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.1",
+    "eslint-plugin-import": "^2.20.2",
     "knex-cleaner": "^1.3.0"
   }
 }

@@ -5,23 +5,23 @@ import ProjectCard from './ProjectCard';
 
 const ProjectList = () => {
   const [projectList, setProjectList] = useState([]);
- 
+
   useEffect(() => {
     axios
-      .get(`https://node-app-sprint.herokuapp.com/api/projects/`)
+      .get('https://node-app-sprint.herokuapp.com/api/projects/')
       .then((response) => {
-        setProjectList(response.data)
+        setProjectList(response.data);
       })
       .catch((err) => (err));
   }, []);
-  
+
   return (
     <div>
       <h1>Projects List</h1>
       <div className="cards-wrapper">
         <Card.Group>
           {projectList.map((project) => (
-            <ProjectCard project={project} key={project.id}/>
+            <ProjectCard project={project} key={project.id} />
           ))}
         </Card.Group>
       </div>
