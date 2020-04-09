@@ -4,7 +4,7 @@ import {
 } from 'semantic-ui-react';
 
 const Footer = () => (
-  <div>
+  <div className="footer">
     <Segment inverted vertical style={{ margin: '0em 0em 0em', padding: '1.2em 0em' }}>
       <Container textAlign="center">
         <Divider inverted section />

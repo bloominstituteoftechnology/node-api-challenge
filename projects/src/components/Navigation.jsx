@@ -4,7 +4,7 @@ import { NavLink, NavbarBrand, Navbar } from 'reactstrap';
 import { Icon } from 'semantic-ui-react';
 
 const Navigation = () => (
-  <div>
+  <div className="navigation">
     <Navbar>
       <NavbarBrand tag={Link} to="/" className="mr-auto">
         Projects keeper
