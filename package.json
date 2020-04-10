@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/LambdaSchool/node-api-challenge#readme",
   "dependencies": {
-    "helmet": "^3.21.2",
-    "knex": "^0.20.9",
+    "helmet": "^3.22.0",
+    "knex": "^0.20.13",
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
