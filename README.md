@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+middleware and routers
+
 - [ ] Describe Middleware?
+
+middleware is a function that can be run as part of the action handler, or to enhance the features of express
 
 - [ ] Describe a Resource?
 
+it is an endpoint which contains data
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+it can return a sucess status message such as 200
+
 - [ ] How can we partition our application into sub-applications?
+
+by using routers and exports
 
 ## Minimum Viable Product
 
