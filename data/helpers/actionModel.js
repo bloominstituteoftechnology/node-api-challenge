@@ -19,7 +19,7 @@ function get(id) {
         if (action) {
           return mappers.actionToBody(action);
         } else {
-          return null;
+          return {error};
         }
       });
   } else {

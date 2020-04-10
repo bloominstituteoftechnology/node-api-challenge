@@ -25,7 +25,7 @@ function get(id) {
 
         return mappers.projectToBody(project);
       } else {
-        return null;
+        return {error};
       }
     });
   } else {
