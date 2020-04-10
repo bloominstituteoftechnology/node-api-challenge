@@ -1,7 +1,7 @@
 const express = require('express');
 
 const action_Functions = require('../data/helpers/actionModel.js'); //imports action functions from actionModel.js
-const router = express.Router(); //imorts the Router() from express as "router"
+const router = express.Router(); //imports the Router() from express as "router"
 
 // /api/actions endpoint
 router.get('/', (req, res) => {

@@ -3,10 +3,10 @@ const express = require('express');
 const project_Functions = require('../data/helpers/projectModel.js'); //imports project functions from projectModel.js
 const router = express.Router(); ////imorts the Router() from express as "router"
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
     project_Functions.get()
-    .then(projects => {
-        res.status(200).json(projects)
+    .then(response => {
+        res.status(201).json(response);
     })
     .catch(err => {
         console.log(err)
@@ -49,7 +49,7 @@ router.delete('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    project_Functions.update(req.params.id, req.bod)
+    project_Functions.update(req.params.id, req.body)
     .then(post => {
         console.log(post)
         res.status(200).json({message: 'your post was updated successfully'})
