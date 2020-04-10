@@ -8,7 +8,7 @@ module.exports = {
   remove,
 };
 
-function get(id) {
+function get(id = undefined) {
   let query = db('actions');
 
   if (id) {
