@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+We learned about routers and middleware
+
 - [ ] Describe Middleware?
+
+You can use middleware as a way to abstract repeated code functionality to make it more readable or modular. The three types of middleware are custom middleware , built-in midleware, and third-party middleware.
 
 - [ ] Describe a Resource?
 
+ Resources are the groups of data we interact with and also build endpoints to reach and retrieve information about.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+Status codes and response data can help clients know if a request was sucessful.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can use routers and sub routers through express middleware
 
 ## Minimum Viable Product
 
