@@ -16,19 +16,19 @@ The Minimum Viable Product must be completed in three hours.
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your _Team Lead_ as collaborator on Github.
-- [ ] Clone your forked version of the Repository.
-- [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
-- [ ] Implement the project on this Branch, committing changes regularly.
-- [ ] Push commits: git push origin `firstName-lastName`.
+- [x] Create a forked copy of this project.
+- [x] Add your _Team Lead_ as collaborator on Github.
+- [x] Clone your forked version of the Repository.
+- [x] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
+- [x] Implement the project on this Branch, committing changes regularly.
+- [x] Push commits: git push origin `firstName-lastName`.
 
 Follow these steps for completing your project.
 
-- [ ] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
-- [ ] Please don't merge your own pull request.
-- [ ] Add your _Team Lead_ as a Reviewer on the Pull-request
-- [ ] Your _Team Lead_ will count the challenge as done by merging the branch into _master_.
+- [x] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
+- [x] Please don't merge your own pull request.
+- [x] Add your _Team Lead_ as a Reviewer on the Pull-request
+- [x] Your _Team Lead_ will count the challenge as done by merging the branch into _master_.
 
 ## Commits
 
@@ -38,15 +38,31 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [x] Mention two parts of Express that you learned about this week.
 
-- [ ] Describe Middleware?
+  The first part of Express I learned was Express’ ability to handle middleware. In Express, middleware are functions that operate on and manipulate the request/response objects. They can be programmed to change the request/response objects or trigger specified actions.
 
-- [ ] Describe a Resource?
+  The second part of Express I learned was the software’s ability to handle routing and further URL manipulation. With the help of REST clients like Insomnia or Postman, you can program Express to perform various CRUD operations based on individual URL endpoints
 
-- [ ] What can the API return to help clients know if a request was successful?
+- [x] Describe Middleware?
 
-- [ ] How can we partition our application into sub-applications?
+  Middleware are sets of functions used to operate on or otherwise manipulate the response and request objects of a defined request handler. Middleware can change the request/response objects or trigger certain actions such as logging or security functions.
+
+- [x] Describe a Resource?
+
+  A resource is any set of data that you are storing in your database or api. When building an API, you will have many different resources to program, for example:
+
+  You may be working for an ecommerce client who hires you to build an API that consists of Product Information, Customer Information, Transaction History, Vendor Information, Invoices on File, etc.
+
+  In this case, every category of information (Product, Customer, Vendor, etc) is a resource
+
+- [x] What can the API return to help clients know if a request was successful?
+
+  When building your API, you can program your request handlers to return status codes to inform the client whether or not their request was successful. A code 200 is a common code for a successful request; A code 201 is a common code for a successful POST request; A code 400 is a common code for an unsuccessful or bad request.
+
+- [x] How can we partition our application into sub-applications?
+
+  We can partition our application using the routing capabilities of Express. Routing allows us to break up our resources into individual sub-applications or folders that can be separately routed into the main application. Utilizing the routing ability, you can also nest resources inside each other, route into the top level resource, and then route the entire resource into the main app.
 
 ## Minimum Viable Product
 
