@@ -30,7 +30,7 @@ router.delete("/:id",middleware.validateActionId, async (req,res,next) =>{
     try{
         const deletedAction = await actions.remove(req.id);
         res.status(200).json({
-            message:"action deleted"
+            message:"action deleted!"
         });
     }catch(err){
         next(err);
