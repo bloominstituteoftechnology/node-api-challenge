@@ -100,6 +100,54 @@ router.use('/:pID/actions/:aID', validateProjectID, validateActionID, validatePo
         })
     })
 
+    //updates a project
+    router.put('/:pID', (req, res) => {
+        // do your magic!
+        Project.update(req.params.pID, req.body)
+          .then(oldProj=>{
+                console.log("project has been updated")
+                Project.get(req.params.pID)
+                .then(updatedProj=>{
+                    res.status(200).json(updatedProj)
+                })
+                .catch(err=>{
+                    res.status(500).json({
+                    message: 'Error retrieving data after update'
+                    })
+                })
+          })
+          .catch(err=>{
+            res.status(500).json({
+              message: 'error updating project'
+            })
+          })
+      
+      })
+
+    //updates an action
+    router.put('/:pID/actions/:aID', (req, res) => {
+        // do your magic!
+        Action.update(req.params.aID, req.body)
+          .then(oldAct=>{
+                console.log("Action has been updated")
+                Action.get(req.params.aID)
+                .then(updatedAct=>{
+                    res.status(200).json(updatedAct)
+                })
+                .catch(err=>{
+                    res.status(500).json({
+                    message: 'Error retrieving data after update'
+                    })
+                })
+          })
+          .catch(err=>{
+            res.status(500).json({
+              message: 'error updating Action'
+            })
+          })
+      
+    })
+
 //~~~~~~~~~~~MIDDLEWARE~~~~~~~~~~~~~~~
     function validateProjectID(req, res, next){
         if(!req.params.pID){
@@ -146,7 +194,7 @@ router.use('/:pID/actions/:aID', validateProjectID, validateActionID, validatePo
     function validatePostPush(req,res,next){
         //we check if its a post/push request
         //if not we move on
-        if(req.method === 'POST' || req.method === 'PUSH'){
+        if(req.method === 'POST' || req.method === 'PUT'){
             //everything needs a description so we check that first
             //if there is no description we respond with an error
             if(!req.body.description){
