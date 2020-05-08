@@ -42,20 +42,22 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
       Express is a web application framework that is layered on top of the Node.js HTTP server module. It adds extra functionality, like routing and middleware support.
 
-- [ ] Describe Middleware?
+- [2] Describe Middleware?
 
       Middleware are functions that can get the req and res objects, operate on them, and then when it's needed trigger some action.
 
-- [ ] Describe a Resource?
+- [3] Describe a Resource?
 
       For RESTful Web API design, everything is a resource!
       Each resource is accessible via a unique URI, resources can have multiple representations and resource management happens via HTTP methods.
 
-- [ ] What can the API return to help clients know if a request was successful?
+- [4] What can the API return to help clients know if a request was successful?
 
       A status code with some sort of helpful message.
 
-- [ ] How can we partition our application into sub-applications?
+- [5] How can we partition our application into sub-applications?
+
+      By using Express Routers.
 
 ## Minimum Viable Product
 
