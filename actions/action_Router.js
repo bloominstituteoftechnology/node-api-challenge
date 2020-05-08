@@ -1,7 +1,8 @@
+// re-factored for web29
 const express = require('express');
 
-const action_Functions = require('../data/helpers/actionModel.js'); //imports action functions from actionModel.js
-const router = express.Router(); //imports the Router() from express as "router"
+const action_Functions = require('../data/helpers/actionModel.js'); 
+const router = express.Router(); 
 
 // /api/actions endpoint
 router.get('/', (req, res) => {
