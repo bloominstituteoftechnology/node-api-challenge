@@ -75,7 +75,21 @@ router.get('/projects/:id', validate_Projects_Id, (req, res) => {
     })
   });
 
+//*********************************************************************
+  /*     Actions */
 
+  /* New Actions */
+
+  router.post('/projects/:id/actions', validate_Projects_Id, validate_Actions, (req,res) => {
+    Actions.insert(req.body)
+    .then(newActions => {
+        res.status(201).json(newActions)
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({message:"Error saving your action"})
+    })
+})
 
 
 //****************************************************************************** */
