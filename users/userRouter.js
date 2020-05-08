@@ -35,6 +35,18 @@ router.get('/projects', (req,res) => {
     })
 })
 
+/* get projects */
+router.get('/projects/:id', validate_Projects_Id, (req, res) => {
+    const id = req.params.id
+    Projects.get(id)
+    .then(projects => {
+        res.status(200).json(projects)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({message: "There was an error finding that project"})
+    })
+  });
 
 
 
