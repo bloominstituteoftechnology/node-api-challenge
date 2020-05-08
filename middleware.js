@@ -56,6 +56,6 @@ function errorCatcher(err, req, res, next) {
   // ensure error has values;
   const error = {error: err, method: req.method, url: req.url, params: req.params, query: req.query}
 
-  res.status(error.code).json(error);
+  res.status(err.code || 500).json(error);
   next();
 }

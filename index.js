@@ -28,7 +28,6 @@ server.use(cors());
 
 
 server.use(mw.logger);
-server.use(mw.errorCatcher);
 // Add routes middleware 
 const api = express.Router();
 server.use('/api/v1', api);
@@ -46,7 +45,8 @@ api.get('/', (req, res) => {
   res.send('There is nothing here');
 })
 
-
+// Catch All
+server.use(mw.errorCatcher);
 
 server.listen(port, () => {
   console.log(`\n== express on: ${port} ==`)

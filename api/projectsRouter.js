@@ -43,6 +43,7 @@ router.get('/', (req, res, next) => {
 // })
 
 function validatePost(req, res, next) {
+  console.log(req.body)
   if (!req.body || !req.body.name || !req.body.description) {
     next(messages.incompleteData);
   } else {
