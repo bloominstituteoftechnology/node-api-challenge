@@ -4,6 +4,8 @@
   "description": "Node API Challenge",
   "main": "index.js",
   "scripts": {
+    "server": "nodemon index.js",
+    "start": "node index.js",
     "db:seed": "knex seed:run"
   },
   "repository": {
@@ -25,6 +27,7 @@
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "knex": "^0.20.13",
+    "node-modules": "^1.0.1",
     "nodemon": "^2.0.3",
     "sqlite3": "^4.1.1"
   },
