@@ -1,4 +1,5 @@
-const express = require('express'); //imports the express framework.
+// re-factored for web29
+const express = require('express'); 
 
 const server = express(); // creates a server variable and initializes it to run express().
 
