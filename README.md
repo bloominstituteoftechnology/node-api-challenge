@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Express routers and middleware functions.
+
 - [ ] Describe Middleware?
+
+Middleware is software that can be attached to the application's execution pipeline ad infinitum. Like other software, it takes a state, does its thing, may perform side effects, and then may return a state or may break execution.
 
 - [ ] Describe a Resource?
 
+A resource is a piece of data, stored as file on a server or as record in a database.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+In the context of Web APIs and Web requests, the API can return a result with HTTP status code 200
+
 - [ ] How can we partition our application into sub-applications?
+
+In the context of Web APIs using Express as the web server, we can do this using the Express Router objects
 
 ## Minimum Viable Product
 
