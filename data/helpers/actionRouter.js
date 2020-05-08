@@ -5,8 +5,6 @@ const router = express.Router();
 const Projects = require("./projectModel");
 const Actions = require("./actionModel");
 
-router.post("/", (req, res) => {});
-
 router.post("/:id/posts", validateUserId, validatePost, (req, res) => {
   Actions.insert(req.body)
     .then((article) => {
@@ -34,8 +32,6 @@ router.get("/", (req, res) => {
 router.get("/:id", validateUserId, (req, res) => {
   res.status(200).json(req.user);
 });
-
-router.get("/:id/posts", validateUserId, (req, res) => {});
 
 router.delete("/:id", validateUserId, (req, res) => {
   Actions.remove(req.user.id)
@@ -74,7 +70,7 @@ router.put("/:id", validateUserId, (req, res) => {
 //custom middleware
 
 function validateUserId(req, res, next) {
-  Projects.get(req.params.id)
+  Actions.get(req.params.id)
     .then((person) => {
       if (person === undefined) {
         res.status(400).json({ message: "invalid user id" });
