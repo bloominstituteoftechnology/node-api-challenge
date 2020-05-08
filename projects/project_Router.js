@@ -1,6 +1,7 @@
+//refactored for web29
 const express = require('express');
 
-const project_Functions = require('../data/helpers/projectModel.js'); //imports project functions from projectModel.js
+const project_Functions = require('../data/helpers/projectModel.js'); 
 const router = express.Router(); ////imorts the Router() from express as "router"
 
 router.get("/", (req, res) => {

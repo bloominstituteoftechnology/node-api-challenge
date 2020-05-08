@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     })
     .catch(err => {
         console.log(err)
-        res.status(500).json({errorMessage: 'unable to retrieve actions'})
+        res.status(500).json({errorMessage: 'unable to get actions'})
     })
 });
 
@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
     })
     .catch(err => {
         console.log(err)
-        res.status(500).json({message: 'error adding post, try again'})
+        res.status(500).json({message: 'error adding post'})
     })
 });
 
