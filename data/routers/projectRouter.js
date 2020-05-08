@@ -148,6 +148,21 @@ router.use('/:pID/actions/:aID', validateProjectID, validateActionID, validatePo
       
     })
 
+    //deletes a project
+    router.delete('/:pID', (req, res) => {
+        // do your magic!
+          Project.remove(req.params.pID)
+            .then(resp=>{
+                console.log(resp)
+                res.status(200).json(resp)
+            })
+            .catch(err=>{
+                res.status(500).json({
+                    message: 'the project could not be removed'
+                })
+            })
+    })
+
 //~~~~~~~~~~~MIDDLEWARE~~~~~~~~~~~~~~~
     function validateProjectID(req, res, next){
         if(!req.params.pID){

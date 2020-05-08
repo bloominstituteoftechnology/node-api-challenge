@@ -34,7 +34,19 @@ router.use('/:aID', validateActionID)
     })
     
     //deletes an action
-
+    router.delete('/:aID', (req, res) => {
+        // do your magic!
+          Users.remove(req.params.aID)
+            .then(resp=>{
+                console.log(resp)
+                res.status(200).json(resp)
+            })
+            .catch(err=>{
+                res.status(500).json({
+                    message: 'the action could not be removed'
+                })
+            })
+    })
 //~~~~~~~~~~~MIDDLEWARE~~~~~~~~~~~~~~~
 
     function validateActionID(req,res,next){
