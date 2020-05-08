@@ -21,6 +21,24 @@ router.post('/projects', validate_Projects, (req,res) => {
     })
 })
 
+/* listing projects  */
+
+
+router.get('/projects', (req,res) => {
+    Projects.get()
+    .then(projects => {
+        res.status(200).json(projects);
+    })
+    .catch(err => {
+        console.log( err);
+        res.status(500).json({message: "Error fetching projects"})
+    })
+})
+
+
+
+
+
 //****************************************************************************** */
 /* Validate */
 function validate_Projects_Id(req, res, next) {
