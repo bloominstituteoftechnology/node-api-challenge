@@ -44,11 +44,12 @@ middleware and routers
 
 - [ ] Describe Middleware?
 
-middleware is a function that can be run as part of the action handler, or to enhance the features of express
+middleware is a function that can be run as part of the action handler, or to enhance the features of express.
+it can be stored in a separate file then exported and called where it is needed. 
 
 - [ ] Describe a Resource?
 
-it is an endpoint which contains data
+it is an endpoint which contains data. it is written server side
 
 - [ ] What can the API return to help clients know if a request was successful?
 

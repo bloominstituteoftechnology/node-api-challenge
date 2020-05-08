@@ -53,7 +53,7 @@ router.put('/:id', (req, res) => {
     project_Functions.update(req.params.id, req.body)
     .then(post => {
         console.log(post)
-        res.status(200).json({message: 'your post was updated successfully'})
+        res.status(200).json({message: 'post updated successfully'})
     })
     .catch(err => {
         console.log(err)
