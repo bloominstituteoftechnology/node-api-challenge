@@ -57,11 +57,7 @@ router.get ('/projects/:id', validate_Projects_Id, (req, res) => {
 //Updates project by ID
 //PUT
 //@Route users/projects/:id
-router.put (
-  '/projects/:id',
-  validate_Projects_Id,
-  validate_Projects,
-  (req, res) => {
+router.put ('/projects/:id', validate_Projects_Id, validate_Projects, (req, res) => {
     const id = req.params.id;
     Projects.update (id, req.body)
       .then (updatedProjects => {
@@ -194,7 +190,7 @@ function validate_Projects_Id (req, res, next) {
     });
 }
 
-//validate project
+//Validate Projects
 function validate_Projects (req, res, next) {
   if (!req.body) {
     res.status (400).json ({message: 'error missing some post data'});
@@ -205,6 +201,7 @@ function validate_Projects (req, res, next) {
   }
 }
 
+//Validate Actions
 function validate_Actions (req, res, next) {
   if (!req.body) {
     res.status (400).json ({message: 'Error theis is missing Action data'});
@@ -215,6 +212,7 @@ function validate_Actions (req, res, next) {
   }
 }
 
+//Validate Actions by ID
 function validate_Actions_Id (req, res, next) {
   const id = req.params.id;
   Actions.get (id)
