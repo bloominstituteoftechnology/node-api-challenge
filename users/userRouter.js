@@ -48,6 +48,19 @@ router.get('/projects/:id', validate_Projects_Id, (req, res) => {
     })
   });
 
+   /* Updates  */
+   router.put('/projects/:id', validate_Projects_Id, validate_Projects, (req,res) => {
+    const id = req.params.id;
+    Projects.update(id, req.body)
+    .then(updatedProjects => {
+        res.status(201).json(updatedProjects);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({message: "Error updating this project"})
+    })
+})
+
 
 
 
