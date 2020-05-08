@@ -3,8 +3,8 @@ const Project = require('../helpers/projectModel')
 const Action = require('../helpers/actionModel')
 const router = express.Router() 
 router.use(express.json())
-router.use('/:pID', validateProjectID)
-router.use('/:pID/actions/:aID', validateProjectID, validateActionID)
+router.use('/:pID', validateProjectID, validatePostPush)
+router.use('/:pID/actions/:aID', validateProjectID, validateActionID, validatePostPush)
 //~~~~~~~~CRUD OPERATIONS~~~~~~~~~~~~~
 
     //returns all projects
@@ -72,6 +72,34 @@ router.use('/:pID/actions/:aID', validateProjectID, validateActionID)
             })
     })
 
+    //creates a new project
+    router.post('/', (req,res)=>{
+        Project.insert(req.body)
+            .then(newProject=>{
+                console.log(newProject)
+                res.status(200).json(newProject)
+            })
+            .catch(err=>{
+                res.status(500).json({
+                    message: "error updating the project list"
+                })
+            })
+    })
+
+    //creates a new action
+    router.post('/:pID/actions', (req,res)=>{
+        Action.insert(req.body)
+        .then(newAction=>{
+            console.log(newAction)
+            res.status(200).json(newAction)
+        })
+        .catch(err=>{
+            res.status(500).json({
+                message: "error updating the action list"
+            })
+        })
+    })
+
 //~~~~~~~~~~~MIDDLEWARE~~~~~~~~~~~~~~~
     function validateProjectID(req, res, next){
         if(!req.params.pID){
@@ -113,6 +141,42 @@ router.use('/:pID/actions/:aID', validateProjectID, validateActionID)
                     message: 'Error retrieving data'
                 })
             })
+    }
+
+    function validatePostPush(req,res,next){
+        //we check if its a post/push request
+        //if not we move on
+        if(req.method === 'POST' || req.method === 'PUSH'){
+            //everything needs a description so we check that first
+            //if there is no description we respond with an error
+            if(!req.body.description){
+                res.status(400).json({message: 'your request needs a description'})
+            }else{
+                //checks if the request is adding or modifying a project
+                if(req.body.name){
+                    //if there isn't a completed field, defaults to false
+                    if(!req.body.completed){
+                        req.body.completed = false
+                    }
+                    next()
+
+                }//checks if the request is adding or modifying an action
+                else if(req.body.notes){
+                    //if there isn't a completed field, defaults to false
+                    if(!req.body.completed){
+                        req.body.completed = false
+                    }
+                    req.body.project_id = req.params.pID
+                    next()
+                }//returns an error if neither of the above are true
+                else{
+                    res.status(400).json({message: 'your request is invalid, check that you have the required fields'})
+                }
+            }
+        }else{
+            console.log('this is not a post/push request')
+            next()
+        }
     }
 
 module.exports = router;
