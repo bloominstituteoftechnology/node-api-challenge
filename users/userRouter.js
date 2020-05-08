@@ -61,6 +61,20 @@ router.get('/projects/:id', validate_Projects_Id, (req, res) => {
     })
 })
 
+  /* Delete */
+  router.delete('/projects/:id',validate_Projects_Id, (req, res) => {
+    const id = req.params.id;
+    Projects.remove(id)
+    .then(projectToDelete => {
+      console.log("The project has been deleted")
+      res.status(200).json(req.project)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({message: "Error deleting project"})
+    })
+  });
+
 
 
 
