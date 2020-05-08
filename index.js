@@ -33,6 +33,13 @@ server.use(mw.errorCatcher);
 const api = express.Router();
 server.use('/api/v1', api);
 
+// sub-routes
+const projectsRouter = require('./api/projectsRouter');
+api.use('/projects', projectsRouter);
+const actionsRouter = require('./api/actionsRouter');
+api.use('/actions', actionsRouter);
+
+
 
 api.get('/', (req, res) => {
   console.log("\n -- root request -- \n")
@@ -47,6 +54,4 @@ server.listen(port, () => {
 
 
 // Helpers and custom middleware
-
-
 
