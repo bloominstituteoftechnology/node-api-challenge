@@ -56,7 +56,23 @@ router.delete("/:id", validateUserId, (req, res) => {
     .then();
 });
 
-router.put("/:id", validateUserId, (req, res) => {});
+router.put("/:id", validateUserId, (req, res) => {
+  Projects.update(req.user.id, req.body)
+    .then((updated) => {
+      console.log("put:", updated);
+      Projects.get(req.user.id)
+        .then((person) => {
+          res.status(200).json(person);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json({ Errormessage: "Error is occurred" });
+        });
+    })
+    .catch((err) => {
+      res.status(500).json({ Error: "updated error occured" });
+    });
+});
 
 //custom middleware
 

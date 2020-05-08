@@ -5,9 +5,18 @@ const router = express.Router();
 const Projects = require("./projectModel");
 const Actions = require("./actionModel");
 
-router.post("/", validateUser, (req, res) => {});
+router.post("/", (req, res) => {});
 
-router.post("/:id/posts", validateUserId, validatePost, (req, res) => {});
+router.post("/:id/posts", validateUserId, validatePost, (req, res) => {
+  Actions.insert(req.body)
+    .then((article) => {
+      res.status(200).json(article);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 router.get("/", (req, res) => {
   Actions.get()
@@ -44,7 +53,23 @@ router.delete("/:id", validateUserId, (req, res) => {
     .then();
 });
 
-router.put("/:id", validateUserId, (req, res) => {});
+router.put("/:id", validateUserId, (req, res) => {
+  Actions.update(req.params.id, req.body)
+    .then((updated) => {
+      console.log("put:", updated);
+      Actions.get(req.params.id)
+        .then((person) => {
+          res.status(200).json(person);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json({ Errormessage: "Error is occurred" });
+        });
+    })
+    .catch((err) => {
+      res.status(500).json({ Error: "updated error occured" });
+    });
+});
 
 //custom middleware
 
@@ -67,9 +92,9 @@ function validateUserId(req, res, next) {
 }
 
 function validateUser(req, res, next) {
-  if (req.body.name === undefined || req.body === null) {
+  if (req.body.project_id === undefined || req.body === null) {
     res.status(400).json({ message: "missing user data" });
-  } else if (req.body.name === "" || req.body.name === null) {
+  } else if (req.body.project_id === "" || req.body.project_id === null) {
     res.status(404).json({ message: "missing required name field" });
   } else {
     next();
@@ -77,6 +102,7 @@ function validateUser(req, res, next) {
 }
 
 function validatePost(req, res, next) {
+  console.log(req.body.project_id);
   if (
     req.body.project_id === undefined ||
     req.body.description === undefined ||
