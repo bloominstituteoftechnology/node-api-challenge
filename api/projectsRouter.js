@@ -48,6 +48,16 @@ router.get('/:id', validateId, (req, res, next) => {
   })
 })
 
+router.get('/:id/actions', validateId, (req, res, next) => {
+  projects.getProjectActions(req.params.id)
+  .then(result => {
+    res.status(200).json(result);
+  })
+  .catch(err => {
+    next(messages.dbRetrieveError);
+  })
+})
+
 router.put('/:id', validateId, validateData, (req, res, next) => {
   projects.update(req.params.id, req.body)
   .then(result => {
