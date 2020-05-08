@@ -1,27 +1,3 @@
-module.exports = {
-  logger,
-  errorCatcher,
-  messageDictionary
-}
-
-
-function logger(req, res, next) {
-  const timestamp = new Date().toISOString();
-  console.log(`${req.method} ${req.url} at [${timestamp}]`);
-  next();
-}
-
-function errorCatcher(err, req, res, next) {
-  // do some loging: error + request
-
-  // ensure error has values;
-  const error = {...err, method: req.method, url: req.url, params: req.params, query: req.query}
-
-  res.status(error.code).json(error);
-  next();
-}
-
-
 const messageDictionary = {
   notAcceptableValue: {
     message: "The passed parameter value is not acceptable",
@@ -43,7 +19,7 @@ const messageDictionary = {
     message: "Please provide the required data",
     code: 400,
   },
-  dbSaveError: {
+  dbCreateError: {
     message: "There was an error while trying to Save to DB",
     code: 500,
   },
@@ -59,15 +35,27 @@ const messageDictionary = {
     message: "There was an error while trying to Delete record from DB",
     code: 500,
   },
-
-
-  dbCreateSuccess: {
-    message: "NEW record created successfully",
-    code: 201,
-  },
-  dbRetrieveSuccess: {
-    message: "Returned data successfully",
-    code: 200,
-  }
 }
 
+module.exports = {
+  logger,
+  errorCatcher,
+  messageDictionary
+}
+
+
+function logger(req, res, next) {
+  const timestamp = new Date().toISOString();
+  console.log(`${req.method} ${req.url} at [${timestamp}]`);
+  next();
+}
+
+function errorCatcher(err, req, res, next) {
+  // do some loging: error + request
+
+  // ensure error has values;
+  const error = {error: err, method: req.method, url: req.url, params: req.params, query: req.query}
+
+  res.status(error.code).json(error);
+  next();
+}
