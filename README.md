@@ -16,10 +16,10 @@ The Minimum Viable Product must be completed in three hours.
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your _Team Lead_ as collaborator on Github.
-- [ ] Clone your forked version of the Repository.
-- [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
+- [X] Create a forked copy of this project.
+- [X] Add your _Team Lead_ as collaborator on Github.
+- [X] Clone your forked version of the Repository.
+- [X] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
 - [ ] Implement the project on this Branch, committing changes regularly.
 - [ ] Push commits: git push origin `firstName-lastName`.
 
@@ -38,13 +38,22 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [1] Mention two parts of Express that you learned about this week.
+
+      Express is a web application framework that is layered on top of the Node.js HTTP server module. It adds extra functionality, like routing and middleware support.
 
 - [ ] Describe Middleware?
 
+      Middleware are functions that can get the req and res objects, operate on them, and then when it's needed trigger some action.
+
 - [ ] Describe a Resource?
 
+      For RESTful Web API design, everything is a resource!
+      Each resource is accessible via a unique URI, resources can have multiple representations and resource management happens via HTTP methods.
+
 - [ ] What can the API return to help clients know if a request was successful?
+
+      A status code with some sort of helpful message.
 
 - [ ] How can we partition our application into sub-applications?
 
