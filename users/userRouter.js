@@ -141,7 +141,7 @@ router.get('/actions/:id', validate_Actions_Id, (req, res) => {
     })
   });
 
-/* Updates */
+
 //Updates ACTIONS by id
 //PUT
 //@Route users/actions/:id
@@ -156,6 +156,23 @@ router.put('/actions/:id', validate_Actions, validate_Actions_Id,(req,res) => {
         res.status(500).json({message: "Error updating this Action"})
     })
 })
+
+
+//Deletes ACTIONS by id
+//DELETE
+//@Route users/actions/:id
+router.delete('/actions/:id',validate_Actions_Id, (req, res) => {
+    const id = req.params.id;
+    Actions.remove(id)
+    .then(projectToDelete => {
+      console.log("The Actions have been deleted")
+      res.status(200).json(req.action)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({message: "Error deleting Action"})
+    })
+  });
 
 
 //****************************************************************************** */
