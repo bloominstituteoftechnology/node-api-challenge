@@ -41,15 +41,21 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [x] Mention two parts of Express that you learned about this week. 
+# Express middleware is compatible with connect middleware
+# Built-in middleware is included with Express, but not added to the application automatically.
 
-- [ ] Describe Middleware?
+- [x] Describe Middleware?
+# Middelware are functions that have access to the request object (req), the response object (res), and the next function in the application’s request-response cycle. The next function is a function in the Express router which, when invoked, executes the middleware succeeding the current middleware. 
 
-- [ ] Describe a Resource?
+- [x] Describe a Resource? 
+# Resources are the the nouns when performing the CRUD process, like people, items, etc.
 
-- [ ] What can the API return to help clients know if a request was successful?
-
-- [ ] How can we partition our application into sub-applications?
+- [x] What can the API return to help clients know if a request was successful?
+# status code .res(500).json({"message: "your request was successful})
+- [x] How can we partition our application into sub-applications?
+# We simply use different routes to different databases. 
+## Minimum Viable Product
 
 ## Minimum Viable Product
 
