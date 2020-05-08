@@ -93,7 +93,7 @@ router.delete ('/projects/:id', validate_Projects_Id, (req, res) => {
 //********************Actions*************************************************//
 
 //Create a new ACTION
-//PUT
+//POST
 //@Route users/projects/:id/actions
 router.post (
   '/projects/:id/actions',
@@ -111,7 +111,7 @@ router.post (
   }
 );
 
-//Get a new ACTION by id
+//Get PROJECT ACTION by id
 //GET
 //@Route users/projects/:id/actions
 router.get('/projects/:id/actions', validate_Projects_Id, (req,res) => {
@@ -126,6 +126,36 @@ router.get('/projects/:id/actions', validate_Projects_Id, (req,res) => {
     })
 })
 
+//Get a  ACTION by id
+//GET
+//@Route users/actions/:id
+router.get('/actions/:id', validate_Actions_Id, (req, res) => {
+    const id = req.params.id
+    Actions.get(id)
+    .then(idActions => {
+        res.status(200).json(idActions)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({message: "Error getting the action"})
+    })
+  });
+
+/* Updates */
+//Updates ACTIONS by id
+//PUT
+//@Route users/actions/:id
+router.put('/actions/:id', validate_Actions, validate_Actions_Id,(req,res) => {
+    const id = req.params.id;
+    Actions.update(id, req.body)
+    .then(updatedAction => {
+        res.status(201).json(updatedAction);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({message: "Error updating this Action"})
+    })
+})
 
 
 //****************************************************************************** */
