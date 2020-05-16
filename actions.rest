@@ -1,0 +1,7 @@
+GET http://localhost:5001/api/actions
+ 
+###
+
+GET http://localhost:5001/api/projects
+ 
+###
