@@ -1,20 +1,25 @@
 # Sprint Challenge: Express and Node.js - Projects & Actions
 
-## Description
+## Back-End Information 
 
-In this challenge, you design and create a web API to manage the following resources: `Projects` and `Actions`.
+Method  	    Description	                                 Endpoint
+POST	        Create a Project	                        /projects
+GET	            Get * Projects	                            /projects
+GET	            Gets a specific Project	                    /projects/:id
+PUT 	        Edits/Update specific Project	            /projects/:id
+DELETE	        Delete specific Project	                    /projects/:id
+GET	            Gets specific Project Actions	            /projects/:id/actions
+POST	        Create action for specific project	        /projects/:id/actions
+GET	            Gets * actions	                            /actions
+GET	            Gets specific action	                    /actions/:id
+PUT	            Edits/Update specific Action	            /actions/:id
+DELETE	        Delete specific Actions	                    /actions/:id
 
-## Instructions
+	Base URL:  https://projectactions.herokuapp.com/api/
+	Running on : https://projectactions.herokuapp.com/
 
-**Read these instructions carefully**. Understand exactly what is expected **_before_** starting to code.
 
-This is an individual assessment, please work on it alone. It is an opportunity to demonstrate proficiency of the concepts and objectives introduced and practiced in preceding days.
 
-If the instructions are not clear, please seek support from your TL and Instructor on Slack.
-
-The Minimum Viable Product must be completed in three hours.
-
-Follow these steps to set up and work on your project:
 
 - [ ] Create a forked copy of this project.
 - [ ] Add your _Team Lead_ as collaborator on Github.
