@@ -1,52 +1,26 @@
-# Sprint Challenge: Express and Node.js - Projects & Actions
-
-## Description
-
-In this challenge, you design and create a web API to manage the following resources: `Projects` and `Actions`.
-
-## Instructions
-
-**Read these instructions carefully**. Understand exactly what is expected **_before_** starting to code.
-
-This is an individual assessment, please work on it alone. It is an opportunity to demonstrate proficiency of the concepts and objectives introduced and practiced in preceding days.
-
-If the instructions are not clear, please seek support from your TL and Instructor on Slack.
-
-The Minimum Viable Product must be completed in three hours.
-
-Follow these steps to set up and work on your project:
-
-- [ ] Create a forked copy of this project.
-- [ ] Add your _Team Lead_ as collaborator on Github.
-- [ ] Clone your forked version of the Repository.
-- [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
-- [ ] Implement the project on this Branch, committing changes regularly.
-- [ ] Push commits: git push origin `firstName-lastName`.
-
-Follow these steps for completing your project.
-
-- [ ] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
-- [ ] Please don't merge your own pull request.
-- [ ] Add your _Team Lead_ as a Reviewer on the Pull-request
-- [ ] Your _Team Lead_ will count the challenge as done by merging the branch into _master_.
-
-## Commits
-
-Commit your code regularly and use descriptive messages. This helps both you (in case you ever need to return to old code) and your Team Lead.
-
 ## Self-Study/Essay Questions
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+* Express is light-weight. This means the framework isn't bloated in terms of file size and doesn't contain excess stuff that can slow down your app. Express is also unopinionated. This means that there's a lot of freedom on how to use express for your application (no one way to do things) thus making express very flexible in usage.
+
 - [ ] Describe Middleware?
+
+* Middleware is a function that can intercept requests and responses before it gets to the router. It has the possiblity to make changes to the request, and is useful for authenticating and doing any necessary modificiations before the server gets the request.
 
 - [ ] Describe a Resource?
 
+* Resources is data in the backend that can be managed by the front-end's intereactions with the end-points of a back-end API.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+* Statuses. Different statuses means different things. 200 generally means it's good, 404 means it's not found, 500 means internal error etc. 200 would be the answer to let the user know the request was successful (201 as well if there were changes to DBS)
+
 - [ ] How can we partition our application into sub-applications?
+
+* We can modularize our application into it's own folder based on the what category the data is. For example, we would make seperate routers for comments and for users as they can be their own objects in the database. We can then pass the routers in as if they were middleware in the server file.
 
 ## Minimum Viable Product
 
