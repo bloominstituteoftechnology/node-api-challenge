@@ -6,6 +6,7 @@ module.exports = {
   insert,
   update,
   remove,
+  getById,
   getProjectActions,
 };
 
@@ -52,6 +53,12 @@ function remove(id) {
   return db("projects")
     .where("id", id)
     .del();
+}
+
+function getById(id) {
+  return db('projects')
+    .where({ id })
+    .first();
 }
 
 function getProjectActions(projectId) {
