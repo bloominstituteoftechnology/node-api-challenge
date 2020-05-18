@@ -19,12 +19,14 @@ projectsRouter.get('/',(req,res) => {
 })
 
 projectsRouter.post('/', (req,res) => {
+    console.log(req.body)
     projectsDBmethods.insert(req.body)
         .then(resp => {
+            console.log(resp)
             res.status(201).json({resp})
         })
         .catch(err => {
-            res.status(500).json({})
+            res.status(500).json({err})
         })
 })
 

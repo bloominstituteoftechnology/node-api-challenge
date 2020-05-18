@@ -31,7 +31,7 @@ function get(id) {
 }
 
 function getById(id) {
-  return db('users')
+  return db('projects')
     .where({ id })
     .first();
 }

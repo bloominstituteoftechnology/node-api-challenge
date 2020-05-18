@@ -28,7 +28,7 @@ actionsRouter.post('/:id/actions',validateUser, (req,res) => {
         })
 })
 
-actionsRouter.put('/:id',validateUser,(req,res) =>{
+actionsRouter.put('/:id',(req,res) =>{
     actionsDBmethods.update(req.params.id,req.body)
         .then(resp => {
             res.status(200).json({resp})
