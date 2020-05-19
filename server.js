@@ -3,9 +3,9 @@ const server = express();
 const projectRoute = require('./api/projectRoute');
 const actionsRoute = require('./api/actionPost');
 
-// OH MY GOD IT WAS THAT SIMPLE I PUT IT INT THE WRONG ORDER
+
 server.use(express.json())
-// THIS NEED TO GO FIRST OTHERWISE IT DOESN'T WORK NO DOY!!!
+
 
 server.use('/api',logger, projectRoute);
 server.use('/actions', logger, actionsRoute );
@@ -22,5 +22,13 @@ function logger(req, res, next){
 );
     next();
 }
+
+
+// localhost:5000/api/projects/:id/actions
+// should add projects number based on id param
+
+
+
+
 
 module.exports = server;
