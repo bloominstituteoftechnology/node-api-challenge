@@ -9,6 +9,8 @@ const catchDelete = { message:"__CATCH__ failed to remove data."}
 const catchPut = { message:"__CATCH__ failed to update data."}
 
 // Base Routes
+// localhost:5000/projects
+
 router
     .route("/projects")
     .get((req,res) =>{
@@ -26,7 +28,9 @@ router
     })
     
 
-// ID Routesres
+// ID Routes
+// localhost:5000/projects/:id
+
 router
     .route("/projects/:id")
     .get((req, res) => {
@@ -49,6 +53,8 @@ router
     })
 
 // ID Actions
+// localhost:5000/projects/:id/actions
+
 router
     .route("/projects/:id/actions")
     .get((req, res) =>{
@@ -57,7 +63,7 @@ router
             .then( actions => res.status(200).json(actions) )
             .catch( () => res.status(500).json(catchGet))
     })
-    .post(projectCheck, (req, res)=> {
+    .post(actionStructure, (req, res)=> {
         const newAction = {...req.body, "project_id": req.params.id}
         console.log(newAction)
         action
@@ -67,10 +73,11 @@ router
     })
 
 // ID Actions ID
+// localhost:5000/projects/:id/actions/:actionId
+
 router
     .route("/projects/:id/actions/:actionId")
     .get((req, res) => {
-    const proId = req.params.id;
     const actId = req.params.actionId;
     action
         .get(actId)
@@ -84,33 +91,11 @@ router
             .then(removed => res.status(200).json(removed))
             .catch( () => res.status(500).json(catchDelete))
     })
-    // .put((req, res) => {
-    //     action
-    //         .update(req.params.actionId, req.params.body)
-    //         .then(update => res.status(200).json(update))
-    //         .catch( (err) => res.status(500).json(err))
-    // })        
-
-
-
-
-// router
-//     .route("/actions")
-//     .post(projectCheck,(req, res)=> {
-//         const newAction = req.body;
-//         action
-//             .insert(newAction)
-//             .then( data => {res.status(200).json(data)})
-//             .catch( ()=> {res.status(500).json(catchPost)})
-//     })
-
-
-
-
 
 // Projects Middleware
 
-function projectCheck(req, res,next){
+function projectCheck(req, res, next){
+    // Valiedate Structure of New Project
     const postData = req.body;
     if(!postData.name){
         res.status(400).json({message:"Project needs a name."})
@@ -121,24 +106,16 @@ function projectCheck(req, res,next){
     }
 }
 
-// function actionCheck( req, res ,next) {
-//     const proId = req.params.id;
-//     project
-//         .get(proId)
-//         .then()
-// })
-
+function actionStructure(req, res, next){
+    // Validates Structure of Action Post Data
+    const actionData = req.body;
+    if(!actionData.description){
+        res.status(400).json({message:"Please Provide Descritpion"})
+    }else if(!actionData.notes){
+        res.status(400).json({message:"Please add some notes."})
+    }else{
+        next();
+    }
+}
 
 module.exports = router; 
-   // project
-    //     .getProjectActions(proId)
-    //     .then( project => {
-    //         action
-    //             .get(actId)
-    //             .then(res => res.status(200).json(res))
-    //     })
-
-// function actionCheck(req, res, next){
-//     const actionData = req.body;
-//     if(post)
-// }
