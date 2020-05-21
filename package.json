@@ -4,7 +4,8 @@
   "description": "Node API Challenge",
   "main": "index.js",
   "scripts": {
-    "db:seed": "knex seed:run"
+    "db:seed": "knex seed:run",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "dependencies": {
     "helmet": "^3.22.0",
     "knex": "^0.20.13",
+    "nodemon": "^2.0.4",
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
