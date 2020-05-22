@@ -40,11 +40,13 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
   1. Express comes with its own middleware
+  2. Express allows us to create an RESTful APIs using javascript.
 
 - [ ] Describe Middleware?
   an array of functions that get executed in the order they are introuced into the server code.
 
 - [ ] Describe a Resource?
+  
 
 - [ ] What can the API return to help clients know if a request was successful?
   It can send a status code and message to the user.
