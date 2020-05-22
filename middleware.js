@@ -13,7 +13,7 @@ const validateActionId = (req, res, next) => {
   const { id } = req.params;
   Actions.get(id)
     .then(action => {
-      action ? req.action : res.status(404).json({ message: 'That Action Does Not Exist!' })
+      action ? req.action : res.status(404).json({ message: 'Action Does Not Exist!' })
     })
     .catch(err => {
       res.status(500).json({ error: 'Sorry, try again!', err })
@@ -27,7 +27,7 @@ const validateProjectId = (req, res, next) => {
     .then(project => {
       project
         ? req.project
-        : res.status(404).json({ message: "That Project Does Not Exist!" });
+        : res.status(404).json({ message: "Project Does Not Exist!" });
     })
     .catch(err => {
       res.status(500).json({ error: "Sorry, try again!", err });

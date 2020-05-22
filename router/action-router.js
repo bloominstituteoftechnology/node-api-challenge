@@ -33,6 +33,17 @@ router.put("/:id", validateActionId, validateAction, (req, res) => {
   });
 }); 
 
+// Post
+router.post("/", validateAction, (req, res) => {
+  Actions.insert(req.body)
+    .then(action => {
+      res.status(201).json({ success: 'A New Action was created!', action })
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Sorry, try again!', err })
+    })
+});
+
 // Delete
 router.delete("/:id", validateActionId, (req, res) => {
   const { id } = req.params;
