@@ -48,6 +48,7 @@ router.put("/:id", validateProjectId, validateProject, (req, res) => {
 
 router.delete("/:id", validateProjectId, (req, res) => {
   const { id } = req.params;
+
   Projects
     .get(id)
     .then(project => {
@@ -64,6 +65,7 @@ router.delete("/:id", validateProjectId, (req, res) => {
 
 router.get("/:id/actions", validateProjectId, validateActionId, (req, res) => {
   const { id } = req.params;
+
   Projects.getProjectActions(id)
     .then(data => {
       data ? res.status(200).json(data) : null
@@ -73,6 +75,7 @@ router.get("/:id/actions", validateProjectId, validateActionId, (req, res) => {
 router.post("/:id/actions", validateProjectId, validateAction, (req, res) => {
   const { description, notes } = req.body;
   const project_id = req.params.id;
+  
   Projects.get(project_id).then(action => {
     if (!action) {
       null;
