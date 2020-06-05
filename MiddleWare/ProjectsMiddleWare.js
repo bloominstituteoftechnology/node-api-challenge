@@ -10,9 +10,9 @@ function validateProject(req, res, next) {
   next();
 }
 
-module.exports = validateProject();
+module.exports = validateProject;
 
-function validateProjectId() {
+function validateProjectId(req, res, next) {
   if (!req.params.id) {
     db.get(Number(req.body.project_id))
       .then((project) => {

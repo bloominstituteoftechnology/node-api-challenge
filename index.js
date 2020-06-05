@@ -12,25 +12,28 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
-//import exress
+
+//hook up express to server
 const express = require('express');
 
-//import routers
-const projectsRouter = require('./Routers/ProjectsRouter');
-const actionsRouter = require('./Routers/ActionsRouter');
+const projectRouter = require('./routers/ProjectRouter');
+const actionsRouter = require('./routers/ActionsRouter');
 
 const server = express();
-
-// json middleware
 server.use(express.json());
 
-//return default response
+// hook up routers to server
+server.use('/api/projects/actions', actionsRouter);
+server.use('/api/projects', projectRouter);
+
+// return default response
 server.get('/', (req, res) => {
-  res.send({ message: 'welcome to the sprint challenge!' });
+  res.send({ message: ' Welcome to Node.js Sprint 1' });
 });
 
-// listen to port
-const port = 9000;
-server.listen(port, () => {
-  console.log(`listening on port ${port}`);
+//port used is 9000
+server.listen(9000, () => {
+  console.log(
+    '-------------------------------------------\nserver is running on http://localhost:9000\n------------------------------------------- '
+  );
 });

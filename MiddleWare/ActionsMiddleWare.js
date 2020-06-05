@@ -1,4 +1,3 @@
-//import actions
 const dbActions = require('../data/helpers/actionModel');
 
 function validateActionId(req, res, next) {
