@@ -5,9 +5,9 @@ const projectRouter = express.Router();
 // import methods
 const db = require('../data/helpers/projectModel');
 
-const validateProject = require('../middleware/ProjectMiddleWare');
+const validateProject = require('../middleware/ProjectsMiddleWare');
 
-const validateProjectId = require('../middleware/ProjectMiddleWare');
+const validateProjectId = require('../middleware/ProjectsMiddleWare');
 // CRUD for projects
 projectRouter.get('/', (req, res) => {
   db.get()

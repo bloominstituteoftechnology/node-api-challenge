@@ -5,7 +5,7 @@ const actionsRouter = express.Router();
 // import methods
 const dbActions = require('../data/helpers/actionModel');
 
-const validateProjectId = require('../middleware/ProjectMiddleWare');
+const validateProjectId = require('../middleware/ProjectsMiddleWare');
 
 const validateActionId = require('../middleware/ActionsMiddleWare');
 
@@ -17,15 +17,20 @@ actionsRouter.get('/:id', (req, res) => {
     .catch((err) => console.log(err.message));
 });
 
-actionsRouter.post('/', (req, res) => {
-  dbActions.insert(req.body).then((action) => res.status(201).json({ Created: action }));
+actionsRouter.post('/:id', (req, res) => {
+  dbActions
+    .insert(req.body)
+    .then((action) => res.status(201).json({ Created: action }))
+    .catch((err) => console.log(err));
 });
 
-actionsRouter.put('/', validateProjectId, validateActionId, (req, res) => {
-  dbActions.update(req.body.id, req.body).then((count) => res.status(200).json({ Ammount_of_updated_actions: count }));
+actionsRouter.put('/:id', validateProjectId, validateActionId, (req, res) => {
+  dbActions
+    .update(req.body.project_id, req.body)
+    .then((count) => res.status(200).json({ Ammount_of_updated_actions: count }));
 });
 
-actionsRouter.delete('/delete/:id', validateActionId, (req, res) => {
+actionsRouter.delete('/:id', validateActionId, (req, res) => {
   console.log(req.params.id);
   dbActions
     .remove(req.params.id)
