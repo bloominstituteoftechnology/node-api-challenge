@@ -5,15 +5,6 @@ const router = express.Router();
 const ph = require('../data/helpers/projectModel');
 router.use('/:id', validateId)
 
-
-router.get('/', (req, res) => {
-    ph.get()
-        .then(project => res.status(200).json(project))
-        .catch(err => res.status(500).json({
-            message: "Something went wrong trying to get the projects."
-        }));
-});
-
 router.get('/:id', (req, res) => {
     ph.get(req.params.id)
         .then(project => {
@@ -33,7 +24,7 @@ router.get('/', (req, res) => {
             res.status(200).json({ project })
         })
         .catch(err => {
-            res.status(500).json({ Message: 'couldnt find your stuff' })
+            res.status(500).json({ Message: 'Nothing to see here' })
         })
 })
 
@@ -105,7 +96,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     ph.remove(req.params.id)
         .then(project => {
-            res.status(200).json({ message: 'project has been delted with.', project: req.project })
+            res.status(200).json({ message: 'oh no this project is gone >> ', project: req.project })
         })
 })
 
