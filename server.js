@@ -1,11 +1,11 @@
 const express = require('express')
-// const actionRouter = require('./routes/actionRouter')
+const actionRouter = require('./routes/actionsRouter')
 const projectRouter = require('./routes/projectsRouter')
 const server = express()
 
 server.use(express.json())
 
-// server.use('/api/actions', actionRouter)
+server.use('/api/actions', actionRouter)
 server.use('/api/projects', projectRouter)
 
 
