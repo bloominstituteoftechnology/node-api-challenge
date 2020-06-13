@@ -1,0 +1,58 @@
+# === Actions ===
+
+#GET Request
+GET http://localhost:8008/api/actions/
+
+###
+
+#GET by :id
+GET http://localhost:8008/api/actions/1
+
+###
+#POST
+POST http://localhost:8008/api/action/
+Content-Type: application/json
+
+{
+    "description": "TEST POST, TEST POST",
+    "notes": "TEST POST TEST POST"
+}
+
+
+# ===================================================
+
+//PROJECT
+
+//GET
+###
+//Get
+GET http://localhost:8008/api/projects/
+
+###
+//GET by id:
+GET http://localhost:8008/api/projects/1
+
+###
+//POST request
+POST http://localhost:8008/api/projects 
+Content-Type: application/json
+
+{
+    "description":"TEST TEST FROM PROJECT POST",
+    "name":"TESTING NAME POST"
+}
+
+###
+//PUT request by :id
+PUT http://localhost:8008/api/projects/3 
+Content-Type: application/json
+
+{
+   "description":"UPDATED POST. ",
+   "name":"UPDATED POST ==="
+}
+
+
+###
+//DELETE by :id
+DELETE http://localhost:8008/api/projects/2

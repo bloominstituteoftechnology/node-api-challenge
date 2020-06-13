@@ -1,6 +1,5 @@
 /*
-play this: https://www.youtube.com/watch?v=d-diB65scQU
-
+play this: https://www.youtube.com/watch?v=d-diB65scQU 😂😂😂😂😂
 Sing along:
 
 here's a little code I wrote, please read the README word for word, don't worry, you got this
@@ -12,3 +11,24 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+const express = require('express')
+const server = express()
+const port = process.env.PORT || 8008
+
+const actionRouter = require('./actions/actionsRouter')
+const projectsRouter = require('./projects/projectsRouter')
+
+server.use(express.json())
+server.use(express.urlencoded({ extended: true }))
+server.use('/api/actions', actionRouter)
+server.use('/api/projects', projectsRouter )
+
+server.use((err, req, res, next) => {
+	console.log(err)
+	res.status(500).json({
+		message: "Catch All Error Handler: Something went wrong",
+	})
+})
+
+
+server.listen(port, () => console.log('Sever Running on Port 8008'))
