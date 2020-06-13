@@ -7,7 +7,7 @@ const router = express.Router();
 router.use(express.json());
 
 //-----------------
-// GET Projects  
+// GET Projects 
 //-----------------
 
 router.get("/", (req, res) => {
@@ -115,7 +115,17 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-
+router.get('/:id/actions', (req, res) => {
+    projects.getProjectActions(req.params.id)
+        .then(action => {
+            res.status(200).json(action)
+        })
+        .catch(err => {
+            res.status(500).json({
+                Message: 'Could not find your action'
+            })
+        })
+})
 
 /* function validateProjectId(req, res, next) {
 if (req.params.id) {
