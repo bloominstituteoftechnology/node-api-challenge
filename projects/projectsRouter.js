@@ -34,7 +34,7 @@ projectsRouter.post('/', validateBODY, (req, res) => {
         .catch(err => console.log(err))
 })
 
-//PUT Request🎲🎟
+//PUT Request✅🎲🎟
 projectsRouter.put('/:id', validateID, validateBODY, (req, res) => {
     const postID = req.params.id
     const postBody = req.params
@@ -58,13 +58,23 @@ projectsRouter.put('/:id', validateID, validateBODY, (req, res) => {
         })
     });
 
-//DELETE request 🎲
+//DELETE request✅ 🎲
 projectsRouter.delete('/:id', validateID, (req, res) => {
     projectsDB.remove(req.params.id)
         .then(data => {
             res.status(200).json({
                 message:`User ${req.params.id} deleted`
             })
+        })
+        .catch(err => console.log(err))
+})
+
+//GET getProjectActions🎲
+projectsRouter.get('/:id/actions', validateID, (req,res) => {
+    const postID = req.params.id
+    projectsDB.getProjectActions(postID)
+        .then(data => {
+            res.status(200).json(data)
         })
         .catch(err => console.log(err))
 })
