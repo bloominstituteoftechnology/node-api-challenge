@@ -2,7 +2,7 @@ const express = require('express')
 const actionsRouter = express.Router()
 const actionsDB = require('../data/helpers/actionModel.js')
 
-//GET all
+//GET all✅
 actionsRouter.get("/", (req,res) => {
     actionsDB.get()
         .then(data => {
@@ -13,7 +13,7 @@ actionsRouter.get("/", (req,res) => {
         })
 })
 
-//GET Request by :id
+//GET Request by :id✅🎲
 actionsRouter.get('/:id', validateID, (req, res) => {
     const id = req.params.id
     actionsDB.get(id)
@@ -25,24 +25,48 @@ actionsRouter.get('/:id', validateID, (req, res) => {
         })
 })
 
-//POST
-actionsRouter.post('/', (req, res) => {
-    const postBody = req.params.body
-    const postID = req.params.id
+//POST by :id ✅🎲🎟
+actionsRouter.post('/', validateID, validateBODY, (req, res) => {
+    const postBody = req.body
 
     actionsDB.insert(postBody)
-    .then(data => {
-        if(!postBody){
-            return res.status(400).json({
-                message:"Please include a description and notes fields"
-            })
-        }
-    })
-    .catch(err => console.log(err))
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => console.log(err))
 })
 
+//PUT by :id
+actionsRouter.put('/:id', validateID, validateBODY, (req, res) => {
+    const postBody = req.body
+    const postId = req.params.id
 
-//middleware
+    actionsDB.update(postId, postBody)
+        .then(updates => {
+            res.status(200).json({
+                message:`User id ${postId} has been updated`,
+                updates: updates
+            })
+        })
+        .catch(err => console.log(err))
+
+        
+})
+
+// DELETE by :id ✅🎲
+actionsRouter.delete('/:id', validateID, (req, res) => {
+    const postID = req.params.id
+
+    actionsDB.remove(postID)
+        .then(data => {
+            res.status(200).json({
+                message:`User ${postID} was deleted`
+            })
+        })
+        .catch(err => console.log(err))
+})
+
+//middleware🎲
 function validateID(req, res, next){
     const id = req.params.id
     actionsDB.get(id)
@@ -58,8 +82,23 @@ function validateID(req, res, next){
         })
 }
 
-function validatePOST(req, res, next) {
+//🎟
+function validateBODY(req, res, next){
+    const {description, notes} = req.body
 
+    if(!description || !notes){
+        return res.status(400).json({
+            message: `Please add description & notes fields`, 
+            middleware:"Actions: validateBODY"
+        })
+    }
+    if(description.length > 128){
+        return res.status(400).json({
+            message:`Post over 128 characters`,
+            middleware:"Actions: validateBODY"
+        })
+    }
+    next()
 }
 
 module.exports = actionsRouter

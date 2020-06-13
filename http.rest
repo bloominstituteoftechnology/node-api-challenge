@@ -10,14 +10,25 @@ GET http://localhost:8008/api/actions/1
 
 ###
 #POST
-POST http://localhost:8008/api/action/
+POST http://localhost:8008/api/actions/
 Content-Type: application/json
 
 {
+    "project_id" : 1,
     "description": "TEST POST, TEST POST",
     "notes": "TEST POST TEST POST"
 }
 
+###
+//PUT Request by :id
+
+PUT http://localhost:8008/api/actions/1
+Content-Type: application/json
+
+###
+
+//Delete by :id
+DELETE http://localhost:8008/api/actions/3
 
 # ===================================================
 
@@ -56,3 +67,8 @@ Content-Type: application/json
 ###
 //DELETE by :id
 DELETE http://localhost:8008/api/projects/2
+
+
+###
+//getProjectsActions
+GET http://localhost:8008/api/projects/1/actions

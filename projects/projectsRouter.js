@@ -58,7 +58,7 @@ projectsRouter.put('/:id', validateID, validateBODY, (req, res) => {
         })
     });
 
-//DELETE request✅ 🎲
+//DELETE request✅🎲
 projectsRouter.delete('/:id', validateID, (req, res) => {
     projectsDB.remove(req.params.id)
         .then(data => {
@@ -69,7 +69,7 @@ projectsRouter.delete('/:id', validateID, (req, res) => {
         .catch(err => console.log(err))
 })
 
-//GET getProjectActions🎲
+//GET getProjectActions✅🎲
 projectsRouter.get('/:id/actions', validateID, (req,res) => {
     const postID = req.params.id
     projectsDB.getProjectActions(postID)
