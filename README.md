@@ -16,12 +16,12 @@ The Minimum Viable Product must be completed in three hours.
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your _Team Lead_ as collaborator on Github.
-- [ ] Clone your forked version of the Repository.
-- [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
-- [ ] Implement the project on this Branch, committing changes regularly.
-- [ ] Push commits: git push origin `firstName-lastName`.
+- [x] Create a forked copy of this project.
+- [x] Add your _Team Lead_ as collaborator on Github.
+- [x] Clone your forked version of the Repository.
+- [x] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
+- [x] Implement the project on this Branch, committing changes regularly.
+- [x] Push commits: git push origin `firstName-lastName`.
 
 Follow these steps for completing your project.
 
@@ -38,15 +38,25 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [x] Mention two parts of Express that you learned about this week.
 
-- [ ] Describe Middleware?
+-- I learned that Express can handle a wide variety of middleware, and that it is a quick and easy way to set up a server with different api endpoints, because it handles the routing.
 
-- [ ] Describe a Resource?
+- [x] Describe Middleware?
 
-- [ ] What can the API return to help clients know if a request was successful?
+-- Middleware includes functions and frameworks that operate on the server between the time that the request is made and the time that the response is set. It can be used to handle errors, log request data, and add functionality to the server that Express doesn't provide natively.
 
-- [ ] How can we partition our application into sub-applications?
+- [x] Describe a Resource?
+
+-- A resource is an object in a database that can be sent as the response to an api request.
+
+- [x] What can the API return to help clients know if a request was successful?
+
+-- Status messages following standardized three-digit codes tell the client if the request was successful or pass along an error message that might help understanding why the request was not successful.
+
+- [x] How can we partition our application into sub-applications?
+
+-- Express provides hooks that allow the use of multiple endpoint domains (or routes) and hooks that allow the use of middleware that is written outside of index.js. My project includes both a splitting of routes and a handling of middleware in this fashion.
 
 ## Minimum Viable Product
 
