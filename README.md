@@ -40,13 +40,24 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+      Routing and REST(Representational State Transfer).Using routing we can map incoming requests to the appropriate request handler based on the URL and HTTP Method used.REST is a generally agreed-upon set of principles and constraints. They are recommendations, not a standard.
+
 - [ ] Describe Middleware?
+      Middleware provide a way to extend the features provided by the Express framework.They are implemented as small functions
+      that handle one aspect of our application. Tasks like authentication and logging are commonly handled by middleware.
+      Another benefit of Middleware is that it provides an easy way to add modularity to our code.
 
-- [ ] Describe a Resource?
+* [ ] Describe a Resource?
+      We think of everything as a resource(a user, a blog post, a comment etc), Each resource should have it's own unique URL.
+      Use resource names alongside HTTP methods to define these URLS
 
-- [ ] What can the API return to help clients know if a request was successful?
+* [ ] What can the API return to help clients know if a request was successful?
+      Sending back a 200 OK status code communicates to the client that the operation was successful.
 
-- [ ] How can we partition our application into sub-applications?
+* [ ] How can we partition our application into sub-applications?
+      The primary application is: host: The root express app and the actual web server into which the other apps are mounted
+      The sub-application instances include:api: Mounted at /api, handles the JSON based API access for the app
+      web: Mounted at /, handles the core web pages for browser based usage,errors: Mounted in the root express app, handles root level 404 and route / middleware errors
 
 ## Minimum Viable Product
 
