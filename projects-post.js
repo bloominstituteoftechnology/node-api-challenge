@@ -59,4 +59,23 @@ projectRouter.get("/projects/:id", (req, res, next) => {
       .catch(next)
   });
 
+  // DELETE ENDPOINTS
+
+  projectRouter.delete("/projects/:id", (req, res, next) => {
+    projects
+      .remove(req.params.id)
+      .then(count => {
+        if (count > 0) {
+          res.status(200).json({
+            message: "The project has been nuked"
+          });
+        } else {
+          res.status(404).json({
+            message: "The project with the specified ID does not exist."
+          });
+        }
+      })
+      .catch(next)
+  });
+
   module.exports = projectRouter;
