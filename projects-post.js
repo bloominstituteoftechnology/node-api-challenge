@@ -144,6 +144,23 @@ projectRouter.get("/projects/:id", (req, res, next) => {
       .catch(next)
   });
 
+  projectRouter.delete("/projects/:id/actions/:actionsID", (req, res, next) => {
+    actions
+      .remove(req.params.actionsID)
+      .then(count => {
+        if (count > 0) {
+          res.status(200).json({
+            message: "The action has been nuked"
+          });
+        } else {
+          res.status(404).json({
+            message: "The action with the specified ID does not exist."
+          });
+        }
+      })
+      .catch(next)
+  });
+
   //MIDDLEWARE
 
 
