@@ -12,3 +12,19 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+const express = require('express');
+const server = express();
+server.use(express.json());
+
+server.use('/api/projects/actions', actionsRouter);
+server.use('/api/projects', projectsRouter);
+
+server.get('/', (req, res) => {
+  res.send({ message: 'Welcome to the node api sprint' });
+});
+
+const PORT = 4000;
+server.listen(4000, () => {
+  console.log(`server running on port ${PORT}`);
+});
