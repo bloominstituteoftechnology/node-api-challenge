@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
+router.post('/', validateProject, (req, res) => {
     Projects.insert(req.body)
     .then(newProject => {
         res.status(201).json({newProject})
@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.put('/:id', validateProjectId, (req, res) => {
+router.put('/:id', validateProjectId, validateProject, (req, res) => {
 
     Projects.update(req.params.id, req.body)
     .then(updatedResource => {
@@ -65,6 +65,16 @@ function validateProjectId(req, res, next){
     })
 }
 
+function validateProject(req, res, next){
+
+    if(req.body.name && req.body.description){
+        next(); 
+    } else {
+        res.status(400).json({ error: "name and description fields are required"})
+    }
+}
+
 // export
+
 
 module.exports = router; 

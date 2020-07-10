@@ -3,7 +3,7 @@ const router = require('express').Router()
 const Actions = require('../data/helpers/actionModel')
 const Projects = require('../data/helpers/projectModel')
 
-// code 
+// code
 
 router.get('/:id', validateProjectId, (req, res) => {
 
@@ -68,7 +68,7 @@ function validateProjectId(req, res, next){
     Projects.get(req.params.id)
     .then(project => {
         if(project !== null){
-            next()
+            next(); 
         } else {
             res.status(400).json({ error: "that project does not exist"})
         }
