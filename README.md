@@ -40,13 +40,26 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Express Middleware - most of the operative code in Express. Basically an array of functions that get executed in the order that they are introduced to the server. Dictate flow of the application. 
+
+Express Routers - used to organize applications - especially helpful for bigger applications where you wouldn’t want to have all endpoints in one single file. 
+
+
 - [ ] Describe Middleware?
+
+Functions that get executed in the order that they are introduced to the server. Dictate flow of the application. Between the initial request and the final intended route. 
 
 - [ ] Describe a Resource?
 
+A resource is any information or set of data that can be accessed/requested in the database. 
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+The API can return a status code indications success (200s) to let clients know a request was successful. It could also send back all or part of the resource requested.  
+
 - [ ] How can we partition our application into sub-applications?
+
+We can use Express Routers to organize our application into sub-applications. We can organize these sub applications by resource or by type, or a hybrid of the two.  
 
 ## Minimum Viable Product
 
