@@ -16,31 +16,23 @@ router.get('/:id', validateProjectId, (req, res) => {
     })
 })
 
-router.post('/:id', validateProjectId, (req, res) => {
+router.post('/:id', validateProjectId, validateAction, (req, res) => {
 
     Actions.insert(req.body)
     .then(newAction => {
-        if(req.body.description.length < 128){
         res.status(200).json({ message: "action added!", data: newAction})
-        } else {
-            res.status(400).json({ message: "description must be 128 characters or less"})
-        }
     })
     .catch(error => {
         res.status(500).json({ error: "could not add action"})
     })
 })
 
-router.put("/:id/:actionid", validateProjectId, (req, res) => {
+router.put("/:id/:actionid", validateProjectId, validateAction, (req, res) => {
 
     Actions.update(req.params.actionid, req.body)
     .then(updatedAction => {
         if(updatedAction !== null){
-            if(req.body.description.length < 128){
             res.status(200).json({updatedAction})
-            } else {
-                res.status(400).json({ message: "description must be 128 characters or less"})
-            }
         } else {
             res.status(500).json({ error: "the action does not exist!"})
         }
@@ -62,6 +54,14 @@ router.delete("/:id/:actionid", validateProjectId, (req, res) => {
 })
 
 //middleware
+
+function validateAction(req, res, next) {
+    if(req.body.description.length < 128){
+        next(); 
+    } else {
+        res.status(400).json({ message: "description must be 128 characters or less"})
+    }
+}
 
 function validateProjectId(req, res, next){
 
