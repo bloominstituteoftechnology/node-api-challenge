@@ -39,14 +39,22 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 - [ ] Mention two parts of Express that you learned about this week.
+With express you can create an API. You can create dynamic routes with endpoints on each route. You can also set the port the API is listening on. You can also create logic for requirements
 
 - [ ] Describe Middleware?
+Middleware are functions within our API that executes code and can make changes to the request and response objects
 
 - [ ] Describe a Resource?
 
+info we store or use is a resource
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+status codes
+
 - [ ] How can we partition our application into sub-applications?
+
+we can partition our application into sub-applications using routers in our server
 
 ## Minimum Viable Product
 
