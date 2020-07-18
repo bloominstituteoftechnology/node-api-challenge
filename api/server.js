@@ -10,7 +10,7 @@ server.use(express.json());
 server.use(logger);
 server.use(helmet());
 server.use('/api/actions', actionsRouter);
-// server.use('/api/projects', projectsRouter);
+server.use('/api/projects', projectsRouter);
 
 server.get('/', (req, res) => {
     res.send(`<h1>Welcome to our API!</h1>`)
