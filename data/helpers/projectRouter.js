@@ -1,10 +1,21 @@
 const express = require("express");
 const Projects = require("./projectModel");
+const Actions = require("./actionModel");
 const router = express.Router();
 
 router.get("/:id", validateProjectId, (req,res) => {
     res.status(200).json(req.project)
 });
+
+router.get("/:id/actions", validateProjectId, (req,res)=>{
+    Projects.getProjectActions(req.project.id)
+    .then(actions => {
+        res.status(200).json(actions)
+    })
+    .catch(error => {
+        res.status(500).json({message: "There was an error retrieving the actions for this project"})
+    })
+})
 
 router.post("/", validateProject, (req, res)=>{
     Projects.insert(req.body)
@@ -28,6 +39,29 @@ router.put('/:id', validateProjectId, validateProject, (req, res) => {
     })
     .catch(error =>{
       res.status(500).json({message: "There was an error updating that project"})
+    })
+  });
+
+  router.post('/:id/actions', validateProjectId, validateAction, (req, res) => {
+    // do your magic!
+    const newAction = {...req.body, project_id: req.project.id};
+    Actions.insert(newAction)
+    .then(addedAction => {
+      res.status(201).json(addedAction);
+    })
+    .catch(error =>{
+      res.status(500).json({message: "There was an error adding this action to the database"})
+    })
+  });
+
+  router.delete('/:id', validateProjectId, (req, res) => {
+    // do your magic!
+    Projects.remove(req.project.id)
+    .then(deleted => {
+      res.status(200).json(deleted);
+    })
+    .catch(error => {
+      res.status(500).json({message: "There was an error deleting this project"})
     })
   });
 
@@ -61,9 +95,28 @@ function validateProject (req, res, next) {
       res.status(400).json({ message: "missing required name field" });
     }
   }else {
-    res.status(400).json({ message: "missing project data" });
+    res.status(400).json({ message: "missing action data" });
   }
 }
+
+function validateAction(req, res, next) {
+    const newAction = req.body;
+  if(Object.keys(newAction).length > 0) {
+    if(newAction.description) {
+      if(newAction.notes){
+          next();
+      } else {
+        res.status(400).json({ message: "missing required notes field" });
+      }
+    } else {
+      res.status(400).json({ message: "missing required description field" });
+    }
+    }else {
+    res.status(400).json({ message: "missing action data" });
+  }
+}
+
+
 
 
 module.exports = router;
