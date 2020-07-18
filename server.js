@@ -10,7 +10,7 @@ server.use('/api/projects', projectRouter)
 
 
 server.get('/', (req, res) => {
-    res.send('Sever is running')
+    res.send(`${req.method} ${req.url} [${new Date().toISOString()}]`)
 })
 
 
