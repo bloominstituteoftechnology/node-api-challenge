@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/:id", validateProjectId, (req,res) => {
     res.status(200).json(req.project)
-})
+});
 
 router.post("/", validateProject, (req, res)=>{
     Projects.insert(req.body)
@@ -14,7 +14,22 @@ router.post("/", validateProject, (req, res)=>{
   .catch(error =>{
     res.status(500).json({message: "There was an error adding this project to the database"})
   })
-})
+});
+
+router.put('/:id', validateProjectId, validateProject, (req, res) => {
+    // do your magic!
+    Projects.update(req.project.id, req.body)
+    .then(updated =>{
+      Projects.get(req.project.id)
+      .then(project =>{
+        res.status(200).json(project);
+      })
+      
+    })
+    .catch(error =>{
+      res.status(500).json({message: "There was an error updating that project"})
+    })
+  });
 
 function validateProjectId (req, res, next) {
     const {id} = req.params;
