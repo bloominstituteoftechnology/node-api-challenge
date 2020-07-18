@@ -1,8 +1,8 @@
 # **API User Guide**
 |**Table of Contents:**|
 |-|
-|[User Routes](#Project-Routes)|
-|[Company Routes](#Action-Routes)|
+|[Project Routes](#Project-Routes)|
+|[Action Routes](#Action-Routes)|
 ###  **Project Creation**:
 #### POST */api/projects*
 Creates a new project.
