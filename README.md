@@ -16,11 +16,11 @@ The Minimum Viable Product must be completed in three hours.
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your _Team Lead_ as collaborator on Github.
-- [ ] Clone your forked version of the Repository.
-- [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
-- [ ] Implement the project on this Branch, committing changes regularly.
+- [x] Create a forked copy of this project.
+- [x] Add your _Team Lead_ as collaborator on Github.
+- [x] Clone your forked version of the Repository.
+- [x] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
+- [x] Implement the project on this Branch, committing changes regularly.
 - [ ] Push commits: git push origin `firstName-lastName`.
 
 Follow these steps for completing your project.
@@ -38,15 +38,22 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [x] Mention two parts of Express that you learned about this week.
+    Routing - how to create different paths each that do their own thing but are all controlled by the server
+    
 
-- [ ] Describe Middleware?
+- [x] Describe Middleware?
+    Software that allows different systems communicate to work together
 
-- [ ] Describe a Resource?
 
-- [ ] What can the API return to help clients know if a request was successful?
+- [x] Describe a Resource?
+    data/info
 
-- [ ] How can we partition our application into sub-applications?
+- [x] What can the API return to help clients know if a request was successful? 
+    status 200 (ok) or return the info being requested
+
+- [x] How can we partition our application into sub-applications? 
+    ROuting which will create diff paths with their own rules.
 
 ## Minimum Viable Product
 
