@@ -1,10 +1,17 @@
-const express = require('express');
-const actionRoutes = require('./routers/action-routes.js');
-const projectRoutes = require('./routers/project-routes.js');
+const express = require('express')
+const actionRouter = require('./routers/action-routes')
+const projectRouter = require('./routers/project-routes')
+const server = express()
 
-const server = express();
-server.use(express.json());
+server.use(express.json())
 
-server.use('/', (req, res) => {
-    res.send(`${req.method} ${req.url} [${new Date().toISOString()}]`)
+server.use('/api/actions', actionRouter)
+server.use('/api/projects', projectRouter)
+
+
+server.get('/', (req, res) => {
+    res.send('Sever is running')
 })
+
+
+module.exports = server;
