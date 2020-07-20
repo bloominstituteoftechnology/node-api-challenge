@@ -24,7 +24,8 @@ router.post('/',(req, res) => {
 
 router.put('/:id', (req,res) => {
     const { id } = req.params;
-    ActionDb.insert(id)
+    const body = req.body;
+    ActionDb.update(id, body)
         .then(action =>
             res.status(200).json(action))
         .catch(err =>

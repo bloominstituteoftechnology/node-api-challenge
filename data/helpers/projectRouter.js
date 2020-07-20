@@ -49,4 +49,13 @@ router.put("/:id", (req,res)=>{
             res.status.apply(500).json({ errormessage:'Did not update project'}))
 })
 
+router.delete("/:id", (req,res)=>{
+    const { id } = req.params;
+    ProjectDb.remove(id)
+        .then(num =>
+            res.status(200).json({message: `${num} project has been removed from the database`}))
+        .catch(err =>
+            res.status(200).json({ errormessage: "Project not deleted"}))
+})
+
 module.exports = router;
