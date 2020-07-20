@@ -43,23 +43,23 @@ Middleware- Functions that can be used to validate requests for data from our AP
 
 Routing- Handles requests by creating specific routes for SPA's to use when requesting data from our API's
 
-- [ ] Describe Middleware?
+- [*] Describe Middleware?
 Middleware (basically a function) receives the request and the response and can perform operations on them... such as logging requests,validation and security through authentication.
 
-- [ ] Describe a Resource?
+- [*] Describe a Resource?
 A resource is what the request returns when it goes through a set of functions.. it is the data being served by the API
 
-- [ ] What can the API return to help clients know if a request was successful?
+- [*] What can the API return to help clients know if a request was successful?
 A status code... such as a 200.  Or even a error message stating the issue.
 
-- [ ] How can we partition our application into sub-applications?
+- [*] How can we partition our application into sub-applications?
 By creating differnet subsets of data accessed through the Routes we create.  A userdata may be accessed on 0ne set of routes while userposts may be on another.
 
 
 ## Minimum Viable Product
 
-- [ ] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
-- [ ] Configure an _npm script_ named _"start"_ that will execute your code using _node_.
+- [*] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
+- [*] Configure an _npm script_ named _"start"_ that will execute your code using _node_.
 
 Design and build the necessary endpoints to:
 
