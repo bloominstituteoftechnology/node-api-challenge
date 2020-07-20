@@ -30,7 +30,7 @@ router.get("/:id", (req,res)=>{
             res.status(500).json({ errormessage: "Could not get the actions for the Project"}))
 })
 
-router.post("/", (req,res)=>{
+router.post("/", validateName, validateDescription, (req,res)=>{
     const body = req.body;
     ProjectDb.insert(body)
         .then(added =>
@@ -39,7 +39,7 @@ router.post("/", (req,res)=>{
             res.status(500).json({ errormessage: "Could not add project"}))
 })
 
-router.put("/:id", (req,res)=>{
+router.put("/:id", validateName, validateDescription,(req,res)=>{
     const { id } = req.params;
     const body = req.body;
     ProjectDb.update(id, body)
@@ -57,5 +57,23 @@ router.delete("/:id", (req,res)=>{
         .catch(err =>
             res.status(200).json({ errormessage: "Project not deleted"}))
 })
+
+function validateName(req,res,next){
+    const name = req.body.name
+    if(!name){
+        res.status(404).json({ errormessage:" Please include a name for the Project!"})
+    }{
+        next()
+    }
+}
+
+function validateDescription(req,res,next){
+    const desc = req.body.description
+    if(!desc){
+        res.status(404).json({ errormessage:" Please include a description for the Project!"})
+    }{
+        next()
+    }
+}
 
 module.exports = router;
