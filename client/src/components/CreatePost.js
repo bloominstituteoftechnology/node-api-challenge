@@ -1,21 +1,35 @@
 import React, {useState, useEffect} from 'react';
-import Posts from './Posts';
+import styled from 'styled-components'
+// import Posts from './Posts';
 import axios from 'axios';
 
+const Page = styled.div`
+  background-color: peachpuff;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`
+const Card = styled.div`
+  background-color: plum;
+  width:12em;
+  border: 1px black solid;
+  border-radius: 13px;
+  
+  
+`
 function App() {
-  const [ info, setInfo] = useState({
-    name:'',
-  })
+  // const [ info, setInfo] = useState({
+  //   name:'',
+  // })
   
   const [ projects, setProjects] = useState();
-  const [ posts, setPosts] = useState();
   
-  const changeHandler = e => {
-    setInfo({
-      ...info,
-      [e.target.name]: e.target.value
-    })
-  }
+  // const changeHandler = e => {
+  //   setInfo({
+  //     ...info,
+  //     [e.target.name]: e.target.value
+  //   })
+  // }
   
   // const submitHandler = e => {
   //   e.preventDefault();
@@ -39,37 +53,38 @@ function App() {
     .catch( err => console.log("Error", err.message, err.response));
   },[])
 
-  function resolveAfter2Seconds() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve('resolved');
-      }, 100);
-    });
-  }
+  // function resolveAfter2Seconds() {
+  //   return new Promise(resolve => {
+  //     setTimeout(() => {
+  //       resolve('resolved');
+  //     }, 100);
+  //   });
+  // }
 
-  async function asyncRefresh(){
-    // eslint-disable-next-line
-    const result = await resolveAfter2Seconds()
-    const windowRefresh = window.location.reload(true)
-    console.log("You deleted it")
-    return windowRefresh
-  }
+  // async function asyncRefresh(){
+  //   // eslint-disable-next-line
+  //   const result = await resolveAfter2Seconds()
+  //   const windowRefresh = window.location.reload(true)
+  //   console.log("You deleted it")
+  //   return windowRefresh
+  // }
 
 
   return (
     <div>
         
-        <div>
+        <Page>
           {projects && projects.map(project => (
-              <div key={project.id}>
+              <Card key={project.id}>
                   <h1>{project.name}</h1>
                   <button id={project.id}>Get Actions</button>
                   
                   {/* <Posts posts={posts}/> */}
-              </div> 
+
+              </Card> 
           ))}
           
-        </div>
+        </Page>
 
       </div>
     );
