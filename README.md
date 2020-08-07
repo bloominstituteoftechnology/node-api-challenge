@@ -39,8 +39,18 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 -   [ ] Mention two parts of Express that you learned about this week.
+    Express is a web application framework that is on top of the raw http server module provided by Node.js and adds extra functionality, like routing and middleware support, and a simpler API.
+    It is simple, unopinionated, extensible, light-weight, minimalist framework, compatible with connect middleware. Uses of Express:
+    1. build web applications.
+    2. serve Single Page Applications (SPAs).
+    3. build RESTful web services that work with JSON.
+    4. serve static content, like HTML files, images, audio files, PDFs etc.
 
 -   [ ] Describe Middleware?
+    Middleware is array of functions that get executed in the order they are introduced into the server code to add extra functionality to application like authentication, logging and modularity. It can be applied globally or locally.
+    Different types of middleware: Built-in middleware with Express.
+                                    Third-party middleware like morgan, helmet etc.
+                                    Custom middleware.      
 
 -   [ ] Describe a Resource?
 
@@ -93,6 +103,7 @@ The `/data/helpers` folder includes files you can use to manage the persistence 
 -   `insert()`: calling insert passing it a resource object will add it to the database and return the newly created resource.
 -   `update()`: accepts two arguments, the first is the `id` of the resource to update, and the second is an object with the `changes` to apply. It returns the updated resource. If a resource with the provided `id` is not found, the method returns `null`.
 -   `remove()`: the remove method accepts an `id` as it's first parameter and, upon successfully deleting the resource from the database, returns the number of records deleted.
+-   `getProjectActions()`:
 
 The `projectModel.js` helper includes an extra method called `getProjectActions()` that takes a _project id_ as it's only argument and returns a list of all the _actions_ for the _project_.
 
