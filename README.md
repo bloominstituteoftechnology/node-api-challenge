@@ -21,9 +21,9 @@ Follow these steps to set up and work on your project:
 -   [ ] Clone your forked version of the Repository.
 -   [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
 -   [ ] Implement the project on this Branch, committing changes regularly.
--   [ ] Push commits: git push origin `firstName-lastName`.
+-   [ ] Push commits: git push origin `firstName-lastName`. 
 
-Follow these steps for completing your project.
+Follow these steps for completing your project..
 
 -   [ ] Submit a Pull-Request to merge `firstName-lastName` Branch into `main` on **your fork, don't make Pull Requests against Lambda's repository**.
 -   [ ] Please don't merge your own pull request.
