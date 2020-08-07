@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
 
-function App() {
+import axios from "axios";
+import "materialize-css/dist/css/materialize.min.css";
+
+const App = () =>
+{
+  const [ projects, setProjects ] = useState( [] );
+  useEffect( () =>
+  {
+    axios.get( "http://localhost:5000/api/projects" )
+      .then( response => setProjects( response.data.data ) )
+      .catch( error => console.log( error ) );
+  }, [] );
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Projects</h1>
+      { projects.map( project => 
+          <div key = { project.id } class="row">
+            <div class="col s12 m6">
+              <div class="card deep-purple darken-3">
+                <div class="card-content white-text card-action">
+                  <span class="card-title"> { project.name } </span>
+                  <p> { project.description } </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) 
+      }
     </div>
   );
 }
-
 export default App;
