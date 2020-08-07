@@ -98,6 +98,8 @@ The `projectModel.js` helper includes an extra method called `getProjectActions(
 
 We have provided test data for all the resources.
 
+**Please ignore any terminal warnings about returning() not supported by SQLite.**
+
 ## Stretch Goal
 
 -   Use `create-react-app` to create an application in a separate folder (outside the API project folder). Name it anything you want.
