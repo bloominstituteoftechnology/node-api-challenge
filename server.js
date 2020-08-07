@@ -1,5 +1,6 @@
-const express = require('express');
+require("dotenv").config();
 
+const express = require('express');
 
 const projectRouter = require('./data/helpers/projectRouter.js');
 const actionRouter = require('./data/helpers/actionRouter.js');
@@ -33,4 +34,13 @@ function auth(req, res, next) {
     }
 };
 
-server.listen(3000);
+server.get("/", function (req, res) {
+    const message = process.env.MESSAGE || "hello from code";
+
+    res.status(200).json({ message, database: process.env.DB_NAME });
+});
+
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
+    console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
+});

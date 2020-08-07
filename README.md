@@ -39,24 +39,54 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 -   [ ] Mention two parts of Express that you learned about this week.
-    Express is a web application framework that is on top of the raw http server module provided by Node.js and adds extra functionality, like routing and middleware support, and a simpler API.
-    It is simple, unopinionated, extensible, light-weight, minimalist framework, compatible with connect middleware. Uses of Express:
+   👉 Express is a web application framework that is on top of the raw http server module provided by Node.js and adds extra functionality, like routing and middleware support, and a simpler API.
+    It is simple, unopinionated, extensible, light-weight, minimalist framework and a middleware, compatible with connect middleware. Uses of Express:
     1. build web applications.
     2. serve Single Page Applications (SPAs).
     3. build RESTful web services that work with JSON.
     4. serve static content, like HTML files, images, audio files, PDFs etc.
+    👉 Express Routing
 
 -   [ ] Describe Middleware?
-    Middleware is array of functions that get executed in the order they are introduced into the server code to add extra functionality to application like authentication, logging and modularity. It can be applied globally or locally.
+    Middleware is an array of functions that get executed in the order they are introduced into the server code to add extra functionality to application like authentication, logging and modularity etc. It can be applied globally or locally in a project.
     Different types of middleware: Built-in middleware with Express.
                                     Third-party middleware like morgan, helmet etc.
-                                    Custom middleware.      
+                                    Custom middleware(functions).      
 
 -   [ ] Describe a Resource?
+    Everything is a resource(database, server, and APIs etc.), accessible via a unique URI, can have multiple representations, and resource management happens via HTTP methods.
 
+    REpresentational State Transfer or REST is set of principles, introduced in 1999 by Roy Fielding, that define a way to design distributed software and use resources.
+    
 -   [ ] What can the API return to help clients know if a request was successful?
+    API can return 1. status()1. Informational responses (100–199),
+                                2. Successful responses (200–299),
+                                3. Redirects (300–399),
+                                4. Client errors (400–499),
+                                5. Server errors (500–599).
+                    2.message in JSON().
+        to help clients know if a request was successful.
 
 -   [ ] How can we partition our application into sub-applications?
+    Routing is one of the main features of Express. Express Routers are a way to split(or organize) an application into sub-applications to make it more modular and easier to maintain and reason about.
+    Routers are used because pieces can be written separate that can later be composed together.
+    Applications or projects:
+   ✅  by type
+    -   components
+    -   actions
+    -   reducers
+    -   routers
+    -   tests
+    -   models
+    -   services
+    ✅ by feature
+    -   accounts
+    -   products
+    -   clients
+    ✅hybrid
+    -   type > feature
+    -   feature > type
+
 
 ## Minimum Viable Product
 
