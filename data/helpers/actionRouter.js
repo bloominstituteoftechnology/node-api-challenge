@@ -35,8 +35,9 @@ router.get('/', (req, res) => {
 
 // Getting an action
 router.get('/:id', validateActionId, (req, res) => {
-    Actions.get()
+    Actions.get(req.params.id)
         .then(action => {
+            // console.log("action:" + JSON.stringify(action));
             res.status(200).json(action);
         })
         .catch(error => {

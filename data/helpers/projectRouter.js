@@ -123,10 +123,10 @@ router.delete('/:id', validateProjectId, (req, res) => {
 
 // Updating a project
 router.put('/:id', validateProjectId, (req, res) => {
-    const change = req.body;
-    console.log(change);
-    console.log(req.params.id);
-    Projects.update(req.params.id, change)
+    // const change = req.body;
+    // console.log(change);
+    // console.log(req.params.id);
+    Projects.update(req.params.id, req.body)
         .then(updatedProject => {
                 res.status(200).json(updatedProject);
         })
