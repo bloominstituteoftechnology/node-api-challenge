@@ -39,13 +39,16 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 -   [ ] Mention two parts of Express that you learned about this week.
+        <!-- I learned about routing which allows us to map incoming requests to the appropriate request handler based on the URL and HTTP Method used. We also learned about  -->
 
 -   [ ] Describe Middleware?
+        <!-- Middleware functions are functions that have access to the req, res, and next objects and perform tasks in a specific order. -->
 
 -   [ ] Describe a Resource?
+        <!-- Info stored in the database that can be called, manipulated, and deleted.  -->
 
 -   [ ] What can the API return to help clients know if a request was successful?
-
+        <!-- A HTTP status code 201 is usually the response from the server when a requiest is successful -->
 -   [ ] How can we partition our application into sub-applications?
 
 ## Minimum Viable Product
@@ -108,4 +111,8 @@ We have provided test data for all the resources.
 -   Add styling!
 
 
-start
+The core features of Node.js and Express and why they are useful.
+Understand and explain the use of Middleware.
+The basic principles of the REST architectural style.
+Understand and explain the use of Express Routers.
+Describe tooling used to manually test the correctness of an API.
