@@ -106,3 +106,6 @@ We have provided test data for all the resources.
 -   From the React application show a list of all _projects_ using the API you built.
 -   Add functionality to show the details of a project, including its actions, when clicking a project name in the list. Use React Router to navigate to a separate route to show the project details.
 -   Add styling!
+
+
+start
