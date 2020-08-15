@@ -23,7 +23,7 @@ server.use(logger);
 server.use("/api/actions", actionRouter);
 server.use("/api/projects", projectRouter);
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 7000;
 
 
 
@@ -34,5 +34,5 @@ function logger(req, res, next){
 };
 
 server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${port}`)
+    console.log(`Server running at http://localhost:${PORT}`)
 });
