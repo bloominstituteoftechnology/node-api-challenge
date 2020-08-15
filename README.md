@@ -37,16 +37,23 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 ## Self-Study/Essay Questions
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
+ 
+    1.The core features of Node.js and Express and why they are useful.
+                --Node.js is asynchronus and event driven. Meaning it does not wait for results and doesn't block other calls. it can handle a lot requests because of using asynchronous non-blocking way of handling code execution. Fast, scaleable, NPM for dependency management.
 
--   [ ] Mention two parts of Express that you learned about this week.
+    Understand and explain the use of Middleware?
+                --Middleware is an array of functions that get executed in the order they are   introduced into the server code. We have: Built-in middleware, Third-party middleware and Custom middleware.
 
--   [ ] Describe Middleware?
+    The basic principles of the REST architectural style.
+                --addressable resources, everything has an id.
+                --Uniform, constrained interface CRUD
+                --representation oriented; You interact with services using representations of that service.
+                --STATELESS
+    Understand and explain the use of Express Routers.
+                --Routing refers to how an application’s endpoints respond to client requests.You define routing using methods of the Express app object that correspond to HTTP methods; for example, app.get() to handle GET requests and app.post to handle POST requests. 
+    Describe tooling used to manually test the correctness of an API.
+                --Using a third part API tester like INSOMNIA or POSTMAN
 
--   [ ] Describe a Resource?
-
--   [ ] What can the API return to help clients know if a request was successful?
-
--   [ ] How can we partition our application into sub-applications?
 
 ## Minimum Viable Product
 
