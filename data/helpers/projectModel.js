@@ -7,6 +7,7 @@ module.exports = {
   update,
   remove,
   getProjectActions,
+  findById
 };
 
 function get(id) {
@@ -58,4 +59,10 @@ function getProjectActions(projectId) {
   return db("actions")
     .where("project_id", projectId)
     .then(actions => actions.map(action => mappers.actionToBody(action)));
+}
+
+function findById(id){
+  return db("projects")
+    .where("id", id)
+    .first()
 }
