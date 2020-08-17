@@ -1,14 +1,24 @@
-/*
-play this: https://www.youtube.com/watch?v=d-diB65scQU
+const express = require("express")
+const logger = require('./middleware/logger');
+const port = process.argv[2] || 4000
 
-Sing along:
+const projectRouter = require("./middleware/projectRouter");
+const actionsRouter = require("./middleware/actionsRouter");
 
-here's a little code I wrote, please read the README word for word, don't worry, you got this
-in every task there may be trouble, but if you worry you make it double, don't worry, you got this
-ain't got no sense of what is REST? just concentrate on learning Express, don't worry, you got this
-your file is getting way too big, bring a Router and make it thin, don't worry, be crafty
-there is no data on that route, just write some code, you'll sort it out… don't worry, just hack it…
-I need this code, but don't know where, perhaps should make some middleware, don't worry, just hack it
+const serv = express();
+serv.use(express.json());
+serv.use(logger());
+serv.use(projectRouter);
+serv.use(actionsRouter);
 
-Go code!
-*/
+
+//error catching
+serv.use((err,req,res,next)=>{
+    console.log(err)
+    res.status(500).json({message:"Something went wrong"})
+})
+
+
+serv.listen(port,()=>{
+    console.log(`server running on port ${port}`);
+})
