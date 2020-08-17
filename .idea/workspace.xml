@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f47763eb-60a2-44ba-9906-519d908bc41f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lambda.db3" beforeDir="false" afterPath="$PROJECT_DIR$/data/lambda.db3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/actionsRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/actionsRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/projectRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/projectRouter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +21,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -36,11 +37,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1597625075160</updated>
-      <workItem from="1597625076382" duration="943000" />
+      <workItem from="1597625076382" duration="2052000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1060" y="262" key="FileChooserDialogImpl" timestamp="1597626132725">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1060" y="262" key="FileChooserDialogImpl/-2560.0.2560.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1597626132725" />
+    <state x="-1452" y="0" width="580" height="829" maximized="true" key="dock-window-1" timestamp="1597626722148">
+      <screen x="-2560" y="0" width="2560" height="1040" />
+    </state>
+    <state x="-1452" y="0" width="580" height="829" maximized="true" key="dock-window-1/-2560.0.2560.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1597626722148" />
+    <state x="-2366" y="22" width="1248" height="1026" key="dock-window-2" timestamp="1597627715335">
+      <screen x="-2560" y="0" width="2560" height="1040" />
+    </state>
+    <state x="-2366" y="22" width="1248" height="1026" key="dock-window-2/-2560.0.2560.1040/0.0.2560.1040@-2560.0.2560.1040" timestamp="1597627715335" />
   </component>
 </project>
