@@ -2,7 +2,6 @@ const express = require("express")
 
 const {pt} = require("./shrinker")
 
-const projectModel = require("../data/helpers/projectModel")
 const actionModel = require("../data/helpers/actionModel")
 
 const {validateActionId,validateActionCreation,validateProjectIDForAction} = require("./validations")

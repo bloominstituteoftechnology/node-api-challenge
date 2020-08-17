@@ -3,7 +3,6 @@ const express = require("express")
 const {pt} = require("./shrinker")
 
 const projectModel = require("../data/helpers/projectModel")
-const actionModel = require("../data/helpers/actionModel")
 const {validateProjectCreation,validateProjectID} = require("./validations")
 
 const router = express.Router();
