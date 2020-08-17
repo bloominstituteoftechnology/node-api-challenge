@@ -16,19 +16,19 @@ The Minimum Viable Product must be completed in three hours.
 
 Follow these steps to set up and work on your project:
 
--   [ ] Create a forked copy of this project.
--   [ ] Add your _Team Lead_ as collaborator on Github.
--   [ ] Clone your forked version of the Repository.
--   [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
--   [ ] Implement the project on this Branch, committing changes regularly.
--   [ ] Push commits: git push origin `firstName-lastName`.
+- [ ] Create a forked copy of this project.
+- [ ] Add your _Team Lead_ as collaborator on Github.
+- [ ] Clone your forked version of the Repository.
+- [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
+- [ ] Implement the project on this Branch, committing changes regularly.
+- [ ] Push commits: git push origin `firstName-lastName`.
 
 Follow these steps for completing your project.
 
--   [ ] Submit a Pull-Request to merge `firstName-lastName` Branch into `main` on **your fork, don't make Pull Requests against Lambda's repository**.
--   [ ] Please don't merge your own pull request.
--   [ ] Add your _Team Lead_ as a Reviewer on the Pull-request
--   [ ] Your _Team Lead_ will count the challenge as done by merging the branch into `main`.
+- [ ] Submit a Pull-Request to merge `firstName-lastName` Branch into `main` on **your fork, don't make Pull Requests against Lambda's repository**.
+- [ ] Please don't merge your own pull request.
+- [ ] Add your _Team Lead_ as a Reviewer on the Pull-request
+- [ ] Your _Team Lead_ will count the challenge as done by merging the branch into `main`.
 
 ## Commits
 
@@ -38,25 +38,36 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
--   [ ] Mention two parts of Express that you learned about this week.
+- [ ] Mention two parts of Express that you learned about this week.
 
--   [ ] Describe Middleware?
+  -Express lets you connect CRUD operations through its router function
+  -It helps clean up the server.js file
 
--   [ ] Describe a Resource?
+- [ ] Describe Middleware?
 
--   [ ] What can the API return to help clients know if a request was successful?
+  -Middleware helps make code more DRY and is a function you can integrate in a CRUD operation and use over and over again.
 
--   [ ] How can we partition our application into sub-applications?
+- [ ] Describe a Resource?
+
+  -It is a group of data that is contained within the database, usually with its own ID.
+
+- [ ] What can the API return to help clients know if a request was successful?
+
+  -200 request number and a success message
+
+- [ ] How can we partition our application into sub-applications?
+
+  -We can break up the app with ease using routes.
 
 ## Minimum Viable Product
 
--   [ ] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
--   [ ] Configure an _npm script_ named _"start"_ that will execute your code using _node_.
+- [ ] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
+- [ ] Configure an _npm script_ named _"start"_ that will execute your code using _node_.
 
 Design and build the necessary endpoints to:
 
--   [ ] Perform CRUD operations on _projects_ and _actions_. When adding an action, make sure the `project_id` provided belongs to an existing `project`. If you try to add an action with an `id` of 3 and there is no project with that `id` the database will return an error.
--   [ ] Retrieve the list of actions for a project.
+- [ ] Perform CRUD operations on _projects_ and _actions_. When adding an action, make sure the `project_id` provided belongs to an existing `project`. If you try to add an action with an `id` of 3 and there is no project with that `id` the database will return an error.
+- [ ] Retrieve the list of actions for a project.
 
 Please read the following sections before implementing the Minimum Viable Product, they describe how the database is structured and the files and methods available for interacting with the data.
 
@@ -89,10 +100,10 @@ The `/data/helpers` folder includes files you can use to manage the persistence 
 
 **All these helper methods return a promise. Remember to use .then().catch() or async/await.**
 
--   `get()`: resolves to an array of all the resources contained in the database. If you pass an `id` to this method it will return the resource with that id if one is found.
--   `insert()`: calling insert passing it a resource object will add it to the database and return the newly created resource.
--   `update()`: accepts two arguments, the first is the `id` of the resource to update, and the second is an object with the `changes` to apply. It returns the updated resource. If a resource with the provided `id` is not found, the method returns `null`.
--   `remove()`: the remove method accepts an `id` as it's first parameter and, upon successfully deleting the resource from the database, returns the number of records deleted.
+- `get()`: resolves to an array of all the resources contained in the database. If you pass an `id` to this method it will return the resource with that id if one is found.
+- `insert()`: calling insert passing it a resource object will add it to the database and return the newly created resource.
+- `update()`: accepts two arguments, the first is the `id` of the resource to update, and the second is an object with the `changes` to apply. It returns the updated resource. If a resource with the provided `id` is not found, the method returns `null`.
+- `remove()`: the remove method accepts an `id` as it's first parameter and, upon successfully deleting the resource from the database, returns the number of records deleted.
 
 The `projectModel.js` helper includes an extra method called `getProjectActions()` that takes a _project id_ as it's only argument and returns a list of all the _actions_ for the _project_.
 
@@ -102,7 +113,7 @@ We have provided test data for all the resources.
 
 ## Stretch Goal
 
--   Use `create-react-app` to create an application in a separate folder (outside the API project folder). Name it anything you want.
--   From the React application show a list of all _projects_ using the API you built.
--   Add functionality to show the details of a project, including its actions, when clicking a project name in the list. Use React Router to navigate to a separate route to show the project details.
--   Add styling!
+- Use `create-react-app` to create an application in a separate folder (outside the API project folder). Name it anything you want.
+- From the React application show a list of all _projects_ using the API you built.
+- Add functionality to show the details of a project, including its actions, when clicking a project name in the list. Use React Router to navigate to a separate route to show the project details.
+- Add styling!
